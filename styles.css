@@ -157,61 +157,34 @@ a:hover::after {
 
 /* Base styles for the repo details */
 .repo-details p {
-  margin     : 0.2rem 0;
+  margin     : 0.2rem;
   font-family: monospace;
   font-size  : 0.9rem;
 }
 
 /* Description */
 .repo-description {
-  color: #c792ea;
-  /* Soft purple for description */
+  color: #7f688f;
 }
 
 /* Issues */
 .repo-issues {
-  color: #e06c75;
-  /* Reddish tone for issues */
+  color: #a87d81;
 }
 
 /* Language */
 .repo-language {
-  color: #98c379;
-  /* Greenish tone for language */
+  color: #7e9171;
 }
 
 /* Tags */
 .repo-tags {
-  color: #56b6c2;
-  /* Blue-green tone for tags */
+  color: #708e92;
 }
 
-/* Icons for visual distinction */
 .repo-details-icon {
   margin-right: 0.5rem;
   color       : #d19a66;
-  /* Golden brown tone for icons */
-}
-
-/* Sample icons used */
-.icon-description::before {
-  content: "📝";
-  /* Note or paper icon for description */
-}
-
-.icon-issues::before {
-  content: "🐛";
-  /* Bug icon for issues */
-}
-
-.icon-language::before {
-  content: "💻";
-  /* Computer icon for language */
-}
-
-.icon-tags::before {
-  content: "🏷️";
-  /* Tag icon for tags */
 }
 
 ::selection {
@@ -224,7 +197,6 @@ a:hover::after {
   color           : #00d1b2;
 }
 
-/* Badge styles for the clickable stars and forks */
 .repo-stars,
 .repo-forks {
   display         : inline-block;
@@ -232,8 +204,8 @@ a:hover::after {
   margin-left     : 1rem;
   font-size       : 0.8rem;
   font-weight     : bold;
-  color           : #ffffff;
-  background-color: #333333;
+  color           : #ffb444;
+  background-color: #412c63;
   border-radius   : 12px;
   cursor          : pointer;
   transition      : background-color 0.3s ease, transform 0.2s ease;
@@ -241,12 +213,12 @@ a:hover::after {
 
 .repo-stars:hover,
 .repo-forks:hover {
-  background-color: #00d1b2;
+  background-color: #4e53ac;
   transform       : scale(1.1);
 }
 
 .repo-stars:active,
 .repo-forks:active {
-  background-color: #00796b;
+  background-color: #4022b6;
   transform       : scale(0.9);
 }
