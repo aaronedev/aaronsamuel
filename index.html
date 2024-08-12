@@ -2,21 +2,21 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aaron-Samuel Hauck</title>
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-  <meta name="generator" content="Jekyll v4.3.2">
-  <meta property="og:title" content="Aaron-Samuel Hauck">
-  <meta property="og:locale" content="en_US">
-  <meta name="description" content="Work Links and Contact Information for Aaron-Samuel Hauck">
-  <meta property="og:description" content="Work Links and Contact Information for Aaron-Samuel Hauck">
-  <link rel="canonical" href="http://localhost:4000/">
-  <meta property="og:url" content="http://localhost:4000/">
-  <meta property="og:site_name" content="Aaron-Samuel Hauck">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <meta property="twitter:title" content="Aaron-Samuel Hauck">
+  <meta name="generator" content="Jekyll v4.3.2" />
+  <meta property="og:title" content="Aaron-Samuel Hauck" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="description" content="Work Links and Contact Information for Aaron-Samuel Hauck" />
+  <meta property="og:description" content="Work Links and Contact Information for Aaron-Samuel Hauck" />
+  <link rel="canonical" href="http://localhost:4000/" />
+  <meta property="og:url" content="http://localhost:4000/" />
+  <meta property="og:site_name" content="Aaron-Samuel Hauck" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="twitter:title" content="Aaron-Samuel Hauck" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -28,15 +28,15 @@
     }
   </script>
   <!-- End Jekyll SEO tag -->
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-  <link rel="manifest" href="assets/site.webmanifest">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="/assets/css/normalize.min.css">
-  <link rel="stylesheet" href="/assets/css/open-color.min.css">
-  <link rel="stylesheet" href="/assets/css/styles.min.css">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+  <link rel="manifest" href="assets/site.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/assets/css/normalize.min.css" />
+  <link rel="stylesheet" href="/assets/css/open-color.min.css" />
+  <link rel="stylesheet" href="/assets/css/styles.min.css" />
   <script src="/assets/js/typed.min.js"></script>
 </head>
 
@@ -87,7 +87,9 @@
       <div class="list">
         <p>
           <span class="list-subkey">email</span>
-          <span class="list-attr"><a href="mailto:'work@aaronsamuel.de'">work@aaronsamuel.de</a></span>
+          <span class="list-attr">
+            <a href="mailto:'work@aaronsamuel.de'">work@aaronsamuel.de</a>
+          </span>
         </p>
       </div>
     </div>
@@ -103,7 +105,6 @@
         </p>
       </div>
     </div>
-
     <!-- New GitHub Repos Section -->
     <div class="block repo-list">
       <p>
@@ -113,38 +114,49 @@
         <!-- Repositories will be dynamically inserted here -->
       </div>
     </div>
-
   </main>
-
   <!-- GitHub API Script -->
   <script>
-    const username = 'aaronedev';
-    const repoList = document.getElementById('repo-list');
+    const username = "aaronedev";
+    const repoList = document.getElementById("repo-list");
 
     async function fetchGitHubRepos() {
       const response = await fetch(`https://api.github.com/users/${username}/repos`);
       const repos = await response.json();
 
-      repos.forEach(repo => {
-        const language = repo.language ? repo.language : 'Not specified';
-        const description = repo.description ? repo.description : 'No description provided.';
-        const topics = repo.topics.length > 0 ? repo.topics.map(topic => `#${topic}`).join(', ') : 'No tags available';
+      repos.forEach((repo) => {
+        const language = repo.language ? repo.language : "Not specified";
+        const description = repo.description ? repo.description : "No description provided.";
+        const topics =
+          repo.topics.length > 0 ?
+          repo.topics.map((topic) => `#${topic}`).join(", ") :
+          "No tags available";
 
-        const repoElement = document.createElement('div');
-        repoElement.classList.add('repo');
+        const repoElement = document.createElement("div");
+        repoElement.classList.add("repo");
 
         repoElement.innerHTML = `
-          "<a href="${repo.html_url}" target="_blank" class="repo-name">${repo.name}</a>": {<br>
-          &nbsp;&nbsp;"description": "${description}",<br>
-          &nbsp;&nbsp;"stars": ${repo.stargazers_count},<br>
-          &nbsp;&nbsp;"forks": ${repo.forks_count},<br>
-          &nbsp;&nbsp;"issues": ${repo.open_issues_count},<br>
-          &nbsp;&nbsp;"language": "${language}",<br>
-          &nbsp;&nbsp;"tags": "${topics}"<br>
-          },<br>
+          <div class="repo-header" onclick="toggleRepoDetails(this)">
+            <a href="${repo.html_url}" target="_blank" class="repo-name">${repo.name}</a>
+            <span class="repo-stars">★ ${repo.stargazers_count}</span>
+            <span class="repo-forks">🍴 ${repo.forks_count}</span>
+          </div>
+          <div class="repo-details">
+            <p>"description": "${description}",</p>
+            <p>"issues": ${repo.open_issues_count},</p>
+            <p>"language": "${language}",</p>
+            <p>"tags": "${topics}"</p>
+          </div>
         `;
+
         repoList.appendChild(repoElement);
       });
+    }
+
+    function toggleRepoDetails(element) {
+      const details = element.nextElementSibling;
+      details.style.display =
+        details.style.display === "none" || details.style.display === "" ? "block" : "none";
     }
 
     fetchGitHubRepos();
