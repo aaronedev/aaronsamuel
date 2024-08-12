@@ -155,20 +155,63 @@ a:hover::after {
   content: ": ";
 }
 
-.repo-list {
-  margin-left: 1rem;
+/* Base styles for the repo details */
+.repo-details p {
+  margin     : 0.2rem 0;
+  font-family: monospace;
+  font-size  : 0.9rem;
 }
 
-.repo {
-  font-family  : monospace;
-  font-size    : 0.9rem;
-  color        : #7672b6;
-  margin-bottom: 1rem;
-  padding-left : 2rem;
+/* Description */
+.repo-description {
+  color: #c792ea;
+  /* Soft purple for description */
 }
 
-.repo-name {
-  color: #00d1b2;
+/* Issues */
+.repo-issues {
+  color: #e06c75;
+  /* Reddish tone for issues */
+}
+
+/* Language */
+.repo-language {
+  color: #98c379;
+  /* Greenish tone for language */
+}
+
+/* Tags */
+.repo-tags {
+  color: #56b6c2;
+  /* Blue-green tone for tags */
+}
+
+/* Icons for visual distinction */
+.repo-details-icon {
+  margin-right: 0.5rem;
+  color       : #d19a66;
+  /* Golden brown tone for icons */
+}
+
+/* Sample icons used */
+.icon-description::before {
+  content: "📝";
+  /* Note or paper icon for description */
+}
+
+.icon-issues::before {
+  content: "🐛";
+  /* Bug icon for issues */
+}
+
+.icon-language::before {
+  content: "💻";
+  /* Computer icon for language */
+}
+
+.icon-tags::before {
+  content: "🏷️";
+  /* Tag icon for tags */
 }
 
 ::selection {
@@ -179,4 +222,31 @@ a:hover::after {
 ::-moz-selection {
   background-color: #261550;
   color           : #00d1b2;
+}
+
+/* Badge styles for the clickable stars and forks */
+.repo-stars,
+.repo-forks {
+  display         : inline-block;
+  padding         : 2px 8px;
+  margin-left     : 1rem;
+  font-size       : 0.8rem;
+  font-weight     : bold;
+  color           : #ffffff;
+  background-color: #333333;
+  border-radius   : 12px;
+  cursor          : pointer;
+  transition      : background-color 0.3s ease, transform 0.2s ease;
+}
+
+.repo-stars:hover,
+.repo-forks:hover {
+  background-color: #00d1b2;
+  transform       : scale(1.1);
+}
+
+.repo-stars:active,
+.repo-forks:active {
+  background-color: #00796b;
+  transform       : scale(0.9);
 }
