@@ -22,10 +22,42 @@ body {
   text-rendering  : optimizeLegibility;
 }
 
+/* Responsive text and layout adjustments */
 @media (min-width: 768px) {
   main {
     font-size: 20px;
     width    : 60%;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 12px;
+  }
+
+  main {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .json {
+    padding: 1rem;
+    white-space: normal; /* Allow text to wrap */
+  }
+
+  .repo-stars, .repo-forks {
+    font-size: 0.7rem; /* Slightly smaller badges */
+    padding: 2px 6px;
+    margin-left: 0.5rem;
+  }
+
+  .block {
+    margin-left: 1rem;
+    margin-right: 1rem; /* Ensure margin on both sides */
+  }
+
+  .repo-details p {
+    font-size: 0.8rem; /* Slightly smaller text for repo details */
   }
 }
 
