@@ -17,6 +17,20 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: 'Hack';
+  src: url('./assets/fonts/hack-regular-subset.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hack';
+  src: url('./assets/fonts/hack-italic-subset.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+}
+
 a {
 	font-weight: 500;
 	color: #646cff;
