@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="app"
-    class="w-full"
-  >
+  <div id="app" class="w-full">
     <main class="w-full bg-[#0b0a0b] text-[#baa3ff] font-hack p-4">
       <!-- Top Section: Split into two columns -->
       <div class="flex flex-wrap md:flex-nowrap justify-between mb-8">
@@ -13,32 +10,22 @@
               <i class="fab fa-github mr-2"></i>GitHub Profile
             </h2>
             <div class="flex items-center space-x-4 mb-4">
-              <img
-                src="https://avatars.githubusercontent.com/u/0000000?v=4"
-                alt="GitHub Profile Picture"
-                class="rounded-full w-16 h-16"
-              >
+              <img src="https://avatars.githubusercontent.com/u/0000000?v=4" alt="GitHub Profile Picture" class="rounded-full w-16 h-16">
               <div>
-                <p class="text-lg text-[#7f65d4]">
-                  Aaron-Samuel Hauck <i class="fas fa-user-circle"></i>
-                </p>
-                <p class="text-sm text-[#00d1b2]">
-                  @aaronedev
-                </p>
+                <p class="text-lg text-[#7f65d4]">Aaron-Samuel Hauck <i class="fas fa-user-circle"></i></p>
+                <p class="text-sm text-[#00d1b2]">@aaronedev</p>
               </div>
             </div>
-            <p class="text-[#7f65d4] mb-4">
-              <i class="fas fa-code mr-1"></i> Experienced Full-Stack Developer with a passion for building efficient and scalable applications. Specializing in DevOps and cloud architecture.
-            </p>
+            <p class="text-[#7f65d4] mb-4"><i class="fas fa-code mr-1"></i> Experienced Full-Stack Developer with a passion for building efficient and scalable applications. Specializing in DevOps and cloud architecture.</p>
             <div class="space-y-2">
               <p class="text-[#c792ea] font-bold">
                 <i class="fas fa-book mr-1"></i> "Repositories"
               </p>
               <p class="text-[#7f65d4]">
-                <i class="fas fa-code-branch mr-1"></i> Public: 50
+                <i class="fas fa-code-branch mr-1"></i> Public: {{ publicRepos }}
               </p>
               <p class="text-[#7f65d4]">
-                <i class="fas fa-lock mr-1"></i> Private: 10
+                <i class="fas fa-lock mr-1"></i> Private: {{ privateRepos }}
               </p>
             </div>
           </div>
@@ -137,11 +124,7 @@
       <div class="block">
         <p><span class="text-[#c792ea] font-bold"><i class="fas fa-code mr-1"></i>"public_repos"</span>: [</p>
         <div class="ml-6 space-y-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <RepoCard
-            v-for="repo in repos"
-            :key="repo.id"
-            :repo="repo"
-          />
+          <RepoCard v-for="repo in repos" :key="repo.id" :repo="repo" />
         </div>
         <p>]</p>
       </div>
@@ -161,10 +144,13 @@ export default {
   data() {
     return {
       repos: [],
+      publicRepos: 0,
+      privateRepos: 0,
     };
   },
   mounted() {
     this.fetchRepos();
+    this.fetchRepoCounts();
   },
   methods: {
     async fetchRepos() {
@@ -175,6 +161,17 @@ export default {
         console.error("Error fetching repos:", error);
       }
     },
+    async fetchRepoCounts() {
+      try {
+        const response = await axios.get("https://api.github.com/users/aaronedev");
+        this.publicRepos = response.data.public_repos;
+        // GitHub API does not directly provide private repo count unless authenticated
+        // This is a limitation unless using an authenticated request with specific scopes
+        this.privateRepos = response.data.total_private_repos || 0;
+      } catch (error) {
+        console.error("Error fetching repo counts:", error);
+      }
+    }
   },
 };
 </script>
