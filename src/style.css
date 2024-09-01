@@ -27,6 +27,7 @@ body {
 	background-color: #0b0a0b;
 	color: rgba(255, 255, 255, 0.87);
 	animation: fadeIn 1s ease-in;
+  font-weight: 500;
 }
 
 #app {
@@ -35,17 +36,6 @@ body {
 	width: 100%;
 	padding: .5em;
 	animation: slideUp 0.5s ease-in-out;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-weight: 700; /* Bold headings */
-	animation: fadeInDown 0.8s ease-in-out;
-}
-
-p {
-	font-family: 'Ubuntu Sans Mono Italic';
-	font-weight: 500;
-	animation: fadeIn 1s ease-in;
 }
 
 a {
@@ -143,6 +133,22 @@ button:focus-visible {
   color: #8be9fd;
 }
 
+/* Inside your <style scoped> in App.vue */
+.shell-cursor {
+  display: inline-block;
+  width: 10px;
+  background-color: #00ff00; /* Same color as shell output text */
+  animation: blink 1.5s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  50.01%, 100% {
+    opacity: 0;
+  }
+}
 
 @keyframes fadeIn {
   from {
