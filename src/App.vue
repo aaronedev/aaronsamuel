@@ -1,10 +1,20 @@
 <template>
-  <div id="app" class="w-full bg-background text-text-primary">
+  <div
+    id="app"
+    class="w-full bg-background text-text-primary"
+  >
     <main class="w-full p-4">
       <div class="flex flex-wrap md:flex-nowrap justify-between mb-8">
         <div class="w-full md:w-1/2 pr-4 mb-8 md:mb-0">
-          <MyProfile :profile="profile" :publicRepos="publicRepos" :privateRepos="privateRepos" />
-          <FavoriteItems :favoriteRepos="favoriteRepos" :favoriteGists="favoriteGists" />
+          <MyProfile
+            :profile="profile"
+            :public-repos="publicRepos"
+            :private-repos="privateRepos"
+          />
+          <FavoriteItems
+            :favorite-repos="favoriteRepos"
+            :favorite-gists="favoriteGists"
+          />
           <MyStats />
         </div>
         <div class="w-full md:w-1/2 pl-4">
