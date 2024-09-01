@@ -26,6 +26,7 @@ body {
 	min-height: 100vh;
 	background-color: #0b0a0b;
 	color: rgba(255, 255, 255, 0.87);
+	animation: fadeIn 1s ease-in;
 }
 
 #app {
@@ -33,15 +34,18 @@ body {
 	font-size: 16px;
 	width: 100%;
 	padding: .5em;
+	animation: slideUp 0.5s ease-in-out;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 700; /* Bold headings */
+	animation: fadeInDown 0.8s ease-in-out;
 }
 
 p {
 	font-family: 'Ubuntu Sans Mono Italic';
 	font-weight: 500;
+	animation: fadeIn 1s ease-in;
 }
 
 a {
@@ -50,6 +54,7 @@ a {
 	text-decoration: inherit;
 	transition: color 0.3s ease, border-bottom 0.3s ease;
 	position: relative;
+	animation: fadeInUp 0.8s ease-in-out;
 }
 
 a:hover {
@@ -70,7 +75,7 @@ a::after {
 }
 
 a:hover::after {
-	/* transform: scaleX(1); */
+	transform: scaleX(1);
 	transform-origin: bottom left;
 }
 
@@ -83,11 +88,13 @@ button {
 	font-family: inherit;
 	background-color: #1a1a1a;
 	cursor: pointer;
-	transition: border-color 0.25s;
+	transition: border-color 0.25s, transform 0.25s;
+	animation: slideUp 0.6s ease-in-out;
 }
 
 button:hover {
 	border-color: #646cff;
+	transform: translateY(-3px);
 }
 
 button:focus,
@@ -101,9 +108,91 @@ button:focus-visible {
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 	background-color: #16161a;
+	animation: fadeIn 0.8s ease-in-out;
 }
 
 .card:hover {
 	transform: translateY(-5px);
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.fake-shell {
+  background-color: #000;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  animation: slideInLeft 0.7s ease-in-out;
+  font-family: 'Ubuntu Sans Mono', monospace;
+  color: #00ff00;
+}
+
+/* Syntax highlighting for the fake shell */
+.shell-command {
+  color: #00d1b2;
+}
+
+.shell-output {
+  color: #00ff00;
+}
+
+.file-name {
+  color: #ff79c6;
+}
+
+.branch-name {
+  color: #8be9fd;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
