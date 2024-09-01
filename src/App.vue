@@ -31,9 +31,9 @@ export default {
 <template>
   <div
     id="app"
-    class="w-full"
+    class=""
   >
-    <main class="w-full bg-[#170720] text-[#baa3ff] px-4 py-10">
+    <main class="bg-[#170720] text-[#baa3ff] font-hack p-4">
       <!-- Name and Description Section -->
       <div class="block mb-8 ml-4">
         <p><span class="text-[#c792ea] font-bold">"name"</span>: <span class="text-[#7f65d4]">"Aaron-Samuel Hauck"</span>,</p>
@@ -89,9 +89,9 @@ export default {
       </div>
 
       <!-- Public Repos Section -->
-      <div class="block ml-4">
+      <div class="block ml-4 ">
         <p><span class="text-[#c792ea] font-bold">"public_repos"</span>: [</p>
-        <div class="ml-6 space-y-4">
+        <div class="mt-6 ml-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <RepoCard
             v-for="repo in repos"
             :key="repo.id"
@@ -109,24 +109,31 @@ export default {
   font-family: 'Hack', monospace;
 }
 
+main {
+	width: 100%;
+	padding-left: 0;
+	padding-right: 0;
+	margin: 0;
+}
+
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
-  .ml-4 {
-    margin-left: 1rem;
-  }
+	.ml-4 {
+		margin-left: 1rem;
+	}
 
-  .ml-6 {
-    margin-left: 1.5rem;
-  }
+	.ml-6 {
+		margin-left: 1.5rem;
+	}
 }
 
 @media (max-width: 480px) {
-  .ml-4 {
-    margin-left: 0.5rem;
-  }
+	.ml-4 {
+		margin-left: 0.5rem;
+	}
 
-  .ml-6 {
-    margin-left: 1rem;
-  }
+	.ml-6 {
+		margin-left: 1rem;
+	}
 }
 </style>

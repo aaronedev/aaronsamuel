@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-  <div class="w-full p-4 border border-[#412c63] rounded-lg hover:bg-[#1e0d2d] transition-colors duration-300">
+  <div class="p-4 border border-[#412c63] rounded-lg hover:bg-[#1e0d2d] transition-colors duration-300">
     <div class="flex items-center justify-between">
       <a
         :href="repo.html_url"
@@ -60,10 +60,6 @@ export default {
 <style scoped>
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
-  .w-full {
-    width: 100%;
-  }
-
   .p-4 {
     padding: 1rem;
   }
