@@ -3,6 +3,22 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: 'AzeretMono';
+  src: url('./assets/fonts/Azeret_Mono/AzeretMono-VariableFont_wght.ttf') format('truetype');
+  font-weight: 200 900; /* Range of weights available in the variable font */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AzeretMono-Italic';
+  src: url('./assets/fonts/Azeret_Mono/AzeretMono-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 200 900; /* Range of weights available in the variable font */
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Source Code Pro';
   src: url('./assets/fonts/Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf') format('truetype');
   font-weight: 200 900; /* Range of weights available in the variable font */
@@ -30,12 +46,6 @@
 	src: url("./assets/fonts/hack/hack-italic-subset.woff2") format("woff2");
 	font-weight: 500;
 	font-style: italic;
-}
-
-/* Apply font-family globally */
-* {
-	font-family: 'Source Code Pro', monospace;
-	font-weight: 500; /* Normal weight by default */
 }
 
 body {

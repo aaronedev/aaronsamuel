@@ -11,6 +11,12 @@ importers:
       axios:
         specifier: ^1.7.7
         version: 1.7.7
+      json-formatter-js:
+        specifier: ^2.5.17
+        version: 2.5.17
+      moment:
+        specifier: ^2.30.1
+        version: 2.30.1
       vue:
         specifier: ^3.4.37
         version: 3.4.38
@@ -791,6 +797,9 @@ packages:
   json-buffer@3.0.1:
     resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
 
+  json-formatter-js@2.5.17:
+    resolution: {integrity: sha512-HJr7mwjPYIysd504YVTcGrSFlXGhQYWDguM+tx5JgGLkoIdh88h8DsfdN/oFt3ouGrEIwaY+dQdxczOLL/VotQ==}
+
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
 
@@ -857,6 +866,9 @@ packages:
   minipass@7.1.2:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
+
+  moment@2.30.1:
+    resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
 
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
@@ -1944,6 +1956,8 @@ snapshots:
 
   json-buffer@3.0.1: {}
 
+  json-formatter-js@2.5.17: {}
+
   json-schema-traverse@0.4.1: {}
 
   json-stable-stringify-without-jsonify@1.0.1: {}
@@ -1999,6 +2013,8 @@ snapshots:
       brace-expansion: 2.0.1
 
   minipass@7.1.2: {}
+
+  moment@2.30.1: {}
 
   ms@2.1.2: {}
 
