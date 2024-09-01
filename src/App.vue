@@ -29,53 +29,77 @@ export default {
 </script>
 
 <template>
-  <div id="app">
-    <main class="min-h-screen bg-[#170720] text-[#baa3ff] font-hack">
-      <section class="container mx-auto py-10 px-4">
-        <!-- Name and Description Section -->
-        <div class="block mb-8">
-          <p><span class="text-[#c792ea] font-bold">name</span>: <span class="text-[#7f65d4]">"Aaron-Samuel Hauck"</span>,</p>
-          <p class="mt-2"><span class="text-[#c792ea] font-bold">description</span>: <span class="text-[#7f65d4]">"I'm a Web Developer and System Administrator working extensively with DevOps practices, building fast, secure, and scalable web applications."</span></p>
-        </div>
+  <div
+    id="app"
+    class="w-full"
+  >
+    <main class="w-full bg-[#170720] text-[#baa3ff] px-4 py-10">
+      <!-- Name and Description Section -->
+      <div class="block mb-8 ml-4">
+        <p><span class="text-[#c792ea] font-bold">"name"</span>: <span class="text-[#7f65d4]">"Aaron-Samuel Hauck"</span>,</p>
+        <p class="mt-2">
+          <span class="text-[#c792ea] font-bold">"description"</span>: <span class="text-[#7f65d4]">"I'm a Web Developer and System Administrator working extensively with DevOps practices, building fast, secure, and scalable web applications."</span>
+        </p>
+      </div>
 
-        <!-- Address Section -->
-        <div class="block mb-8">
-          <p><span class="text-[#c792ea] font-bold">address</span>: [</p>
-          <ul class="ml-6 list-disc text-[#7f65d4]">
-            <li>"Germany",</li>
-            <li>"Cologne"</li>
-          </ul>
-          <p>],</p>
-        </div>
+      <!-- Address Section -->
+      <div class="block mb-8 ml-4">
+        <p><span class="text-[#c792ea] font-bold">"address"</span>: [</p>
+        <ul class="ml-6 list-disc text-[#7f65d4]">
+          <li>"Germany",</li>
+          <li>"Cologne"</li>
+        </ul>
+        <p>],</p>
+      </div>
 
-        <!-- Contact Section -->
-        <div class="block mb-8">
-          <p><span class="text-[#c792ea] font-bold">contact</span>: {</p>
-          <ul class="ml-6">
-            <li><span class="text-[#c792ea] font-bold">email</span>: <a href="mailto:work@aaronsamuel.de" class="text-[#00d1b2] underline">"work@aaronsamuel.de"</a></li>
-          </ul>
-          <p>},</p>
-        </div>
+      <!-- Contact Section -->
+      <div class="block mb-8 ml-4">
+        <p><span class="text-[#c792ea] font-bold">"contact"</span>: {</p>
+        <ul class="ml-6">
+          <li>
+            <span class="text-[#c792ea] font-bold">"email"</span>: <a
+              href="mailto:work@aaronsamuel.de"
+              class="text-[#00d1b2] underline"
+            >"work@aaronsamuel.de"</a>
+          </li>
+        </ul>
+        <p>},</p>
+      </div>
 
-        <!-- Profiles Section -->
-        <div class="block mb-8">
-          <p><span class="text-[#c792ea] font-bold">profiles</span>: [</p>
-          <ul class="ml-6 list-disc text-[#7f65d4]">
-            <li><a href="https://www.linkedin.com/in/aaronsamuelhauck/" target="_blank" class="text-[#00d1b2] underline">"LinkedIn"</a>,</li>
-            <li><a href="https://github.com/aaronedev/" target="_blank" class="text-[#00d1b2] underline">"GitHub"</a></li>
-          </ul>
-          <p>],</p>
-        </div>
+      <!-- Profiles Section -->
+      <div class="block mb-8 ml-4">
+        <p><span class="text-[#c792ea] font-bold">"profiles"</span>: [</p>
+        <ul class="ml-6 list-disc text-[#7f65d4]">
+          <li>
+            <a
+              href="https://www.linkedin.com/in/aaronsamuelhauck/"
+              target="_blank"
+              class="text-[#00d1b2] underline"
+            >"LinkedIn"</a>,
+          </li>
+          <li>
+            <a
+              href="https://github.com/aaronedev/"
+              target="_blank"
+              class="text-[#00d1b2] underline"
+            >"GitHub"</a>
+          </li>
+        </ul>
+        <p>],</p>
+      </div>
 
-        <!-- Public Repos Section -->
-        <div class="block">
-          <p><span class="text-[#c792ea] font-bold">public_repos</span>: [</p>
-          <div class="ml-6 space-y-4">
-            <RepoCard v-for="repo in repos" :key="repo.id" :repo="repo" />
-          </div>
-          <p>]</p>
+      <!-- Public Repos Section -->
+      <div class="block ml-4">
+        <p><span class="text-[#c792ea] font-bold">"public_repos"</span>: [</p>
+        <div class="ml-6 space-y-4">
+          <RepoCard
+            v-for="repo in repos"
+            :key="repo.id"
+            :repo="repo"
+          />
         </div>
-      </section>
+        <p>]</p>
+      </div>
     </main>
   </div>
 </template>
@@ -83,5 +107,26 @@ export default {
 <style scoped>
 .font-hack {
   font-family: 'Hack', monospace;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .ml-4 {
+    margin-left: 1rem;
+  }
+
+  .ml-6 {
+    margin-left: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ml-4 {
+    margin-left: 0.5rem;
+  }
+
+  .ml-6 {
+    margin-left: 1rem;
+  }
 }
 </style>

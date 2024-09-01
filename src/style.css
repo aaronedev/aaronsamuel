@@ -2,6 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('./assets/fonts/Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf') format('truetype');
+  font-weight: 200 900; /* Range of weights available in the variable font */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('./assets/fonts/Source_Code_Pro/SourceCodePro-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 200 900; /* Range of weights available in the variable font */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+	font-family: "Hack";
+	src: url("./assets/fonts/hack/hack-regular-subset.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Hack";
+	src: url("./assets/fonts/hack/hack-italic-subset.woff2") format("woff2");
+	font-weight: 400;
+	font-style: italic;
+}
+
+* {
+	font-family: Source Code Pro;
+	font-weight: 600;
+}
+
 :root {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
@@ -9,26 +44,12 @@
 
 	color-scheme: light dark;
 	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
+	background-color: #170720;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-
-@font-face {
-  font-family: 'Hack';
-  src: url('./assets/fonts/hack-regular-subset.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Hack';
-  src: url('./assets/fonts/hack-italic-subset.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
 }
 
 a {
@@ -77,10 +98,12 @@ button:focus-visible {
 }
 
 #app {
+	font-family: "Source Code Pro";
+	font-weight: "bold";
 	max-width: 1280px;
 	margin: 0 auto;
-	padding: 2rem;
-	text-align: center;
+	/* padding: 2rem; */
+	/* text-align: center; */
 }
 
 @media (prefers-color-scheme: light) {
