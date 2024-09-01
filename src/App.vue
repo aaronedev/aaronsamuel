@@ -1,6 +1,6 @@
 <template>
   <div>
-    <FormatJson
+    <FormattedJson
       v-if="isValidJson(yourJsonData)"
       :data="yourJsonData"
     />
@@ -14,14 +14,14 @@
 
 <script>
 import axios from 'axios';
-import FormatJson from './components/FormatJson.vue';
+import FormattedJson from './components/FormattedJson.vue';
 import RepoCard from './components/RepoCard.vue';
 
 export default {
   name: 'App',
   components: {
     RepoCard,
-    FormatJson,
+    FormattedJson,
   },
   data() {
     return {
