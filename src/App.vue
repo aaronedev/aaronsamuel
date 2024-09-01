@@ -19,6 +19,7 @@
         </div>
         <div class="w-full md:w-1/2 pl-4">
           <PersonalInfo />
+          <FakeTerminal />
         </div>
       </div>
       <div class="w-full h-px bg-gradient-to-r from-accent-purple via-link to-accent-blue my-8" />
@@ -45,6 +46,7 @@ import MyProfile from "./components/MyProfile.vue";
 import FavoriteItems from "./components/FavoriteItems.vue";
 import MyStats from "./components/MyStats.vue";
 import PersonalInfo from "./components/PersonalInfo.vue";
+import FakeTerminal from "./components/FakeTerminal.vue";
 
 export default {
   name: "App",
@@ -54,6 +56,7 @@ export default {
     FavoriteItems,
     MyStats,
     PersonalInfo,
+    FakeTerminal,
   },
   data() {
     return {
