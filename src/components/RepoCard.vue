@@ -1,17 +1,5 @@
-<script>
-export default {
-  name: "RepoCard",
-  props: {
-    repo: {
-      type: Object,
-      required: true,
-    },
-  },
-};
-</script>
-
 <template>
-  <div class="p-4 border border-[#412c63] rounded-lg hover:bg-[#1e0d2d] transition-colors duration-300">
+  <div class="card">
     <div class="flex items-center justify-between">
       <a
         :href="repo.html_url"
@@ -57,17 +45,29 @@ export default {
   </div>
 </template>
 
+<script>
+export default {
+  name: "RepoCard",
+  props: {
+    repo: {
+      type: Object,
+      required: true,
+    },
+  },
+};
+</script>
+
 <style scoped>
-/* Media queries for responsiveness */
-@media (max-width: 768px) {
-  .p-4 {
-    padding: 1rem;
-  }
+.card {
+  background-color: #04010b;
+  border: 1.5px solid #915aff;
+  padding: 1.5em;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@media (max-width: 480px) {
-  .p-4 {
-    padding: 0.5rem;
-  }
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 </style>

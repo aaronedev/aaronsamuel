@@ -1,39 +1,9 @@
-<script>
-import axios from "axios";
-import RepoCard from "./components/RepoCard.vue";
-
-export default {
-  name: "App",
-  components: {
-    RepoCard,
-  },
-  data() {
-    return {
-      repos: [],
-    };
-  },
-  mounted() {
-    this.fetchRepos();
-  },
-  methods: {
-    async fetchRepos() {
-      try {
-        const response = await axios.get("https://api.github.com/users/aaronedev/repos");
-        this.repos = response.data;
-      } catch (error) {
-        console.error("Error fetching repos:", error);
-      }
-    },
-  },
-};
-</script>
-
 <template>
   <div
     id="app"
-    class=""
+    class="w-full"
   >
-    <main class="bg-[#170720] text-[#baa3ff] font-hack p-4">
+    <main class="w-full bg-[#0b0a0b] text-[#baa3ff] font-hack p-4">
       <!-- Name and Description Section -->
       <div class="block mb-8 ml-4">
         <p><span class="text-[#c792ea] font-bold">"name"</span>: <span class="text-[#7f65d4]">"Aaron-Samuel Hauck"</span>,</p>
@@ -89,9 +59,9 @@ export default {
       </div>
 
       <!-- Public Repos Section -->
-      <div class="block ml-4 ">
+      <div class="block ml-4">
         <p><span class="text-[#c792ea] font-bold">"public_repos"</span>: [</p>
-        <div class="mt-6 ml-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="ml-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <RepoCard
             v-for="repo in repos"
             :key="repo.id"
@@ -104,36 +74,36 @@ export default {
   </div>
 </template>
 
+<script>
+import axios from "axios";
+import RepoCard from "./components/RepoCard.vue";
+
+export default {
+  name: "App",
+  components: {
+    RepoCard,
+  },
+  data() {
+    return {
+      repos: [],
+    };
+  },
+  mounted() {
+    this.fetchRepos();
+  },
+  methods: {
+    async fetchRepos() {
+      try {
+        const response = await axios.get("https://api.github.com/users/aaronedev/repos");
+        this.repos = response.data;
+      } catch (error) {
+        console.error("Error fetching repos:", error);
+      }
+    },
+  },
+};
+</script>
+
 <style scoped>
-.font-hack {
-  font-family: 'Hack', monospace;
-}
-
-main {
-	width: 100%;
-	padding-left: 0;
-	padding-right: 0;
-	margin: 0;
-}
-
-/* Media queries for responsiveness */
-@media (max-width: 768px) {
-	.ml-4 {
-		margin-left: 1rem;
-	}
-
-	.ml-6 {
-		margin-left: 1.5rem;
-	}
-}
-
-@media (max-width: 480px) {
-	.ml-4 {
-		margin-left: 0.5rem;
-	}
-
-	.ml-6 {
-		margin-left: 1rem;
-	}
-}
+/* Additional styling for App.vue */
 </style>
