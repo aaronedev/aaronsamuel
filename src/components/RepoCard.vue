@@ -16,9 +16,7 @@
         <i class="fas fa-code-branch mr-1" />{{ repo.forks_count }}
       </span>
       <span class="text-[#ffb444]">
-        <i class="fas fa-exclamation-circle mr-1" />{{
-          repo.open_issues_count
-        }}
+        <i class="fas fa-exclamation-circle mr-1" />{{ repo.open_issues_count }}
         Issues
       </span>
     </div>
