@@ -40,7 +40,20 @@ export default {
 
 <style scoped>
 .card {
+  @apply shadow-md rounded-lg p-4;
 	animation: slideUp 0.7s ease-in-out;
+}
+
+.card:hover {
+  @apply shadow-lg transform scale-105;
+}
+
+.ml-6.grid.grid-cols-1.gap-4.space-y-4.md\:grid-cols-2.lg\:grid-cols-3 {
+  @apply gap-6;
+}
+
+.ml-6.grid.grid-cols-1.gap-4.space-y-4.md\:grid-cols-2.lg\:grid-cols-3 > .card {
+  @apply bg-white;
 }
 
 @keyframes slideUp {

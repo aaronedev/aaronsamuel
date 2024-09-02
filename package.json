@@ -10,9 +10,11 @@
 	},
 	"dependencies": {
 		"axios": "^1.7.7",
-		"vue": "^3.4.37"
+		"vue": "^3.4.37",
+		"vuex": "^4.0.2"
 	},
 	"devDependencies": {
+		"@faker-js/faker": "^8.4.1",
 		"@vitejs/plugin-vue": "^5.1.2",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.9.1",
