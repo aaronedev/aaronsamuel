@@ -25,7 +25,9 @@
 <slot />
 
 <main>
-	<link rel="stylesheet" href="/path/to/styles/default.min.css">
-<script src="/path/to/highlight.min.js"></script>
-<script>hljs.highlightAll();</script>
+	<link rel="stylesheet" href="/path/to/styles/default.min.css" />
+	<script src="/path/to/highlight.min.js"></script>
+	<script>
+		hljs.highlightAll();
+	</script>
 </main>
