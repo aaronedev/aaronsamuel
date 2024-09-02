@@ -67,12 +67,6 @@
             </ul>
           </div>
         </div>
-
-        <!-- Right Column (Other Content) -->
-       <!--  {{  <RepoCard />  */}} -->
-        <div class="w-full pl-4 md:w-1/2">
-          <!-- Additional content can go here -->
-        </div>
       </div>
     </main>
   </div>
@@ -80,13 +74,9 @@
 
 <script>
 import axios from "axios";
-// import RepoCard from "./components/RepoCard.vue";
 
 export default {
-  // components: {
-  //   RepoCard,
-  // },
-  data() {
+	data() {
 		return {
 			profile: null,
 			repos: [],
