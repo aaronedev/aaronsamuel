@@ -63,7 +63,6 @@
 export default {
 	methods: {
 		toggleTheme() {
-			// This method toggles between light and dark themes
 			const body = document.body;
 			body.classList.toggle("dark-mode");
 		},
@@ -72,13 +71,11 @@ export default {
 </script>
 
 <style scoped>
-/* Center the dot on the toggle switch */
 input:checked ~ .dot {
 	transform: translateX(100%);
-	background-color: #4a5568; /* Dark mode color */
+	background-color: #4a5568;
 }
 
-/* Dark mode styles */
 .dark-mode {
 	--background: #1a202c;
 	--text-primary: #edf2f7;
