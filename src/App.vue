@@ -23,6 +23,15 @@
               <i class="fab fa-github mr-2" /> Portfolio / About
             </h2>
             <div>
+              <div class="wakatime mb-2">
+                <a
+                  href="https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe"
+                ><img
+                  src="https://wakatime.com/badge/user/018cc02c-e893-42e6-b1c7-48cb3ef3ccfe.svg?style=social"
+                  alt="Total time coded since Dec 31 2023"
+                ></a>
+              </div>
+
               <p class="text-lg text-accent-cyan">
                 {{ profile.name }} <i class="fas fa-user-circle" />
               </p>
@@ -37,6 +46,7 @@
                 </a>
               </p>
             </div>
+
             <!-- Additional GitHub Info -->
             <div class="text-muted mt-4 text-sm text-slate-300">
               <p>
