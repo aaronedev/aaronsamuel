@@ -5,7 +5,7 @@
 
 <template>
   <header>
-    <img alt="aaronedev logo" class="logo" src="./assets/aaronedev-profile-picture.png" width="125" height="125" />
+    <img alt="aaronedev logo" class="logo" src="./assets/img/aaronedev-profile-picture.png" width="125" height="125" />
 
     <div class="wrapper">
       <HelloWorld msg="maybe..." />
