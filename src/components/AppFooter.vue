@@ -1,5 +1,5 @@
 <template>
-  <AppFooter class="bg-background py-6 text-text-primary">
+  <Footer class="bg-background py-6 text-text-primary">
     <div class="container mx-auto flex flex-col items-center space-y-4">
       <!-- Social Media Links -->
       <div class="flex space-x-4">
@@ -42,12 +42,11 @@
         &copy; {{ new Date().getFullYear() }} My Portfolio. All rights reserved.
       </p>
     </div>
-  </AppFooter>
+  </Footer>
 </template>
 
 <script>
 export default {
-	name: "AppFooter",
 };
 </script>
 
