@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
 	import '../app.postcss';
 
-	// Highlight JS
+	// Highlight JS and other imports
 	import hljs from 'highlight.js/lib/core';
 	import 'highlight.js/styles/github-dark.css';
 	import { storeHighlightJs } from '@skeletonlabs/skeleton';
@@ -16,18 +17,18 @@
 	hljs.registerLanguage('typescript', typescript);
 	storeHighlightJs.set(hljs);
 
-	// Floating UI for Popups
-	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
-	import { storePopup } from '@skeletonlabs/skeleton';
-	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+	import { onMount } from 'svelte';
+	onMount(() => {
+		hljs.highlightAll();
+	});
 </script>
 
-<slot />
+<AppShell>
+	<AppBar class="bg-primary-50">
+		<svelte:fragment slot="lead">(icon)</svelte:fragment>
+		(title)
+		<svelte:fragment slot="trail">(actions)</svelte:fragment>
+	</AppBar>
 
-<main>
-	<link rel="stylesheet" href="/path/to/styles/default.min.css" />
-	<script src="/path/to/highlight.min.js"></script>
-	<script>
-		hljs.highlightAll();
-	</script>
-</main>
+	<slot></slot>
+</AppShell>
