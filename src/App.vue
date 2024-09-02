@@ -1,11 +1,12 @@
 <template>
   <div
     id="app"
-    class="w-full bg-background text-text-primary"
+    class="w-full text-text-primary"
   >
     <main class="mt-20 w-full p-4">
       <!-- NavBar -->
       <NavBar @toggle-theme="toggleTheme" />
+      <ParticlesComponent />
       <!-- Centered Section -->
       <div class="flex flex-col items-center justify-center space-y-8">
         <!-- GitHub Profile -->
@@ -107,11 +108,13 @@
 import { faker } from "@faker-js/faker";
 import NavBar from "./components/NavBar.vue";
 import AppFooter from "./components/AppFooter.vue";
+import ParticlesComponent from "./components/ParticlesComponent.vue";
 
 export default {
 	components: {
 		NavBar,
 		AppFooter,
+		ParticlesComponent,
 	},
 	data() {
 		return {
