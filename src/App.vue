@@ -112,4 +112,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#app {
+	font-size: 16px;
+	width: 100%;
+	padding: 0.5em;
+	animation: slideUp 0.5s ease-in-out;
+}
+</style>
