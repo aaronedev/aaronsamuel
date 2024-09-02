@@ -1,11 +1,11 @@
 <template>
   <div
-    class="fake-terminal-container mb-4 block rounded-lg border border-selection bg-editor-background p-4"
+    class="fake-terminal-container bg-editor-background mb-4 block rounded-lg border border-selection p-4"
   >
-    <h3 class="mb-4 text-lg font-bold text-accent-blue">
+    <h3 class="text-accent-blue mb-4 text-lg font-bold">
       <i class="fas fa-terminal mr-2" />Fun Fake Shell
     </h3>
-    <div class="fake-shell font-mono text-terminal-cursor">
+    <div class="fake-shell text-terminal-cursor font-mono">
       <p>
         <span class="shell-command">$ echo</span>
       </p>

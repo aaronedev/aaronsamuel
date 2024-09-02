@@ -1,28 +1,29 @@
 <template>
   <div class="profile-container mb-4 block">
-    <h2 class="fade-slide mb-4 text-xl font-bold text-accent-blue">
+    <h2 class="fade-slide text-accent-blue mb-4 text-xl font-bold">
       <i class="fab fa-github mr-2" />GitHub Profile
     </h2>
     <div class="fade-slide mb-4 flex items-center space-x-4">
       <img
         :src="profile.avatar_url"
         alt="GitHub Profile Picture"
-        class="hover:scale-up h-16 w-16 rounded-full border-2 border-accent-purple"
+        class="hover:scale-up border-accent-purple h-16 w-16 rounded-full border-2"
       >
       <div>
-        <p class="text-lg text-accent-purple">
+        <p class="text-accent-purple text-lg">
           {{ profile.name }} <i class="fas fa-user-circle" />
         </p>
-        <p class="text-sm text-primary-cyan">
+        <p class="text-primary-cyan text-sm">
           @{{ profile.login }}
         </p>
       </div>
     </div>
-    <p class="fade-slide mb-4 text-text-muted">
-      <i class="fas fa-code mr-1" /> {{ profile.bio }}
-    </p>
+
+    <div class="fade-slide text-text mb-4">
+      <i class="fas fa-code mr-1" />
+    </div>
     <div class="fade-slide space-y-2">
-      <p class="font-bold text-accent-purple">
+      <p class="text-accent-purple font-bold">
         <i class="fas fa-book mr-1" /> "Repositories"
       </p>
       <p class="text-text-lightMuted">

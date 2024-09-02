@@ -1,7 +1,7 @@
 <template>
   <div
     id="app"
-    class="w-full bg-background font-mono font-medium text-white p-5"
+    class="w-full bg-background p-5 font-mono font-medium text-white"
   >
     <main class="w-full p-4">
       <div class="mb-8 flex flex-wrap justify-between md:flex-nowrap">
@@ -23,11 +23,18 @@
         </div>
       </div>
       <div
-        class="my-8 h-px w-full bg-gradient-to-r from-accent-purple via-link to-accent-blue"
+        class="from-accent-purple to-accent-blue my-8 h-px w-full bg-gradient-to-r via-link"
       />
       <div class="block">
         <p>
-          <span class="font-bold text-accent-blue"><i class="fas fa-code mr-1" />"public_repos"</span>: [
+          <span class="text-accent-blue font-bold">
+            <font-awesome-icon
+              :icon="['fas', 'code']"
+              class="mr-1"
+            />
+            "public_repos"
+          </span>
+          : [
         </p>
         <div
           class="ml-6 grid grid-cols-1 gap-4 space-y-4 md:grid-cols-2 lg:grid-cols-3"
@@ -148,10 +155,5 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  font-family: "Ubuntu Sans Mono", monospace;
-  background-color: #121212;
-  color: #ffffff;
-  padding: 20px;
-}
+/* Additional styling can be added here */
 </style>

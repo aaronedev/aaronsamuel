@@ -9,19 +9,19 @@
 
 <script>
 export default {
-  name: "MyStats",
+	name: "MyStats",
 };
 </script>
 
 <style scoped>
 .my-stats {
-  background-color: #212121;
-  color: #f5f5f5;
-  padding: 15px;
-  border-radius: 5px;
+	background-color: #212121;
+	color: #f5f5f5;
+	padding: 15px;
+	border-radius: 5px;
 }
 
 h2 {
-  color: #ffcb6b;
+	color: #ffcb6b;
 }
 </style>
