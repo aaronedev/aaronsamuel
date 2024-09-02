@@ -14,6 +14,9 @@ importers:
         specifier: ^3.4.37
         version: 3.4.38
     devDependencies:
+      "@faker-js/faker":
+        specifier: ^8.4.1
+        version: 8.4.1
       "@vitejs/plugin-vue":
         specifier: ^5.1.2
         version: 5.1.2(vite@5.4.2)(vue@3.4.38)
@@ -332,6 +335,13 @@ packages:
         integrity: sha512-BsWiH1yFGjXXS2yvrf5LyuoSIIbPrGUWob917o+BTKuZ7qJdxX8aJLRxs1fS9n6r7vESrq1OUqb68dANcFXuQQ==,
       }
     engines: { node: ^18.18.0 || ^20.9.0 || >=21.1.0 }
+
+  "@faker-js/faker@8.4.1":
+    resolution:
+      {
+        integrity: sha512-XQ3cU+Q8Uqmrbf2e0cIC/QN43sTBSC8KF12u29Mb47tWrt2hAgBXSgpZMj4Ao8Uk0iJcU99QsOCaIL8934obCg==,
+      }
+    engines: { node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: ">=6.14.13" }
 
   "@humanwhocodes/module-importer@1.0.1":
     resolution:
@@ -2183,6 +2193,8 @@ snapshots:
   "@eslint/js@9.9.1": {}
 
   "@eslint/object-schema@2.1.4": {}
+
+  "@faker-js/faker@8.4.1": {}
 
   "@humanwhocodes/module-importer@1.0.1": {}
 
