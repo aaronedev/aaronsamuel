@@ -3,19 +3,21 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Ubuntu Sans Mono';
-  src: url('./assets/fonts/Ubuntu_Sans_Mono/UbuntuSansMono-VariableFont_wght.ttf') format('truetype');
-  font-weight: 200 900;
-  font-style: normal;
-  font-display: swap;
+	font-family: "Ubuntu Sans Mono";
+	src: url("./assets/fonts/Ubuntu_Sans_Mono/UbuntuSansMono-VariableFont_wght.ttf")
+		format("truetype");
+	font-weight: 200 900;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: 'Ubuntu Sans Mono Italic';
-  src: url('./assets/fonts/Ubuntu_Sans_Mono/UbuntuSansMono-Italic-VariableFont_wght.ttf') format('truetype');
-  font-weight: 200 900;
-  font-style: italic;
-  font-display: swap;
+	font-family: "Ubuntu Sans Mono Italic";
+	src: url("./assets/fonts/Ubuntu_Sans_Mono/UbuntuSansMono-Italic-VariableFont_wght.ttf")
+		format("truetype");
+	font-weight: 200 900;
+	font-style: italic;
+	font-display: swap;
 }
 
 body {
@@ -27,14 +29,14 @@ body {
 	background-color: #0b0a0b;
 	color: rgba(255, 255, 255, 0.87);
 	animation: fadeIn 1s ease-in;
-  font-weight: 500;
+	font-weight: 500;
 }
 
 #app {
-	font-family: 'Ubuntu Sans Mono', monospace;
+	font-family: "Ubuntu Sans Mono", monospace;
 	font-size: 16px;
 	width: 100%;
-	padding: .5em;
+	padding: 0.5em;
 	animation: slideUp 0.5s ease-in-out;
 }
 
@@ -42,7 +44,9 @@ a {
 	font-weight: 600;
 	color: #646cff;
 	text-decoration: inherit;
-	transition: color 0.3s ease, border-bottom 0.3s ease;
+	transition:
+		color 0.3s ease,
+		border-bottom 0.3s ease;
 	position: relative;
 	animation: fadeInUp 0.8s ease-in-out;
 }
@@ -52,7 +56,7 @@ a:hover {
 }
 
 a::after {
-	content: '';
+	content: "";
 	position: absolute;
 	width: 100%;
 	height: 2px;
@@ -78,7 +82,9 @@ button {
 	font-family: inherit;
 	background-color: #1a1a1a;
 	cursor: pointer;
-	transition: border-color 0.25s, transform 0.25s;
+	transition:
+		border-color 0.25s,
+		transform 0.25s;
 	animation: slideUp 0.6s ease-in-out;
 }
 
@@ -96,7 +102,9 @@ button:focus-visible {
 	border-radius: 12px;
 	padding: 1.5em;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
 	background-color: #16161a;
 	animation: fadeIn 0.8s ease-in-out;
 }
@@ -107,98 +115,100 @@ button:focus-visible {
 }
 
 .fake-shell {
-  background-color: #000;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-  animation: slideInLeft 0.7s ease-in-out;
-  font-family: 'Ubuntu Sans Mono', monospace;
-  color: #00ff00;
+	background-color: #000;
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+	animation: slideInLeft 0.7s ease-in-out;
+	font-family: "Ubuntu Sans Mono", monospace;
+	color: #00ff00;
 }
 
 /* Syntax highlighting for the fake shell */
 .shell-command {
-  color: #00d1b2;
+	color: #00d1b2;
 }
 
 .shell-output {
-  color: #00ff00;
+	color: #00ff00;
 }
 
 .file-name {
-  color: #ff79c6;
+	color: #ff79c6;
 }
 
 .branch-name {
-  color: #8be9fd;
+	color: #8be9fd;
 }
 
 /* Inside your <style scoped> in App.vue */
 .shell-cursor {
-  display: inline-block;
-  width: 10px;
-  background-color: #00ff00; /* Same color as shell output text */
-  animation: blink 1.5s step-end infinite;
+	display: inline-block;
+	width: 10px;
+	background-color: #00ff00; /* Same color as shell output text */
+	animation: blink 1.5s step-end infinite;
 }
 
 @keyframes blink {
-  0%, 50% {
-    opacity: 1;
-  }
-  50.01%, 100% {
-    opacity: 0;
-  }
+	0%,
+	50% {
+		opacity: 1;
+	}
+	50.01%,
+	100% {
+		opacity: 0;
+	}
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+	from {
+		transform: translateY(10px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }
 
 @keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+	from {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }
