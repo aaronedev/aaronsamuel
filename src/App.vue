@@ -8,43 +8,43 @@
         <div class="mb-8 w-full pr-4 md:mb-0 md:w-1/2">
           <!-- GitHub Profile Section -->
           <div
-            class="profile-container mb-4 block rounded-lg bg-[#212121] p-4 shadow-md"
+            class="profile-container mb-4 block rounded-lg bg-gray-900 p-4 shadow-md"
           >
-            <h2 class="fade-slide text-accent-blue mb-4 text-xl font-bold">
+            <h2 class="fade-slide text-blue-400 mb-4 text-xl font-bold">
               <i class="fab fa-github mr-2" />GitHub Profile
             </h2>
             <div class="fade-slide mb-4 flex items-center space-x-4">
               <img
                 :src="profile.avatar_url"
                 alt="GitHub Profile Picture"
-                class="hover:scale-up border-accent-purple h-16 w-16 rounded-full border-2"
+                class="hover:scale-105 border-purple-500 h-16 w-16 rounded-full border-2 transition-transform duration-300"
               >
               <div>
-                <p class="text-accent-purple text-lg">
+                <p class="text-purple-500 text-lg">
                   {{ profile.name }} <i class="fas fa-user-circle" />
                 </p>
-                <p class="text-primary-cyan text-sm">
+                <p class="text-cyan-400 text-sm">
                   @{{ profile.login }}
                 </p>
               </div>
             </div>
 
             <div class="fade-slide space-y-2">
-              <p class="text-accent-purple font-bold">
+              <p class="text-purple-500 font-bold">
                 <i class="fas fa-book mr-1" /> "Repositories"
               </p>
-              <p class="text-text-lightMuted">
+              <p class="text-gray-400">
                 <i class="fas fa-code-branch mr-1" /> Public: {{ publicRepos }}
               </p>
-              <p class="text-text-lightMuted">
+              <p class="text-gray-400">
                 <i class="fas fa-lock mr-1" /> Private: {{ privateRepos }}
               </p>
             </div>
           </div>
 
           <!-- Favorite Projects Section -->
-          <div class="favorite-items rounded-lg bg-[#292d3e] p-4 shadow-md">
-            <h2 class="mb-2 text-xl font-bold text-[#c792ea]">
+          <div class="favorite-items rounded-lg bg-gray-800 p-4 shadow-md">
+            <h2 class="mb-2 text-xl font-bold text-purple-300">
               Featured Projects
             </h2>
             <ul class="text-white">
@@ -58,8 +58,8 @@
           </div>
 
           <!-- My GitHub Stats Section -->
-          <div class="my-stats rounded-lg bg-[#212121] p-4 shadow-md">
-            <h2 class="mb-2 text-xl font-bold text-[#ffcb6b]">
+          <div class="my-stats rounded-lg bg-gray-900 p-4 shadow-md">
+            <h2 class="mb-2 text-xl font-bold text-yellow-400">
               My GitHub Stats
             </h2>
             <p class="text-white">
@@ -76,13 +76,13 @@
 
         <div class="w-full pl-4 md:w-1/2">
           <!-- Personal Info Section -->
-          <div class="mb-4 block rounded-lg bg-[#292d3e] p-4 shadow-md">
+          <div class="mb-4 block rounded-lg bg-gray-800 p-4 shadow-md">
             <p>
-              <span class="text-accent-purple font-bold"><i class="fas fa-user mr-1" />"name"</span>: <span class="text-accent-purple">"Aaron-Samuel Hauck"</span>,
+              <span class="text-purple-500 font-bold"><i class="fas fa-user mr-1" />"name"</span>: <span class="text-purple-500">"Aaron-Samuel Hauck"</span>,
             </p>
             <p class="mt-2">
-              <span class="text-accent-purple font-bold"><i class="fas fa-info-circle mr-1" />"description"</span>:
-              <span class="text-text-lightMuted">"I'm a Web Developer and System Administrator working
+              <span class="text-purple-500 font-bold"><i class="fas fa-info-circle mr-1" />"description"</span>:
+              <span class="text-gray-400">"I'm a Web Developer and System Administrator working
                 extensively with DevOps practices, building fast, secure, and
                 scalable web applications."</span>
             </p>
@@ -103,11 +103,11 @@
       </div>
 
       <div
-        class="from-accent-purple to-accent-blue my-8 h-px w-full bg-gradient-to-r via-link"
+        class="from-purple-500 to-blue-400 my-8 h-px w-full bg-gradient-to-r via-cyan-500"
       />
       <div class="block">
         <p>
-          <span class="text-accent-blue font-bold">
+          <span class="text-blue-400 font-bold">
             <font-awesome-icon
               :icon="['fas', 'code']"
               class="mr-1"
@@ -123,15 +123,15 @@
           <div
             v-for="repo in repos"
             :key="repo.id"
-            class="repo-card card rounded-lg bg-[#1e1e1e] p-4 shadow-md transition-shadow duration-300 hover:shadow-lg"
+            class="repo-card card rounded-lg bg-gray-900 p-4 shadow-md transition-shadow duration-300 hover:shadow-lg"
           >
-            <h3 class="mb-2 text-xl font-bold text-[#c792ea]">
+            <h3 class="mb-2 text-xl font-bold text-purple-300">
               <i class="fas fa-code-branch mr-2" />{{ repo.name }}
             </h3>
-            <p class="mb-4 text-[#7f65d4]">
+            <p class="mb-4 text-purple-400">
               {{ repo.description || "No description available." }}
             </p>
-            <div class="flex space-x-4 text-[#ffb444]">
+            <div class="flex space-x-4 text-yellow-400">
               <span>
                 <i class="fas fa-star mr-1" />{{ repo.stargazers_count }}
               </span>
@@ -145,7 +145,7 @@
                 Issues
               </span>
             </div>
-            <p class="mt-4 text-sm text-[#7f65d4]">
+            <p class="mt-4 text-sm text-purple-400">
               Updated on {{ new Date(repo.updated_at).toLocaleDateString() }}
             </p>
           </div>
@@ -157,6 +157,7 @@
 </template>
 
 <script>
+// No changes in the script part, as your logic is already well-written.
 import axios from "axios";
 
 export default {
@@ -260,7 +261,7 @@ export default {
 	animation: fadeSlide 0.8s ease-in-out;
 }
 
-.hover\:scale-up:hover {
+.hover\:scale-105:hover {
 	transform: scale(1.05);
 	transition: transform 0.3s ease;
 }
