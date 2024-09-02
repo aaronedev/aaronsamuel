@@ -76,6 +76,7 @@
             </ul>
           </div>
           
+          
           <div class="block mb-4">
             <h3 class="text-accent-blue font-bold text-lg mb-4">
               <i class="fas fa-chart-line mr-2" />GitHub Stats
@@ -121,20 +122,6 @@
         
         <!-- Right Column (Personal Information + Fake Shell) -->
         <div class="w-full md:w-1/2 pl-4">
-          <div class="block mb-4">
-            <p><span class="text-accent-purple font-bold"><i class="fas fa-user mr-1" />"name"</span>: <span class="text-accent-purple">"Aaron-Samuel Hauck"</span>,</p>
-            <p class="mt-2">
-              <span class="text-accent-purple font-bold"><i class="fas fa-info-circle mr-1" />"description"</span>: <span class="text-text-lightMuted">"I'm a Web Developer and System Administrator working extensively with DevOps practices, building fast, secure, and scalable web applications."</span>
-            </p>
-          </div>
-          <div class="block mb-4">
-            <p><span class="text-accent-purple font-bold"><i class="fas fa-map-marker-alt mr-1" />"address"</span>: [</p>
-            <ul class="ml-6 list-disc text-accent-cyan">
-              <li>"Germany",</li>
-              <li>"Cologne"</li>
-            </ul>
-            <p>],</p>
-          </div>
           <div class="block mb-4">
             <p><span class="text-accent-purple font-bold"><i class="fas fa-envelope mr-1" />"contact"</span>: {</p>
             <ul class="ml-6">
@@ -253,8 +240,8 @@ export default {
     fetchFavoriteRepos() {
       // Example favorite repos; replace with actual data fetching
       this.favoriteRepos = [
-        { id: 1, name: "Repo1", html_url: "https://github.com/aaronedev/repo1", description: "My favorite repo 1" },
-        { id: 2, name: "Repo2", html_url: "https://github.com/aaronedev/repo2", description: "My favorite repo 2" },
+        { id: 1, name: "Repo1", html_url: "https://github.com/glzr-io/glazewm", description: "My favorite repo 1" },
+        { id: 2, name: "Repo2", html_url: "https://github.com/may215/awesome-termux-hacking", description: "My favorite repo 2" },
       ];
     },
     fetchFavoriteGists() {
@@ -334,3 +321,12 @@ img {
   }
 }
 </style>
+
+<!-- <div class="block mb-4">
+  <p><span class="text-accent-purple font-bold"><i class="fas fa-map-marker-alt mr-1" />"address"</span>: [</p>
+  <ul class="ml-6 list-disc text-accent-cyan">
+    <li>"Germany",</li>
+    <li>"Cologne"</li>
+  </ul>
+  <p>],</p>
+</div> -->
