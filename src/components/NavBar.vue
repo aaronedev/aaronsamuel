@@ -7,8 +7,8 @@
       <div class="text-xl font-bold">
         <a
           href="#"
-          class="text-accent-blue hover:underline"
-        >My Portfolio</a>
+          class="text-accent hover:underline"
+        >About</a>
       </div>
 
       <!-- Icons and Toggle -->
@@ -18,7 +18,7 @@
           href="https://github.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-lg text-accent-blue hover:text-accent-purple"
+          class="text-accent text-lg hover:text-accent-cyan"
         >
           <i class="fab fa-github" />
         </a>
@@ -26,7 +26,7 @@
           href="https://www.linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-lg text-accent-blue hover:text-accent-purple"
+          class="text-accent text-lg hover:text-accent-cyan"
         >
           <i class="fab fa-linkedin" />
         </a>

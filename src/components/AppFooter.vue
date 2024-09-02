@@ -7,7 +7,7 @@
           href="https://github.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-lg text-accent-blue hover:text-accent-purple"
+          class="text-accent text-lg hover:text-accent-cyan"
         >
           <i class="fab fa-github" />
         </a>
@@ -15,7 +15,7 @@
           href="https://www.linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-lg text-accent-blue hover:text-accent-purple"
+          class="text-accent text-lg hover:text-accent-cyan"
         >
           <i class="fab fa-linkedin" />
         </a>
@@ -23,7 +23,7 @@
           href="https://twitter.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-lg text-accent-blue hover:text-accent-purple"
+          class="text-accent text-lg hover:text-accent-cyan"
         >
           <i class="fab fa-twitter" />
         </a>
@@ -32,13 +32,13 @@
       <!-- Back to Top Link -->
       <a
         href="#"
-        class="text-sm text-accent-purple hover:underline"
+        class="text-sm text-accent-cyan hover:underline"
       >
         Back to Top
       </a>
 
       <!-- Copyright Notice -->
-      <p class="text-muted text-sm">
+      <p class="text-muted text-sm text-slate-500">
         &copy; {{ new Date().getFullYear() }} My Portfolio. All rights reserved.
       </p>
     </div>
@@ -46,8 +46,7 @@
 </template>
 
 <script>
-export default {
-};
+export default {};
 </script>
 
 <style scoped>

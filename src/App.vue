@@ -20,10 +20,10 @@
               class="h-20 w-20 rounded-full border-2 border-accent-purple shadow-lg"
             >
             <h2 class="text-xl font-bold text-accent-blue">
-              <i class="fab fa-github mr-2" /> GitHub Profile
+              <i class="fab fa-github mr-2" /> Portfolio / About
             </h2>
             <div>
-              <p class="text-lg text-accent-purple">
+              <p class="text-lg text-accent-cyan">
                 {{ profile.name }} <i class="fas fa-user-circle" />
               </p>
               <p class="text-muted">
@@ -31,14 +31,14 @@
                   :href="profile.html_url"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="hover:underline"
+                  class="text-sm text-slate-600 hover:underline"
                 >
                   View GitHub Profile
                 </a>
               </p>
             </div>
             <!-- Additional GitHub Info -->
-            <div class="text-muted mt-4 text-sm">
+            <div class="text-muted mt-4 text-sm text-slate-300">
               <p>
                 <i class="fas fa-users mr-1" /> Followers:
                 {{ profile.followers }}
@@ -76,11 +76,11 @@
                 :href="repo.html_url"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-brightBlue hover:underline"
+                class="text-primary-cyan hover:underline"
               >
                 {{ repo.name }}
               </a>
-              <p class="text-muted">
+              <p class="text-muted text-slate-400">
                 {{ repo.description }}
               </p>
             </li>
