@@ -14,7 +14,7 @@ export default {
 	data() {
 		return {
 			particlesOptions: {
-				preset: "",
+				preset: "firefly",
 				particles: {
 					color: {
 						value: "#bedce470",
