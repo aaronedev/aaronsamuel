@@ -1,6 +1,9 @@
 <template>
   <nav
-    class="fixed left-0 top-0 z-50 w-full bg-slate-950 text-text-primary shadow-lg"
+    :class="[
+      'fixed left-0 top-0 z-50 w-full bg-slate-950 text-text-primary shadow-lg transition-transform duration-300',
+      isNavbarVisible ? 'translate-y-0' : '-translate-y-full',
+    ]"
   >
     <div class="container mx-auto flex items-center justify-between p-4">
       <!-- Logo or Brand Name -->
@@ -11,14 +14,14 @@
         >About</a>
       </div>
 
-      <!-- Icons and Toggle -->
+      <!-- Icons -->
       <div class="flex items-center space-x-4">
         <!-- FontAwesome Icons -->
         <a
           href="https://github.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent text-lg hover:text-accent-cyan"
+          class="text-accent hover:text-accent-cyan text-lg"
         >
           <i class="fab fa-github" />
         </a>
@@ -26,34 +29,10 @@
           href="https://www.linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent text-lg hover:text-accent-cyan"
+          class="text-accent hover:text-accent-cyan text-lg"
         >
           <i class="fab fa-linkedin" />
         </a>
-
-        <!-- Toggle Switch for Light/Dark Mode -->
-        <div>
-          <label
-            for="themeToggle"
-            class="flex cursor-pointer items-center"
-          >
-            <div class="relative flex items-center">
-              <input
-                id="themeToggle"
-                type="checkbox"
-                class="sr-only"
-                @change="toggleTheme"
-              >
-              <div
-                class="flex h-6 w-10 items-center rounded-full bg-gray-400 shadow-inner"
-              />
-              <div
-                class="dot absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition"
-              />
-            </div>
-            <span class="ml-3 text-sm">Dark Mode</span>
-          </label>
-        </div>
       </div>
     </div>
   </nav>
@@ -61,26 +40,32 @@
 
 <script>
 export default {
+	data() {
+		return {
+			isNavbarVisible: true,
+			lastScrollPosition: 0,
+		};
+	},
+	mounted() {
+		window.addEventListener("scroll", this.handleScroll);
+	},
+	beforeUnmount() {
+		window.removeEventListener("scroll", this.handleScroll);
+	},
 	methods: {
-		toggleTheme() {
-			const body = document.body;
-			body.classList.toggle("dark-mode");
+		handleScroll() {
+			const currentScrollPosition = window.pageYOffset;
+			if (currentScrollPosition > this.lastScrollPosition) {
+				this.isNavbarVisible = false; // Hide navbar when scrolling down
+			} else {
+				this.isNavbarVisible = true; // Show navbar when scrolling up
+			}
+			this.lastScrollPosition = currentScrollPosition;
 		},
 	},
 };
 </script>
 
 <style scoped>
-input:checked ~ .dot {
-	transform: translateX(100%);
-	background-color: #4a5568;
-}
-
-.dark-mode {
-	--background: #1a202c;
-	--text-primary: #edf2f7;
-	--accent-blue: #63b3ed;
-	--accent-purple: #805ad5;
-	--text-muted: #a0aec0;
-}
+/* Additional styling if needed */
 </style>

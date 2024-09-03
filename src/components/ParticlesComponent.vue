@@ -14,28 +14,25 @@ export default {
 	data() {
 		return {
 			particlesOptions: {
-				preset: "firefly", // Use the firefly preset as a base
-				background: {
-					color: "#161217", // Customize the background color
-				},
+				preset: "",
 				particles: {
 					color: {
 						value: "#bedce470",
 					},
 					move: {
-						speed: 0.8, // Adjust the speed of particles
+						speed: 0.8,
 					},
 					number: {
-						value: 0, // Customize the number of particles
+						value: 0,
 					},
 					size: {
-						value: 1.5, // Customize the size of particles
+						value: 2,
 					},
 					opacity: {
-						value: 0.5, // Customize the opacity of particles
+						value: 0.5,
 					},
 					shape: {
-						type: "circle", // Customize the shape of particles
+						type: "circle",
 					},
 				},
 			},

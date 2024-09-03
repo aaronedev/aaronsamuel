@@ -7,7 +7,7 @@
           href="https://github.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent text-lg hover:text-accent-cyan"
+          class="text-accent hover:text-accent-cyan text-lg"
         >
           <i class="fab fa-github" />
         </a>
@@ -15,7 +15,7 @@
           href="https://www.linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent text-lg hover:text-accent-cyan"
+          class="text-accent hover:text-accent-cyan text-lg"
         >
           <i class="fab fa-linkedin" />
         </a>
@@ -23,7 +23,7 @@
           href="https://twitter.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent text-lg hover:text-accent-cyan"
+          class="text-accent hover:text-accent-cyan text-lg"
         >
           <i class="fab fa-twitter" />
         </a>
@@ -32,7 +32,7 @@
       <!-- Back to Top Link -->
       <a
         href="#"
-        class="text-sm text-accent-cyan hover:underline"
+        class="text-accent-cyan text-sm hover:underline"
       >
         Back to Top
       </a>

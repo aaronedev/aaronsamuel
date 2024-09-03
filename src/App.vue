@@ -33,7 +33,7 @@
                 ></a>
               </div>
 
-              <p class="text-lg text-accent-cyan">
+              <p class="text-accent-cyan text-lg">
                 {{ profile.name }} <i class="fas fa-user-circle" />
               </p>
               <p class="text-muted">
