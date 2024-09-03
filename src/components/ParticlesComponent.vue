@@ -20,13 +20,22 @@ export default {
 				},
 				particles: {
 					color: {
-						value: "#ffffff", // Customize particle color#0d0c0d
+						value: "#bedce470",
 					},
 					move: {
 						speed: 0.8, // Adjust the speed of particles
 					},
 					number: {
-						value: 100, // Customize the number of particles
+						value: 0, // Customize the number of particles
+					},
+					size: {
+						value: 1.5, // Customize the size of particles
+					},
+					opacity: {
+						value: 0.5, // Customize the opacity of particles
+					},
+					shape: {
+						type: "circle", // Customize the shape of particles
 					},
 				},
 			},
