@@ -1,7 +1,7 @@
 <template>
   <div
     id="app"
-    class="w-full text-text-primary"
+    class="text-text-primary w-full"
   >
     <main class="mt-20 w-full p-4">
       <!-- NavBar -->
@@ -33,7 +33,7 @@
                 ></a>
               </div>
 
-              <p class="text-accent-cyan text-lg">
+              <p class="text-lg text-accent-cyan">
                 {{ profile.name }} <i class="fas fa-user-circle" />
               </p>
               <p class="text-muted">
@@ -49,7 +49,7 @@
             </div>
 
             <!-- Additional GitHub Info -->
-            <div class="text-muted mt-4 text-sm text-slate-300">
+            <div class="mt-4 text-sm text-muted text-slate-300">
               <p>
                 <i class="fas fa-users mr-1" /> Followers:
                 {{ profile.followers }}
@@ -87,11 +87,11 @@
                 :href="repo.html_url"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-primary-cyan hover:underline"
+                class="text-cyan hover:underline"
               >
                 {{ repo.name }}
               </a>
-              <p class="text-muted text-slate-400">
+              <p class="text-muted">
                 {{ repo.description }}
               </p>
             </li>

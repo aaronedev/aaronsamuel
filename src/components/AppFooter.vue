@@ -1,5 +1,5 @@
 <template>
-  <Footer class="bg-background py-6 text-text-primary">
+  <Footer class="py-6">
     <div class="container mx-auto flex flex-col items-center space-y-4">
       <!-- Social Media Links -->
       <div class="flex space-x-4">
@@ -7,7 +7,7 @@
           href="https://github.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent hover:text-accent-cyan text-lg"
+          class="text-accent text-lg hover:text-accent-cyan"
         >
           <i class="fab fa-github" />
         </a>
@@ -15,7 +15,7 @@
           href="https://www.linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent hover:text-accent-cyan text-lg"
+          class="text-accent text-lg hover:text-accent-cyan"
         >
           <i class="fab fa-linkedin" />
         </a>
@@ -23,7 +23,7 @@
           href="https://twitter.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent hover:text-accent-cyan text-lg"
+          class="text-accent text-lg hover:text-accent-cyan"
         >
           <i class="fab fa-twitter" />
         </a>
@@ -32,13 +32,13 @@
       <!-- Back to Top Link -->
       <a
         href="#"
-        class="text-accent-cyan text-sm hover:underline"
+        class="text-sm text-accent-cyan hover:underline"
       >
         Back to Top
       </a>
 
       <!-- Copyright Notice -->
-      <p class="text-muted text-sm text-slate-500">
+      <p class="text-sm text-muted text-slate-500">
         &copy; {{ new Date().getFullYear() }} My Portfolio. All rights reserved.
       </p>
     </div>

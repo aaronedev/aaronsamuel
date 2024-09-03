@@ -1,7 +1,7 @@
 <template>
   <nav
     :class="[
-      'fixed left-0 top-0 z-50 w-full bg-slate-950 text-text-primary shadow-lg transition-transform duration-300',
+      'fixed left-0 top-0 z-50 w-full shadow-lg transition-transform duration-300',
       isNavbarVisible ? 'translate-y-0' : '-translate-y-full',
     ]"
   >
@@ -10,7 +10,7 @@
       <div class="text-xl font-bold">
         <a
           href="#"
-          class="text-accent hover:underline"
+          class="text-muted hover:underline"
         >About</a>
       </div>
 
@@ -21,7 +21,7 @@
           href="https://github.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent hover:text-accent-cyan text-lg"
+          class="text-accent text-lg hover:text-accent-cyan"
         >
           <i class="fab fa-github" />
         </a>
@@ -29,7 +29,7 @@
           href="https://www.linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent hover:text-accent-cyan text-lg"
+          class="text-accent text-lg hover:text-accent-cyan"
         >
           <i class="fab fa-linkedin" />
         </a>
@@ -66,6 +66,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Additional styling if needed */
-</style>
+<style scoped></style>
