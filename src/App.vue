@@ -5,7 +5,7 @@
   >
     <main class="mt-20 w-full p-4">
       <!-- NavBar -->
-      <NavBar @toggle-theme="toggleTheme" />
+      <NavBar />
       <ParticlesComponent />
       <!-- Centered Section -->
       <div class="flex flex-col items-center justify-center space-y-8">
