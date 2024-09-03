@@ -5,22 +5,16 @@ export default {
 		extend: {
 			colors: {
 				background: "#100f15",
-				blue: "#5339FF",
+				purple: "#40279b",
 				cyan: "#80ffee",
-				lightBlue: "#6D5DFF",
-				darkBlue: "#3423B5",
 				muted: "#677590",
 				dark: "#1A1A1A",
 				light: "#F5F5F5",
 				lightMuted: "#9C9C9C",
 				accent: {
-					blue: "#d6c5fb",
-					purple: "#40279b",
-					brightBlue: "#5EA2FF",
-					yellow: "#685AFF",
-					cyan: "#80ffee",
-					lightCyan: "#b3fff6",
-					darkCyan: "#4dffff",
+					cyan: "#8ffff0",
+					lightCyan: "#d1fffa",
+					darkCyan: "#0cbbbb",
 				},
 			},
 			spacing: {

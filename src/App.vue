@@ -18,9 +18,9 @@
             <img
               :src="profile.avatar_url"
               :alt="profile.name"
-              class="h-20 w-20 rounded-full border-2 border-accent-purple shadow-lg"
+              class="h-20 w-20 rounded-full border-2 border-purple shadow-lg"
             >
-            <h2 class="text-xl font-bold text-accent-blue">
+            <h2 class="text-accent-blue text-xl font-bold">
               <i class="fab fa-github mr-2" /> Portfolio / About
             </h2>
             <div>
@@ -75,7 +75,7 @@
 
         <!-- Favorite Repos -->
         <div class="mt-10 w-full max-w-lg text-left">
-          <h2 class="mb-4 text-xl font-bold text-accent-blue">
+          <h2 class="text-accent-blue mb-4 text-xl font-bold">
             <i class="fas fa-star mr-2" /> Favorite Repositories
           </h2>
           <ul class="space-y-4">
