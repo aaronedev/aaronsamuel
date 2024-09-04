@@ -11,7 +11,9 @@
         <a
           href="#"
           class="text-cyan hover:text-purple hover:underline"
-        >About</a>
+        >
+          About
+        </a>
       </div>
 
       <!-- Home Icon -->
@@ -27,27 +29,35 @@
       <!-- Icons -->
       <div class="relative flex items-center space-x-4">
         <!-- GitHub Icon with Tooltip -->
+        <!-- GitHub Icon with Tooltip -->
         <div class="group relative">
           <a
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            :class="['text-lg text-cyan hover:text-purple', animationClass]"
-            @mouseenter="onMouseEnter"
-            @mouseleave="onMouseLeave"
+            class="text-lg text-cyan hover:text-purple"
+            @mouseenter="active = true"
           >
-            <i class="fab fa-github" />
+            <i
+              :class="[
+                'fab fa-github',
+                isBouncing ? 'animate-bounce-in-up-fast' : '',
+              ]"
+            />
           </a>
-          <!-- Tooltip -->
+
+          <!-- Tooltip for hover -->
           <div
-            v-if="!isHovered && !thankYouMessage"
-            class="absolute left-1/2 top-full mt-2 w-max -translate-x-1/2 transform rounded bg-gray-700 px-2 py-1 text-xs text-white transition-opacity duration-300"
+            v-if="!thankYouMessage"
+            class="absolute left-1/2 mt-2 w-max -translate-x-1/2 transform rounded bg-gray-700 px-2 py-1 text-xs text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           >
             HELP ME HOVER ME I NEED TO RELAX
           </div>
+
+          <!-- Tooltip for thank you message -->
           <div
             v-if="thankYouMessage"
-            class="absolute left-1/2 top-full mt-2 w-max -translate-x-1/2 transform rounded bg-gray-700 px-2 py-1 text-xs text-white transition-opacity duration-300"
+            class="absolute left-1/2 mt-2 w-max -translate-x-1/2 transform rounded bg-gray-700 px-2 py-1 text-xs text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           >
             Thhaaaanks x3333333
           </div>
@@ -69,61 +79,58 @@
 
 <script>
 export default {
-	data() {
-		return {
-			isNavbarVisible: true,
-			lastScrollPosition: 0,
-			animationClass: "animate-bounce-in-up-fast",
-			isHovered: false,
-			thankYouMessage: false,
-			timeoutId: null, // Store timeout ID to clear if needed
-		};
-	},
-	mounted() {
-		window.addEventListener("scroll", this.handleScroll);
-	},
-	beforeUnmount() {
-		window.removeEventListener("scroll", this.handleScroll);
-	},
-	methods: {
-		onMouseEnter() {
-			this.isHovered = true;
-			this.animationClass = "animate-bounce-in-up-fast";
+  data() {
+    return {
+      isNavbarVisible: true,
+      lastScrollPosition: 0,
+      active: false,
+      thankYouMessage: false,
+      isBouncing: false, // Controls the bounce animation
+    };
+  },
+  watch: {
+    active(value) {
+      if (value) {
+        setTimeout(() => {
+          this.thankYouMessage = true; // Change tooltip after 5 seconds
+        }, 5000);
+      }
+    },
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);
 
-			// Clear any existing timeout to avoid multiple triggers
-			if (this.timeoutId) {
-				clearTimeout(this.timeoutId);
-			}
-		},
-		onMouseLeave() {
-			this.animationClass = "animate-bounce-in-up-slow";
-
-			// Start the timeout to show the thank you message after 5 seconds
-			this.timeoutId = setTimeout(() => {
-				this.thankYouMessage = true;
-				this.isHovered = false;
-			}, 5000);
-		},
-		handleScroll() {
-			const currentScrollPosition = window.pageYOffset;
-			if (currentScrollPosition > this.lastScrollPosition) {
-				this.isNavbarVisible = false;
-			} else {
-				this.isNavbarVisible = true;
-			}
-			this.lastScrollPosition = currentScrollPosition;
-		},
-	},
+    // Start bouncing after a 3-second delay
+    setTimeout(() => {
+      this.isBouncing = true;
+    }, 3000);
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      const currentScrollPosition = window.scrollY;
+      this.isNavbarVisible = currentScrollPosition <= this.lastScrollPosition;
+      this.lastScrollPosition = currentScrollPosition;
+    },
+  },
 };
 </script>
 
 <style scoped>
-/* Define different speed animations */
-.animate-bounce-in-up-fast {
-	animation: bounce-in-up 0.1s infinite;
+/* Bounce Animation */
+@keyframes bounce-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
-.animate-bounce-in-up-slow {
-	animation: bounce-in-up 1s infinite;
+.animate-bounce-in-up-fast {
+  animation: bounce-slow 0.5s infinite;
 }
 </style>

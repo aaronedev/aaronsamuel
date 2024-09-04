@@ -52,6 +52,6 @@ export default {};
 <style scoped>
 /* AppFooter Styling */
 AppFooter {
-	border-top: 1px solid var(--text-muted);
+  border-top: 1px solid var(--text-muted);
 }
 </style>

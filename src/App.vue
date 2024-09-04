@@ -105,73 +105,73 @@
 </template>
 
 <script>
-import { faker } from "@faker-js/faker";
-import NavBar from "./components/NavBar.vue";
-import AppFooter from "./components/AppFooter.vue";
-import ParticlesComponent from "./components/ParticlesComponent.vue";
+import { faker } from '@faker-js/faker';
+import NavBar from './components/NavBar.vue';
+import AppFooter from './components/AppFooter.vue';
+import ParticlesComponent from './components/ParticlesComponent.vue';
 
 export default {
-	components: {
-		NavBar,
-		AppFooter,
-		ParticlesComponent,
-	},
-	data() {
-		return {
-			profile: null,
-			repos: [],
-		};
-	},
-	created() {
-		this.fetchFakeGitHubProfile();
-		this.fetchFakeGitHubRepos();
-	},
-	methods: {
-		fetchFakeGitHubProfile() {
-			this.profile = {
-				name: faker.person.fullName(),
-				avatar_url: faker.image.avatar(),
-				html_url: faker.internet.url(),
-				followers: faker.number.int({ min: 100, max: 10000 }),
-				following: faker.number.int({ min: 10, max: 500 }),
-				public_repos: faker.number.int({ min: 10, max: 200 }),
-				public_gists: faker.number.int({ min: 0, max: 50 }),
-			};
-		},
-		fetchFakeGitHubRepos() {
-			this.repos = Array.from({ length: 5 }).map(() => ({
-				id: faker.string.uuid(),
-				name: faker.commerce.productName(),
-				description: faker.commerce.productDescription(),
-				html_url: faker.internet.url(),
-				stargazers_count: faker.number.int({ min: 0, max: 1000 }),
-				forks_count: faker.number.int({ min: 0, max: 1000 }),
-				open_issues_count: faker.number.int({ min: 0, max: 100 }),
-				language: faker.helpers.arrayElement([
-					"JavaScript",
-					"Python",
-					"Java",
-					"CSS",
-					"HTML",
-				]),
-				license: {
-					name: faker.helpers.arrayElement([
-						"MIT",
-						"Apache-2.0",
-						"GPL-3.0",
-						"BSD-2-Clause",
-					]),
-				},
-				updated_at: faker.date.recent(),
-			}));
-		},
-	},
+  components: {
+    NavBar,
+    AppFooter,
+    ParticlesComponent,
+  },
+  data() {
+    return {
+      profile: null,
+      repos: [],
+    };
+  },
+  created() {
+    this.fetchFakeGitHubProfile();
+    this.fetchFakeGitHubRepos();
+  },
+  methods: {
+    fetchFakeGitHubProfile() {
+      this.profile = {
+        name: faker.person.fullName(),
+        avatar_url: faker.image.avatar(),
+        html_url: faker.internet.url(),
+        followers: faker.number.int({ min: 100, max: 10000 }),
+        following: faker.number.int({ min: 10, max: 500 }),
+        public_repos: faker.number.int({ min: 10, max: 200 }),
+        public_gists: faker.number.int({ min: 0, max: 50 }),
+      };
+    },
+    fetchFakeGitHubRepos() {
+      this.repos = Array.from({ length: 5 }).map(() => ({
+        id: faker.string.uuid(),
+        name: faker.commerce.productName(),
+        description: faker.commerce.productDescription(),
+        html_url: faker.internet.url(),
+        stargazers_count: faker.number.int({ min: 0, max: 1000 }),
+        forks_count: faker.number.int({ min: 0, max: 1000 }),
+        open_issues_count: faker.number.int({ min: 0, max: 100 }),
+        language: faker.helpers.arrayElement([
+          'JavaScript',
+          'Python',
+          'Java',
+          'CSS',
+          'HTML',
+        ]),
+        license: {
+          name: faker.helpers.arrayElement([
+            'MIT',
+            'Apache-2.0',
+            'GPL-3.0',
+            'BSD-2-Clause',
+          ]),
+        },
+        updated_at: faker.date.recent(),
+      }));
+    },
+  },
 };
 </script>
 
 <style scoped>
 #app {
-	padding: 0.5em;
-	animation: slideUp 0.5s ease-in-out;
+  padding: 0.5em;
+  animation: slideUp 0.5s ease-in-out;
 }
 </style>
