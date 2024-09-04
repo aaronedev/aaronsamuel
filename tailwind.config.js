@@ -15,7 +15,9 @@ export default {
           cyan: '#8ffff0',
           lightCyan: '#d1fffa',
           darkCyan: '#0cbbbb',
+          blue: '#1DA1F2', // Added accent-blue
         },
+        'text-primary': '#333333', // Added text-primary
       },
       spacing: {
         128: '32rem',
