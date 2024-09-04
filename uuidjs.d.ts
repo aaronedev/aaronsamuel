@@ -6,13 +6,3 @@ declare module 'tailwindcss-fluid-type' {
   const fluidType: (options?: any) => any;
   export default fluidType;
 }
-
-declare module 'tailwindcss-fluid-type' {
-  const fluidType: (options?: any) => any;
-  export default fluidType;
-}
-
-declare module 'tailwindcss-fluid-type' {
-  const fluidType: (id: string) => any;
-  export default fluidType;
-}

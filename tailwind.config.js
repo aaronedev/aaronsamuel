@@ -5,10 +5,10 @@ export default {
     extend: {
       colors: {
         background: '#100f15',
-        purple: '#40279b',
+        purple: '#7866b7',
         cyan: '#80ffee',
         muted: '#677590',
-        dark: '#1A1A1A',
+        dark: '#4c576b',
         light: '#F5F5F5',
         lightMuted: '#9C9C9C',
         accent: {
@@ -21,7 +21,7 @@ export default {
         textSecondary: '#9C9C9C',
         textAccent: '#684fc4',
         textAccentBlue: '#1DA1F2',
-        textAccentDark: '#0cbbbb',
+        textAccentDark: '#22043e',
         textMuted: '#6b7280',
         textDark: '#1A1A1A',
         bgBackground: '#100f15',

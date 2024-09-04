@@ -1,15 +1,16 @@
 <template>
   <div
     id="app"
-    class="text-text-primary flex min-h-screen flex-col items-center justify-center bg-background"
+    class="flex min-h-screen flex-col items-center justify-center bg-background text-base"
   >
-    <main class="mt-20 p-4">
+    <main class="container mx-auto mt-20 w-full max-w-4xl p-4">
       <NavBar />
       <ParticlesComponent />
       <ProfileSection
         :profile="profile"
         :repos="repos"
       />
+      <hr class="my-6 border-t border-gray-300">
       <FavoriteRepos :repos="repos" />
       <AppFooter />
     </main>

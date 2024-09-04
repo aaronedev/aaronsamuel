@@ -21,4 +21,13 @@
   h6 {
     @apply text-xs;
   }
+  p {
+    @apply text-muted;
+  }
+  a {
+    @apply text-cyan hover:underline;
+  }
+  span {
+    @apply text-dark;
+  }
 }

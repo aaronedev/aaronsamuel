@@ -38,7 +38,7 @@
       </a>
 
       <!-- Copyright Notice -->
-      <p class="text-muted text-slate-500 text-sm">
+      <p class="text-muted text-slate-500 text-xs">
         &copy; {{ new Date().getFullYear() }} My Portfolio. All rights reserved.
       </p>
     </div>

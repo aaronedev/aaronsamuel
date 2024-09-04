@@ -2,7 +2,7 @@
   <transition name="fade">
     <div
       v-if="isVisible"
-      class="w-full max-w-lg text-center"
+      class="text-center"
     >
       <div
         v-if="profile"
@@ -13,7 +13,7 @@
           :alt="profile.name"
           class="h-20 w-20 rounded-full border-2 border-purple shadow-lg"
         >
-        <h2 class="font-bold text-accent-blue text-xl">
+        <h2 class="font-bold text-cyan">
           <i class="fab fa-github mr-2" /> Portfolio / About
         </h2>
         <div>
@@ -70,7 +70,10 @@
   </transition>
 
   <!-- Button to toggle visibility -->
-  <button @click="toggleVisibility">
+  <button
+    class="mt-4 bg-slate-800 px-4 py-2"
+    @click="toggleVisibility"
+  >
     Toggle Profile Section
   </button>
 </template>

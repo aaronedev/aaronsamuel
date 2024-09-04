@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h3 class="mb-2 font-bold text-yellow-300 text-lg">
+  <div class="">
+    <h3 class="mb-2 font-bold text-yellow-300">
       Favorite Repos
     </h3>
     <ul class="space-y-2">
@@ -12,11 +12,11 @@
         <a
           :href="repo.html_url"
           target="_blank"
-          class="text-text-accent hover:underline"
+          class="textAccent hover:underline"
         >
           {{ repo.name }}
         </a>
-        <p class="text-sm">
+        <p class="">
           {{ repo.description }}
         </p>
         <div class="mt-1 text-muted text-xs">
