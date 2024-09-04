@@ -1,15 +1,15 @@
 import pluginVue from 'eslint-plugin-vue';
 import eslintConfigPrettier from 'eslint-config-prettier';
+
 export default [
-  eslintConfigPrettier,
-  // add more generic rulesets here, such as:
-  // js.configs.recommended,
-  ...pluginVue.configs['flat/recommended'],
-  // ...pluginVue.configs['flat/vue2-recommended'], // Use this if you are using Vue.js 2.x.
+  eslintConfigPrettier, // Prettier configuration
+  ...pluginVue.configs['flat/recommended'], // Vue 3 flat config
+
   {
+    files: ['**/*.vue'], // Apply rules only to .vue files
     rules: {
-      // override/add rules settings here, such as:
-      // 'vue/no-unused-vars': 'error'
+      'vue/multi-word-component-names': 'off', // Disable multi-word component name rule
+      // Add other custom rules here
     },
   },
 ];
