@@ -1,7 +1,7 @@
 <template>
   <div
     id="app"
-    class="w-full text-text-primary"
+    class="flex min-h-screen flex-col items-center justify-center bg-background text-text-primary"
   >
     <main class="mt-20 p-4">
       <NavBar />
@@ -10,7 +10,7 @@
         :profile="profile"
         :repos="repos"
       />
-      <RepoSection :repos="repos" />
+      <FavoriteRepos :repos="repos" />
       <AppFooter />
     </main>
   </div>
@@ -19,7 +19,7 @@
 <script>
 import NavBar from './components/NavBar.vue';
 import ProfileSection from './components/ProfileSection.vue';
-import RepoSection from './components/RepoSection.vue';
+import FavoriteRepos from './components/FavoriteRepos.vue';
 import AppFooter from './components/AppFooter.vue';
 import ParticlesComponent from './components/ParticlesComponent.vue';
 
@@ -29,7 +29,7 @@ export default {
     AppFooter,
     ParticlesComponent,
     ProfileSection,
-    RepoSection,
+    FavoriteRepos,
   },
 };
 </script>

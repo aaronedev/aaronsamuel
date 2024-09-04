@@ -1,121 +1,118 @@
 <template>
-  <!-- GitHub Profile -->
-  <div class="w-full max-w-lg text-center">
+  <transition name="fade">
     <div
-      v-if="profile"
-      class="flex flex-col items-center space-y-4"
+      v-if="isVisible"
+      class="w-full max-w-lg text-center"
     >
-      <img
-        :src="profile.avatar_url"
-        :alt="profile.name"
-        class="h-20 w-20 rounded-full border-2 border-purple shadow-lg"
+      <div
+        v-if="profile"
+        class="flex flex-col items-center space-y-4"
       >
-      <h2 class="text-xl font-bold text-accent-blue">
-        <i class="fab fa-github mr-2" /> Portfolio / About
-      </h2>
-      <div>
-        <div class="wakatime mb-2">
-          <a href="https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe"><img
-            src="https://wakatime.com/badge/user/018cc02c-e893-42e6-b1c7-48cb3ef3ccfe.svg?style=social"
-            alt="Total time coded since Dec 31 2023"
-          ></a>
+        <img
+          :src="profile.avatar_url"
+          :alt="profile.name"
+          class="h-20 w-20 rounded-full border-2 border-purple shadow-lg"
+        >
+        <h2 class="text-xl font-bold text-accent-blue">
+          <i class="fab fa-github mr-2" /> Portfolio / About
+        </h2>
+        <div>
+          <div class="wakatime mb-2">
+            <a
+              href="https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe"
+            >
+              <img
+                src="https://wakatime.com/badge/user/018cc02c-e893-42e6-b1c7-48cb3ef3ccfe.svg?style=social"
+                alt="Total time coded since Dec 31 2023"
+              >
+            </a>
+          </div>
+
+          <p class="text-lg text-accent-cyan">
+            {{ profile.name }} <i class="fas fa-user-circle" />
+          </p>
+          <p class="text-muted">
+            <a
+              :href="profile.html_url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-slate-600 hover:underline"
+            >
+              View GitHub Profile
+            </a>
+          </p>
         </div>
 
-        <p class="text-lg text-accent-cyan">
-          {{ profile.name }} <i class="fas fa-user-circle" />
-        </p>
-        <p class="text-muted">
-          <a
-            :href="profile.html_url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm text-slate-600 hover:underline"
-          >
-            View GitHub Profile
-          </a>
-        </p>
+        <!-- Additional GitHub Info -->
+        <div class="mt-4 text-sm text-muted text-slate-300">
+          <p>
+            <i class="fas fa-users mr-1" /> Followers:
+            {{ profile.followers }}
+          </p>
+          <p>
+            <i class="fas fa-user-friends mr-1" /> Following:
+            {{ profile.following }}
+          </p>
+          <p>
+            <i class="fas fa-book mr-1" /> Public Repos:
+            {{ profile.public_repos }}
+          </p>
+          <p>
+            <i class="fas fa-code-branch mr-1" /> Public Gists:
+            {{ profile.public_gists }}
+          </p>
+        </div>
       </div>
+      <div v-else>
+        <p>Loading GitHub profile...</p>
+      </div>
+    </div>
+  </transition>
 
-      <!-- Additional GitHub Info -->
-      <div class="mt-4 text-sm text-muted text-slate-300">
-        <p>
-          <i class="fas fa-users mr-1" /> Followers:
-          {{ profile.followers }}
-        </p>
-        <p>
-          <i class="fas fa-user-friends mr-1" /> Following:
-          {{ profile.following }}
-        </p>
-        <p>
-          <i class="fas fa-book mr-1" /> Public Repos:
-          {{ profile.public_repos }}
-        </p>
-        <p>
-          <i class="fas fa-code-branch mr-1" /> Public Gists:
-          {{ profile.public_gists }}
-        </p>
-      </div>
-    </div>
-    <div v-else>
-      <p>Loading GitHub profile...</p>
-    </div>
-  </div>
+  <!-- Button to toggle visibility -->
+  <button @click="toggleVisibility">
+    Toggle Profile Section
+  </button>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted } from 'vue';
 import { faker } from '@faker-js/faker';
 
-export default {
-  data() {
-    return {
-      profile: null,
-    };
-  },
-  created() {
-    this.fetchFakeGitHubProfile();
-    this.fetchFakeGitHubRepos();
-  },
-  methods: {
-    fetchFakeGitHubProfile() {
-      this.profile = {
-        name: faker.person.fullName(),
-        avatar_url: faker.image.avatar(),
-        html_url: faker.internet.url(),
-        followers: faker.number.int({ min: 100, max: 10000 }),
-        following: faker.number.int({ min: 10, max: 500 }),
-        public_repos: faker.number.int({ min: 10, max: 200 }),
-        public_gists: faker.number.int({ min: 0, max: 50 }),
-      };
-    },
-    fetchFakeGitHubRepos() {
-      this.repos = Array.from({ length: 5 }).map(() => ({
-        id: faker.string.uuid(),
-        name: faker.commerce.productName(),
-        description: faker.commerce.productDescription(),
-        html_url: faker.internet.url(),
-        stargazers_count: faker.number.int({ min: 0, max: 1000 }),
-        forks_count: faker.number.int({ min: 0, max: 1000 }),
-        open_issues_count: faker.number.int({ min: 0, max: 100 }),
-        language: faker.helpers.arrayElement([
-          'JavaScript',
-          'Python',
-          'Java',
-          'CSS',
-          'HTML',
-        ]),
-        license: {
-          name: faker.helpers.arrayElement([
-            'MIT',
-            'Apache-2.0',
-            'GPL-3.0',
-            'BSD-2-Clause',
-          ]),
-        },
-        updated_at: faker.date.recent(),
-      }));
-    },
-  },
+// Define reactive variables
+const isVisible = ref(true);
+const profile = ref(null);
+
+// Fetch fake GitHub profile on component mount
+const fetchFakeGitHubProfile = () => {
+  profile.value = {
+    name: faker.person.fullName(),
+    avatar_url: faker.image.avatar(),
+    html_url: faker.internet.url(),
+    followers: faker.number.int({ min: 100, max: 10000 }),
+    following: faker.number.int({ min: 10, max: 500 }),
+    public_repos: faker.number.int({ min: 10, max: 200 }),
+    public_gists: faker.number.int({ min: 0, max: 50 }),
+  };
 };
+
+// Toggle the visibility of the profile section
+const toggleVisibility = () => {
+  isVisible.value = !isVisible.value;
+};
+
+onMounted(() => {
+  fetchFakeGitHubProfile();
+});
 </script>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

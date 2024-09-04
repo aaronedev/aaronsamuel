@@ -15,28 +15,16 @@ export default {
           cyan: '#8ffff0',
           lightCyan: '#d1fffa',
           darkCyan: '#0cbbbb',
-          blue: '#1DA1F2', // Added accent-blue
+          blue: '#1DA1F2',
         },
-        'text-primary': '#333333', // Added text-primary
-      },
-      spacing: {
-        128: '32rem',
-        144: '36rem',
-      },
-      borderRadius: {
-        '4xl': '2rem',
-        '5xl': '2.5rem',
-      },
-      fontSize: {
-        '2xs': '.65rem',
-        '3xs': '.5rem',
-      },
-      fontWeight: {
-        light: 300,
-        regular: 400,
-        medium: 500,
-        semibold: 600,
-        bold: 700,
+        'text-primary': '#87849f',
+        'text-secondary': '#9C9C9C',
+        'text-accent': '#684fc4',
+        'text-accent-blue': '#1DA1F2',
+        'text-accent-dark': '#0cbbbb',
+        'text-muted': ' #6b7280',
+        'text-dark': '#1A1A1A',
+        'bg-background': '#100f15',
       },
     },
   },
