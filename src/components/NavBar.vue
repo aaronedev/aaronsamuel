@@ -28,15 +28,15 @@
 
       <!-- Icons -->
       <div class="relative flex items-center space-x-4">
-        <!-- GitHub Icon with Tooltip -->
-        <!-- GitHub Icon with Tooltip -->
+        <!-- GitHub Icon with dynamic tooltip -->
         <div class="group relative">
           <a
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
             class="text-lg text-cyan hover:text-purple"
-            @mouseenter="active = true"
+            @mouseenter="handleMouseEnter"
+            @mouseleave="handleMouseLeave"
           >
             <i
               :class="[
@@ -46,20 +46,13 @@
             />
           </a>
 
-          <!-- Tooltip for hover -->
+          <!-- Dynamic message container that follows the bounce animation -->
           <div
-            v-if="!thankYouMessage"
-            class="absolute left-1/2 mt-2 w-max -translate-x-1/2 transform rounded bg-gray-700 px-2 py-1 text-xs text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            v-if="showMessage"
+            class="tooltip-container"
+            :style="{ top: messagePosition }"
           >
-            HELP ME HOVER ME I NEED TO RELAX
-          </div>
-
-          <!-- Tooltip for thank you message -->
-          <div
-            v-if="thankYouMessage"
-            class="absolute left-1/2 mt-2 w-max -translate-x-1/2 transform rounded bg-gray-700 px-2 py-1 text-xs text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          >
-            Thhaaaanks x3333333
+            {{ dynamicMessage }}
           </div>
         </div>
 
@@ -84,15 +77,19 @@ export default {
       isNavbarVisible: true,
       lastScrollPosition: 0,
       active: false,
-      thankYouMessage: false,
+      thankYouMessage: false, // Controls the tooltip message
       isBouncing: false, // Controls the bounce animation
+      showMessage: false, // Controls when to show the dynamic message
+      dynamicMessage: 'HELP ME HOVER ME I NEED TO RELAX', // Initial message
+      messagePosition: '0px', // Position of the message container (sync with animation)
     };
   },
   watch: {
     active(value) {
       if (value) {
         setTimeout(() => {
-          this.thankYouMessage = true; // Change tooltip after 5 seconds
+          this.thankYouMessage = true; // Change the tooltip after 5 seconds of hover
+          this.dynamicMessage = 'Thhaaaanks x3333333'; // Change message after 5 seconds
         }, 5000);
       }
     },
@@ -100,10 +97,11 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
 
-    // Start bouncing after a 3-second delay
+    // Start the bounce and show the tooltip after 3 seconds
     setTimeout(() => {
-      this.isBouncing = true;
-    }, 3000);
+      this.isBouncing = true; // Start bouncing the icon
+      this.showMessage = true; // Show the tooltip/message
+    }, 3000); // 3 seconds delay
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
@@ -113,6 +111,14 @@ export default {
       const currentScrollPosition = window.scrollY;
       this.isNavbarVisible = currentScrollPosition <= this.lastScrollPosition;
       this.lastScrollPosition = currentScrollPosition;
+    },
+    handleMouseEnter() {
+      this.active = true; // Trigger active state to start the tooltip countdown
+    },
+    handleMouseLeave() {
+      this.active = false; // Reset behavior on mouse leave (optional)
+      this.thankYouMessage = false; // Reset the message state
+      this.dynamicMessage = 'HELP ME HOVER ME I NEED TO RELAX'; // Reset the initial message
     },
   },
 };
@@ -131,6 +137,29 @@ export default {
 }
 
 .animate-bounce-in-up-fast {
-  animation: bounce-slow 0.5s infinite;
+  animation: bounce-slow 0.5s infinite; /* Fast bounce animation */
+}
+
+/* Tooltip Style */
+.group .tooltip {
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Smooth fade-in for the tooltip */
+}
+
+.group:hover .tooltip {
+  opacity: 1; /* Show the tooltip on hover */
+}
+
+/* Tooltip with position syncing */
+.tooltip-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  transition: top 0.3s ease; /* Smooth transition for following bounce */
 }
 </style>

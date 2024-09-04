@@ -16,6 +16,7 @@
     "@tsparticles/slim": "^3.5.0",
     "@tsparticles/vue3": "^3.0.1",
     "axios": "^1.7.7",
+    "eslint-plugin-vue": "^9.28.0",
     "tsparticles": "^3.5.0",
     "vue": "^3.4.37"
   },
@@ -25,13 +26,13 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.9.1",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-vue": "^9.27.0",
     "postcss": "^8.4.41",
     "postcss-import": "^16.1.0",
     "postcss-nesting": "^13.0.0",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.6",
     "tailwindcss": "^3.4.10",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vue-tsc": "^2.1.4"
   }
 }
