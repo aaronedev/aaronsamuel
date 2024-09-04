@@ -13,7 +13,7 @@
           :alt="profile.name"
           class="h-20 w-20 rounded-full border-2 border-purple shadow-lg"
         >
-        <h2 class="text-xl font-bold text-accent-blue">
+        <h2 class="font-bold text-accent-blue text-xl">
           <i class="fab fa-github mr-2" /> Portfolio / About
         </h2>
         <div>
@@ -28,7 +28,7 @@
             </a>
           </div>
 
-          <p class="text-lg text-accent-cyan">
+          <p class="text-accent-cyan text-lg">
             {{ profile.name }} <i class="fas fa-user-circle" />
           </p>
           <p class="text-muted">
@@ -36,7 +36,7 @@
               :href="profile.html_url"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-sm text-slate-600 hover:underline"
+              class="text-slate-600 text-sm hover:underline"
             >
               View GitHub Profile
             </a>
@@ -44,7 +44,7 @@
         </div>
 
         <!-- Additional GitHub Info -->
-        <div class="mt-4 text-sm text-muted text-slate-300">
+        <div class="mt-4 text-muted text-slate-300 text-sm">
           <p>
             <i class="fas fa-users mr-1" /> Followers:
             {{ profile.followers }}

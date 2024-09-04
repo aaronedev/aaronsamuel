@@ -17,6 +17,7 @@
     "@tsparticles/vue3": "^3.0.1",
     "axios": "^1.7.7",
     "eslint-plugin-vue": "^9.28.0",
+    "tailwindcss-fluid-type": "^2.0.6",
     "tsparticles": "^3.5.0",
     "vue": "^3.4.37"
   },

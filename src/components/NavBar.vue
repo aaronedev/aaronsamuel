@@ -7,7 +7,7 @@
   >
     <div class="container mx-auto flex items-center justify-between p-4">
       <!-- Logo or Brand Name -->
-      <div class="text-xl font-bold">
+      <div class="font-bold text-xl">
         <a
           href="#"
           class="text-cyan hover:text-purple hover:underline"
@@ -34,7 +34,7 @@
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-lg text-cyan hover:text-purple"
+            class="text-cyan text-lg hover:text-purple"
           >
             <i :class="['fab fa-github']" />
           </a>
@@ -45,7 +45,7 @@
           href="https://www.linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-lg text-cyan hover:text-purple"
+          class="text-cyan text-lg hover:text-purple"
         >
           <i class="fab fa-linkedin" />
         </a>

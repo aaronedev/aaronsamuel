@@ -32,13 +32,13 @@
       <!-- Back to Top Link -->
       <a
         href="#"
-        class="text-sm text-accent-cyan hover:underline"
+        class="text-accent-cyan text-sm hover:underline"
       >
         Back to Top
       </a>
 
       <!-- Copyright Notice -->
-      <p class="text-sm text-muted text-slate-500">
+      <p class="text-muted text-slate-500 text-sm">
         &copy; {{ new Date().getFullYear() }} My Portfolio. All rights reserved.
       </p>
     </div>

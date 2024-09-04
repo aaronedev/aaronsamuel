@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="mb-2 text-lg font-bold text-yellow-300">
+    <h3 class="mb-2 font-bold text-yellow-300 text-lg">
       Favorite Repos
     </h3>
     <ul class="space-y-2">
@@ -19,7 +19,7 @@
         <p class="text-sm">
           {{ repo.description }}
         </p>
-        <div class="mt-1 text-xs text-muted">
+        <div class="mt-1 text-muted text-xs">
           <span><i class="fas fa-star" /> {{ repo.stargazers_count }} stars</span>
           |
           <span><i class="fas fa-code-branch" /> {{ repo.forks_count }} forks</span>

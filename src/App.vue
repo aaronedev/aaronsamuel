@@ -1,7 +1,7 @@
 <template>
   <div
     id="app"
-    class="flex min-h-screen flex-col items-center justify-center bg-background text-text-primary"
+    class="text-text-primary flex min-h-screen flex-col items-center justify-center bg-background"
   >
     <main class="mt-20 p-4">
       <NavBar />
