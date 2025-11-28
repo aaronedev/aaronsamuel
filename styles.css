@@ -1,13 +1,13 @@
 @font-face {
   font-family: "hack";
-  src        : url("../fonts/hack-regular-subset.woff2") format("woff2");
+  src        : url("assets/fonts/hack-regular-subset.woff2") format("woff2");
   font-style : normal;
   font-weight: 400;
 }
 
 @font-face {
   font-family: "hack";
-  src        : url("../fonts/hack-italic-subset.woff2") format("woff2");
+  src        : url("assets/fonts/hack-italic-subset.woff2") format("woff2");
   font-style : italic;
   font-weight: 400;
 }
@@ -241,16 +241,23 @@ a:hover::after {
   border-radius   : 12px;
   cursor          : pointer;
   transition      : background-color 0.3s ease, transform 0.2s ease;
+  text-decoration : none;
 }
 
 .repo-stars:hover,
 .repo-forks:hover {
   background-color: #4e53ac;
   transform       : scale(1.1);
+  color           : #ffb444;
 }
 
 .repo-stars:active,
 .repo-forks:active {
   background-color: #4022b6;
   transform       : scale(0.9);
+}
+
+.repo-stars::after,
+.repo-forks::after {
+  content: none;
 }
