@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Typed.js initialization
   if (document.getElementById("typed")) {
-    var typed = new Typed("#typed", {
+    const typed = new Typed("#typed", {
       stringsElement: "#typed-strings",
       backSpeed: 10,
       typeSpeed: 30,
@@ -22,15 +22,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function fetchGitHubRepos(username, repoList) {
   try {
+    // Show loading state
+    repoList.innerHTML = '<p class="array-attr">Loading repositories...</p>';
+
     const response = await fetch(
       `https://api.github.com/users/${username}/repos`
     );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const repos = await response.json();
+
+    // Clear loading state
+    repoList.innerHTML = "";
 
     if (!Array.isArray(repos)) {
       console.error("Failed to fetch repositories or rate limit exceeded.");
+      repoList.innerHTML = '<p class="array-attr">Failed to load repositories.</p>';
       return;
     }
+
+    // Sort repositories by stars (descending)
+    repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
 
     repos.forEach((repo) => {
       const language = repo.language ? repo.language : "Not specified";
@@ -47,9 +62,9 @@ async function fetchGitHubRepos(username, repoList) {
 
       repoElement.innerHTML = `
       <div class="repo-header">
-        <a href="${repo.html_url}" target="_blank" class="repo-name">${repo.name}</a>
-        <a href="${repo.html_url}/stargazers" target="_blank" class="repo-stars" style="text-decoration: none;">★ ${repo.stargazers_count}</a>
-        <a href="${repo.html_url}/network/members" target="_blank" class="repo-forks" style="text-decoration: none;">🍴 ${repo.forks_count}</a>
+        <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="repo-name">${repo.name}</a>
+        <a href="${repo.html_url}/stargazers" target="_blank" rel="noopener noreferrer" class="repo-stars" style="text-decoration: none;">★ ${repo.stargazers_count}</a>
+        <a href="${repo.html_url}/network/members" target="_blank" rel="noopener noreferrer" class="repo-forks" style="text-decoration: none;">🍴 ${repo.forks_count}</a>
       </div>
       <div class="repo-details">
         <p class="repo-description">
@@ -71,5 +86,6 @@ async function fetchGitHubRepos(username, repoList) {
     });
   } catch (error) {
     console.error("Error fetching repos:", error);
+    repoList.innerHTML = '<p class="array-attr">Error loading repositories.</p>';
   }
 }
