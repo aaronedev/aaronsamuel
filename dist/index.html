@@ -11,7 +11,14 @@
   <meta property="og:type" content="website">
   <title>aaron.yml — a developer, by definition</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f0f0f'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Georgia,serif' font-size='50' fill='%23bb7cff'%3E%26amp;%3C/text%3E%3C/svg%3E">
-  <style>:root {
+  <style>/* ==========================================================================
+   THEME — edit colors here. Everything else derives from these tokens.
+   Live-tweak: DevTools → <html> element → edit these on :root, then copy back.
+   Mirrors outside CSS: <meta theme-color> + favicon use --bg/--violet
+   (substituted by scripts/build.mjs).
+   ========================================================================== */
+:root {
+  /* --- Palette: the only raw colors in the stylesheet --- */
   --bg:#0f0f0f;
   --surface:#161617;
   --fg:#f0f0f5;
@@ -23,6 +30,39 @@
   --cyan:#9ee9e5;
   --green:#8adeab;
   --pink:#fd7cff;
+  --amber:#d6be8e;
+  --orchid:#d39ce9;          /* particle accent */
+
+  /* --- Semantic roles: point these at palette colors --- */
+  --accent:var(--violet);
+  --key:var(--violet);
+  --string:var(--cyan);
+  --tag:color-mix(in oklab,var(--cyan) 70%,var(--muted));
+  --comment:var(--muted);
+  --punct:var(--dim);
+  --line-no:color-mix(in oklab,var(--dim) 70%,var(--muted));
+  --link:var(--cyan);
+  --link-hover:var(--fg);
+  --status-live:var(--green);
+  --status-partial:var(--amber);
+
+  /* --- Derived surfaces/lines (mixed from palette) --- */
+  --border-subtle:color-mix(in oklab,var(--border) 80%,var(--bg));
+  --border-strong:color-mix(in oklab,var(--border) 75%,var(--accent));
+  --accent-line:color-mix(in oklab,var(--accent) 45%,var(--bg));
+  --accent-soft:color-mix(in oklab,var(--accent) 5%,transparent);
+  --accent-softer:color-mix(in oklab,var(--accent) 11%,transparent);
+  --surface-raised:color-mix(in oklab,var(--accent) 10%,var(--bg));
+  --track:color-mix(in oklab,var(--accent) 8%,var(--border));
+  --header-bg:color-mix(in oklab,var(--bg) 92%,transparent);
+  --backdrop:color-mix(in oklab,black 80%,transparent);
+  --selection:color-mix(in oklab,var(--accent) 35%,var(--bg));
+  --art-glow:color-mix(in oklab,var(--accent) 7%,transparent);
+  --art-static:color-mix(in oklab,var(--accent) 22%,var(--bg));
+  --art-label:color-mix(in oklab,var(--accent) 25%,var(--muted));
+  --shadow:#000a;
+  --shadow-soft:#0006;
+
   --mono:"Cascadia Code","SFMono-Regular",Consolas,"Liberation Mono",monospace;
   --sans:Inter,"Segoe UI",Arial,sans-serif;
   color-scheme:dark
@@ -86,8 +126,8 @@ button:focus-visible,a:focus-visible,pre:focus-visible {
 }
 
 ::selection {
-  background:#503b69;
-  color:#fff
+  background:var(--selection);
+  color:var(--fg)
 }
 
 h1,h2,h3,p,dl,dd {
@@ -158,8 +198,8 @@ button,[hidden] {
 .site-header {
   position:sticky;
   top:0;
-  background:rgba(15,15,15,.92);
-  border-bottom:1px solid #242127;
+  background:var(--header-bg);
+  border-bottom:1px solid var(--border-subtle);
   z-index:10;
   backdrop-filter:blur(16px)
 }
@@ -294,7 +334,7 @@ button,[hidden] {
 }
 
 .document {
-  border-left:1px solid #28242e;
+  border-left:1px solid var(--border);
   position:relative
 }
 
@@ -331,7 +371,7 @@ button,[hidden] {
   width:28px;
   text-align:right;
   font:11px/1.7 var(--mono);
-  color:#77717d;
+  color:var(--line-no);
   pointer-events:none;
   user-select:none
 }
@@ -460,8 +500,8 @@ button,[hidden] {
   display:inline-flex;
   align-items:center;
   gap:12px;
-  border:1px solid #62417b;
-  background:#bb7cff0c;
+  border:1px solid var(--accent-line);
+  background:var(--accent-soft);
   padding:11px 18px;
   color:var(--fg);
   font-size:12px;
@@ -477,7 +517,7 @@ button,[hidden] {
 }
 
 .primary-link:hover {
-  background:#bb7cff1c;
+  background:var(--accent-softer);
   border-color:var(--violet)
 }
 
@@ -520,7 +560,7 @@ button,[hidden] {
 .art-glow {
   position:absolute;
   inset:6% 0;
-  background:radial-gradient(ellipse at 52% 52%,#8b37da10 0,transparent 62%);
+  background:radial-gradient(ellipse at 52% 52%,var(--art-glow) 0,transparent 62%);
   pointer-events:none
 }
 
@@ -533,7 +573,7 @@ button,[hidden] {
   font-style:italic;
   font-size:400px;
   line-height:1.1;
-  color:#372543;
+  color:var(--art-static);
   opacity:.4
 }
 
@@ -547,14 +587,14 @@ button,[hidden] {
   right:80px;
   font-size:10px;
   letter-spacing:.9px;
-  color:#91829e
+  color:var(--art-label)
 }
 
 .art-label .punctuation {
   font-family:Georgia,serif;
   font-style:italic;
   font-size:20px;
-  color:#8863a4;
+  color:var(--accent-line);
   margin-right:6px
 }
 
@@ -673,14 +713,14 @@ button,[hidden] {
 }
 
 .project+.project {
-  border-top:1px solid #232026
+  border-top:1px solid var(--border-subtle)
 }
 
 .project-index {
   position:absolute;
   left:-56px;
   top:26px;
-  color:#7d7686;
+  color:var(--line-no);
   font-size:10px;
   display:none
 }
@@ -787,7 +827,7 @@ button,[hidden] {
 }
 
 .tag {
-  color:#a4c9c7
+  color:var(--tag)
 }
 
 .detail-toggle {
@@ -815,7 +855,7 @@ button,[hidden] {
 }
 
 .project-detail {
-  border-top:1px dashed #38303e;
+  border-top:1px dashed var(--border-strong);
   margin-top:17px;
   padding-top:18px;
   color:var(--soft);
@@ -997,7 +1037,7 @@ button,[hidden] {
 }
 
 .stats-freshness[data-status=partial] .status-dot {
-  background:#d6be8e
+  background:var(--status-partial)
 }
 
 .language-section {
@@ -1055,7 +1095,7 @@ button,[hidden] {
 .language-bar {
   height:3px;
   border-radius:0;
-  background:#29242f
+  background:var(--track)
 }
 
 .language-bar>span {
@@ -1146,7 +1186,7 @@ button,[hidden] {
 }
 
 .contact-primary {
-  border-bottom:1px solid #765094;
+  border-bottom:1px solid var(--accent-line);
   padding:13px 0;
   color:var(--fg);
   font-size:14px
@@ -1269,18 +1309,18 @@ button,[hidden] {
 
 .source-dialog {
   padding:0;
-  border:1px solid #4f3a61;
+  border:1px solid var(--accent-line);
   background:var(--bg);
   color:var(--fg);
   border-radius:6px;
   width:min(850px,calc(100vw - 40px));
   max-height:85dvh;
-  box-shadow:0 25px 100px #000a;
+  box-shadow:0 25px 100px var(--shadow);
   overscroll-behavior:contain
 }
 
 .source-dialog::backdrop {
-  background:#070609c9;
+  background:var(--backdrop);
   backdrop-filter:blur(7px)
 }
 
@@ -1360,9 +1400,9 @@ button,[hidden] {
 }
 
 .dialog-footer button:last-child {
-  border-color:#62417b;
+  border-color:var(--accent-line);
   color:var(--violet);
-  background:#bb7cff09
+  background:var(--accent-soft)
 }
 
 .dialog-footer button:hover {
@@ -1376,12 +1416,12 @@ button,[hidden] {
   transform:translateX(-50%);
   padding:12px 20px;
   max-width:calc(100vw - 30px);
-  background:#211928;
-  border:1px solid #674382;
+  background:var(--surface-raised);
+  border:1px solid var(--accent-line);
   border-radius:3px;
   color:var(--fg);
   font-size:12px;
-  box-shadow:0 10px 30px #0006;
+  box-shadow:0 10px 30px var(--shadow-soft);
   z-index:100
 }
 
@@ -2773,6 +2813,10 @@ class AnchorParticles {
   }
   resize() {
     if (!this.ctx) return;
+    // Particle colors follow the CSS theme tokens (plain palette colors only).
+    const css=getComputedStyle(document.documentElement);
+    const pick=(name,fallback)=>css.getPropertyValue(name).trim()||fallback;
+    this.colors={violet:pick('--violet','#bb7cff'),cyan:pick('--cyan','#9ee9e5'),pink:pick('--orchid','#d39ce9')};
     const rect = this.canvas.getBoundingClientRect();
     this.width = rect.width;
     this.height = rect.height;
@@ -2819,7 +2863,7 @@ class AnchorParticles {
     for(const point of this.points){
       if(animate)stepParticle(point,this.pointer,this.elapsed,delta);
       ctx.globalAlpha=point.alpha;
-      ctx.fillStyle=point.color==='cyan'?'#9ee9e5':point.color==='pink'?'#d39ce9':'#bb7cff';
+      ctx.fillStyle=this.colors[point.color];
       ctx.beginPath();
       ctx.arc(point.x,point.y,point.size,0,Math.PI*2);
       ctx.fill();

@@ -65,6 +65,10 @@ export class AnchorParticles {
   }
   resize() {
     if (!this.ctx) return;
+    // Particle colors follow the CSS theme tokens (plain palette colors only).
+    const css=getComputedStyle(document.documentElement);
+    const pick=(name,fallback)=>css.getPropertyValue(name).trim()||fallback;
+    this.colors={violet:pick('--violet','#bb7cff'),cyan:pick('--cyan','#9ee9e5'),pink:pick('--orchid','#d39ce9')};
     const rect = this.canvas.getBoundingClientRect();
     this.width = rect.width;
     this.height = rect.height;
@@ -111,7 +115,7 @@ export class AnchorParticles {
     for(const point of this.points){
       if(animate)stepParticle(point,this.pointer,this.elapsed,delta);
       ctx.globalAlpha=point.alpha;
-      ctx.fillStyle=point.color==='cyan'?'#9ee9e5':point.color==='pink'?'#d39ce9':'#bb7cff';
+      ctx.fillStyle=this.colors[point.color];
       ctx.beginPath();
       ctx.arc(point.x,point.y,point.size,0,Math.PI*2);
       ctx.fill();
