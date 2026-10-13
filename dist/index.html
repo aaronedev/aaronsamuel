@@ -1064,10 +1064,11 @@ function cacheStats(storage, stats) {
 
 
 /** A small spring-based point field. No dependencies, trails, or full-page particle overlay. */
-function stepParticle(point, pointer, elapsed, delta = 1) {
+function stepParticle(point, pointer, elapsed, delta = 1, pulses = []) {
   const dt = Math.max(.25, Math.min(2, delta));
-  const driftX = Math.sin(point.ay * .011 + elapsed * .00019 + point.phase) * 3.3;
-  const driftY = Math.cos(point.ax * .013 - elapsed * .00016 + point.phase) * 2.3;
+  const phase = point.phase ?? 0;
+  const driftX = Math.sin(point.ay * .011 + elapsed * .00019 + phase) * 3.3;
+  const driftY = Math.cos(point.ax * .013 - elapsed * .00016 + phase) * 2.3;
   let ax = (point.ax + driftX - point.x) * .036;
   let ay = (point.ay + driftY - point.y) * .036;
   if (pointer.active) {
@@ -1079,11 +1080,23 @@ function stepParticle(point, pointer, elapsed, delta = 1) {
     ax += (dx * .009 - dy * .021) * influence;
     ay += (dy * .009 + dx * .021) * influence;
   }
+  // Click shockwaves: an expanding ring that pushes points outward as it passes.
+  for (const pulse of pulses) {
+    const dx = point.x - pulse.x;
+    const dy = point.y - pulse.y;
+    const distance = Math.hypot(dx, dy) || 1;
+    const band = distance - pulse.radius;
+    const push = Math.exp(-(band * band) / (26 * 26)) * pulse.strength * 2.6;
+    ax += dx / distance * push;
+    ay += dy / distance * push;
+  }
   const damping = Math.pow(.84, dt);
   point.vx = (point.vx + ax * dt) * damping;
   point.vy = (point.vy + ay * dt) * damping;
   point.x += point.vx * dt;
   point.y += point.vy * dt;
+  // Heat (0..1) follows speed; the renderer turns fast points into hot sparks.
+  point.heat = Math.min(1, Math.hypot(point.vx, point.vy) / 5);
   return point;
 }
 
@@ -1098,6 +1111,9 @@ class AnchorParticles {
     this.lastTime = 0;
     this.elapsed = 0;
     this.points = [];
+    this.pulses = [];
+    this.sprites = {};
+    this.introduced = false;
     this.pointer = {x:0,y:0,active:false};
     this.finePointer = matchMedia('(pointer:fine)');
     this.reducedMotion = matchMedia('(prefers-reduced-motion:reduce)');
@@ -1114,7 +1130,16 @@ class AnchorParticles {
       this.pointer.y = event.clientY-rect.top;
       this.pointer.active = this.pointer.x > -110 && this.pointer.x < rect.width+110 && this.pointer.y > -100 && this.pointer.y < rect.height+100;
     };
+    this.onPress = event => {
+      if (!this.frame) return;
+      const rect = this.canvas.getBoundingClientRect();
+      const x = event.clientX-rect.left, y = event.clientY-rect.top;
+      if (x < -40 || x > rect.width+40 || y < -40 || y > rect.height+40) return;
+      this.pulses.push({x,y,radius:0,strength:1});
+      if (this.pulses.length > 4) this.pulses.shift();
+    };
     window.addEventListener('pointermove', this.onPointer, options);
+    window.addEventListener('pointerdown', this.onPress, options);
     document.documentElement.addEventListener('pointerleave', () => {this.pointer.active=false;}, options);
     window.addEventListener('blur', () => {this.pointer.active=false;}, options);
     document.addEventListener('visibilitychange', () => {this.pageVisible=!document.hidden; this.sync();}, options);
@@ -1128,12 +1153,38 @@ class AnchorParticles {
     canvas.parentElement.classList.add('ready');
     this.sync();
   }
+  /** One pre-rendered glow per color: drawImage is far cheaper than arc + fill per point. */
+  sprite(color, core) {
+    const size = 32;
+    const sprite = document.createElement('canvas');
+    sprite.width = sprite.height = size;
+    const s = sprite.getContext('2d');
+    if (!s) return sprite;
+    // The canvas normalizes any CSS color to #rrggbb, which gives a portable rgba halo.
+    s.fillStyle = color;
+    const hex = /^#[0-9a-f]{6}$/i.test(s.fillStyle) ? s.fillStyle : '#bb7cff';
+    const [r,gr,b] = [1,3,5].map(i => parseInt(hex.slice(i,i+2),16));
+    const g = s.createRadialGradient(size/2,size/2,0,size/2,size/2,size/2);
+    g.addColorStop(0, core);
+    g.addColorStop(.16, hex);
+    g.addColorStop(.42, `rgba(${r},${gr},${b},.28)`);
+    g.addColorStop(1, `rgba(${r},${gr},${b},0)`);
+    s.fillStyle = g;
+    s.fillRect(0,0,size,size);
+    return sprite;
+  }
   resize() {
     if (!this.ctx) return;
     // Particle colors follow the CSS theme tokens (plain palette colors only).
     const css=getComputedStyle(document.documentElement);
     const pick=(name,fallback)=>css.getPropertyValue(name).trim()||fallback;
     this.colors={violet:pick('--violet','#bb7cff'),cyan:pick('--cyan','#9ee9e5'),pink:pick('--orchid','#d39ce9')};
+    this.sprites={
+      violet:this.sprite(this.colors.violet,this.colors.violet),
+      cyan:this.sprite(this.colors.cyan,'#fff'),
+      pink:this.sprite(this.colors.pink,this.colors.pink),
+      hot:this.sprite(this.colors.pink,'#fff')
+    };
     const rect = this.canvas.getBoundingClientRect();
     this.width = rect.width;
     this.height = rect.height;
@@ -1163,7 +1214,9 @@ class AnchorParticles {
       if (pixels[(iy*shape.width+ix)*4+3] < 120 || random()>.91) continue;
       const ax=x+(random()-.5)*2.4,ay=y+(random()-.5)*2.4;
       const brightness=random();
-      candidates.push({ax,ay,x:ax,y:ay,vx:0,vy:0,phase:random()*6.28,size:.45+brightness*.65,alpha:.17+brightness*.53,color:random()<.075?'cyan':random()<.18?'pink':'violet'});
+      const spark=random()<.04;
+      candidates.push({ax,ay,x:ax,y:ay,vx:0,vy:0,heat:0,phase:random()*6.28,twinkle:spark?2.6:.6+random()*.8,
+        size:spark?1.5:.55+brightness*.6,alpha:spark?.95:.26+brightness*.5,color:random()<.075?'cyan':random()<.18?'pink':'violet'});
     }
     // Deterministic downsampling puts a hard ceiling on work per frame.
     const cap=this.finePointer.matches?2100:750;
@@ -1171,20 +1224,47 @@ class AnchorParticles {
     this.points=[];
     for(let i=0;i<Math.min(cap,candidates.length);i++)this.points.push(candidates[Math.floor(i*step)]);
     this.canvas.dataset.particles=String(this.points.length);
+    // First appearance: points swirl in from a loose ring and settle into the glyph.
+    if(!this.introduced&&this.enabled&&!this.reducedMotion.matches){
+      const cx=this.width*.48,cy=this.height*.48,reach=Math.max(this.width,this.height)*.55;
+      for(const p of this.points){
+        const angle=Math.atan2(p.ay-cy,p.ax-cx)+1.4+random()*.6;
+        const radius=reach*(.7+random()*.6);
+        p.x=cx+Math.cos(angle)*radius;p.y=cy+Math.sin(angle)*radius;
+        p.vx=-Math.sin(angle)*3;p.vy=Math.cos(angle)*3;
+      }
+    }
+    this.introduced=true;
     this.draw(0,false);
   }
   draw(delta=1, animate=true) {
     const ctx=this.ctx;
     if(!ctx)return;
     ctx.clearRect(0,0,this.width,this.height);
-    for(const point of this.points){
-      if(animate)stepParticle(point,this.pointer,this.elapsed,delta);
-      ctx.globalAlpha=point.alpha;
-      ctx.fillStyle=this.colors[point.color];
-      ctx.beginPath();
-      ctx.arc(point.x,point.y,point.size,0,Math.PI*2);
-      ctx.fill();
+    if(animate){
+      for(const pulse of this.pulses){pulse.radius+=7*delta;pulse.strength*=Math.pow(.93,delta);}
+      this.pulses=this.pulses.filter(pulse=>pulse.strength>.04);
     }
+    ctx.globalCompositeOperation='lighter';
+    const t=this.elapsed*.002;
+    for(const point of this.points){
+      if(animate)stepParticle(point,this.pointer,this.elapsed,delta,this.pulses);
+      const heat=animate?point.heat:0;
+      const shimmer=.72+.28*Math.sin(t*point.twinkle+point.phase);
+      const radius=point.size*(3.4+heat*2.2);
+      ctx.globalAlpha=Math.min(1,point.alpha*shimmer+heat*.45);
+      ctx.drawImage(heat>.4?this.sprites.hot:this.sprites[point.color],point.x-radius,point.y-radius,radius*2,radius*2);
+    }
+    // A faint ring makes the shockwave legible without leaving trails.
+    for(const pulse of this.pulses){
+      ctx.globalAlpha=pulse.strength*.22;
+      ctx.strokeStyle=this.colors.violet;
+      ctx.lineWidth=1;
+      ctx.beginPath();
+      ctx.arc(pulse.x,pulse.y,pulse.radius,0,Math.PI*2);
+      ctx.stroke();
+    }
+    ctx.globalCompositeOperation='source-over';
     ctx.globalAlpha=1;
   }
   tick = timestamp => {
@@ -1203,7 +1283,8 @@ class AnchorParticles {
     this.canvas.dataset.running=String(running);
     if(running)this.frame=requestAnimationFrame(this.tick);
     else if(!this.enabled||this.reducedMotion.matches){
-      for(const p of this.points){p.x=p.ax;p.y=p.ay;p.vx=p.vy=0;}
+      this.pulses=[];
+      for(const p of this.points){p.x=p.ax;p.y=p.ay;p.vx=p.vy=0;p.heat=0;}
       this.draw(0,false);
     }
   }
