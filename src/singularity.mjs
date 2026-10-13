@@ -86,7 +86,11 @@ export class Singularity {
   /** Measure targets once, when swallowing begins; nothing scrolls while the mouse is idle. */
   capture() {
     const {x, y} = this.position;
-    const found = [...document.querySelectorAll(this.selector)].filter(el => {
+    // Snap any still-springing release back to rest first: bounds include transforms, so measuring
+    // mid-transition would aim the new spiral from a stale centre.
+    const all = [...document.querySelectorAll(this.selector)];
+    for (const el of all) {el.style.transition = ''; el.style.transform = ''; el.style.opacity = '';}
+    const found = all.filter(el => {
       const rect = el.getBoundingClientRect();
       return rect.width > 0 && rect.height > 0;
     });
@@ -98,7 +102,6 @@ export class Singularity {
     const capture = ++this.captures;
     items.forEach((item, index) => {
       this.owner.set(item.el, capture);
-      item.el.style.transition = '';
       item.rank = items.length > 1 ? index / (items.length - 1) : 0;
       item.k = 0;
       item.capture = capture;
