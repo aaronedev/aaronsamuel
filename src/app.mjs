@@ -2,6 +2,7 @@ import { PROJECTS, PROFILE, SNAPSHOT_DATE, freshStats, asYaml } from './content.
 import { languagesHtml } from './render.mjs';
 import { readCachedStats, refreshStats, cacheStats } from './github.mjs';
 import { AnchorParticles, AmbientField } from './particles.mjs';
+import { Singularity } from './singularity.mjs';
 
 function initializePortfolio() {
   const get = id => document.getElementById(id);
@@ -16,6 +17,14 @@ function initializePortfolio() {
   const anchor = new AnchorParticles(get('anchor-canvas'),motionRequested&&!motionPreference.matches);
   const ambient = new AmbientField(get('ambient-canvas'),document.querySelector('.anchor-art'),motionRequested&&!motionPreference.matches);
   anchor.drawRing = false;
+  // Content a still mouse swallows, block by block. `?singularity=fast` runs the five minutes in ten seconds.
+  const singularity = new Singularity({
+    targets:'.wordmark,.main-nav,.header-actions,.hero-copy>.line,.hero-identity>.line,.anchor-art,.section-head,.project-controls,.projects-list>*,.all-projects,.activity-toolbar,.stats-grid>.stat,.stats-freshness,.languages-title,.language-row,.source-note,.privacy-note,.contact-message>*,.contact-links>*,.document-end,.site-footer>*',
+    overlay:get('singularity'),
+    ambient,
+    enabled:motionRequested&&!motionPreference.matches,
+    speed:new URLSearchParams(location.search).get('singularity')==='fast'?30:1
+  });
   const motionButton = get('motion-toggle');
 
   const dateText = date => {
@@ -32,6 +41,7 @@ function initializePortfolio() {
     const enabled=motionRequested&&!motionPreference.matches;
     anchor.setEnabled(enabled);
     ambient.setEnabled(enabled);
+    singularity.setEnabled(enabled);
     motionButton.setAttribute('aria-pressed',String(enabled));
     get('motion-value').textContent=enabled?'true':'false';
     document.documentElement.dataset.motion=enabled?'on':'off';
