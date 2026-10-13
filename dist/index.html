@@ -1578,14 +1578,22 @@ class Singularity {
     this.frame = 0;
     this.items = null;
     this.power = 0;
+    // Where the idle clock was last reset; small moves accumulate against it, so slow drift counts.
+    this.anchor = null;
+    // Which capture currently owns an element, so a late cleanup never touches a newer swallow.
+    this.owner = new WeakMap();
+    this.captures = 0;
     const options = {passive: true};
     window.addEventListener('pointermove', event => {
       if (event.pointerType === 'touch') return;
       const next = {x: event.clientX, y: event.clientY};
-      const moved = !this.position || Math.hypot(next.x - this.position.x, next.y - this.position.y) > 2;
+      const moved = !this.anchor || Math.hypot(next.x - this.anchor.x, next.y - this.anchor.y) > 2;
       if (moved) this.wake(next); else this.position = next;
     }, options);
-    for (const type of ['pointerdown', 'keydown', 'wheel', 'touchstart', 'focusin']) window.addEventListener(type, () => this.wake(), options);
+    // Touch has no resting cursor: forget the mouse position so the hole cannot form at a stale spot.
+    window.addEventListener('pointerdown', event => this.wake(event.pointerType === 'touch' ? null : undefined), options);
+    window.addEventListener('touchstart', () => this.wake(null), options);
+    for (const type of ['keydown', 'wheel', 'focusin']) window.addEventListener(type, () => this.wake(), options);
     document.documentElement.addEventListener('pointerleave', () => this.wake(null), options);
     window.addEventListener('blur', () => this.wake(null), options);
   }
@@ -1596,7 +1604,7 @@ class Singularity {
   wake(next) {
     // Cheap on ordinary mouse moves: only touch the DOM when the hole is actually present.
     if (this.frame || this.items || this.power > 0) this.release(this.power > .01 || Boolean(this.items));
-    if (next !== undefined) this.position = next;
+    if (next !== undefined) {this.position = next; this.anchor = next;}
     clearTimeout(this.armTimer);
     this.idleSince = performance.now();
     if (this.allowed && this.position) this.armTimer = setTimeout(() => this.start(), this.timing.charge);
@@ -1618,9 +1626,13 @@ class Singularity {
       const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
       return {el, dx: cx - x, dy: cy - y, distance: Math.hypot(cx - x, cy - y)};
     }).sort((a, b) => a.distance - b.distance);
+    const capture = ++this.captures;
     items.forEach((item, index) => {
+      this.owner.set(item.el, capture);
+      item.el.style.transition = '';
       item.rank = items.length > 1 ? index / (items.length - 1) : 0;
       item.k = 0;
+      item.capture = capture;
       item.el.style.willChange = 'transform, opacity';
     });
     this.items = items;
@@ -1677,7 +1689,11 @@ class Singularity {
       }
     }
     const finish = () => {
-      for (const item of items ?? []) {item.el.style.transition = ''; item.el.style.willChange = '';}
+      for (const item of items ?? []) {
+        if (this.owner.get(item.el) !== item.capture) continue;
+        item.el.style.transition = '';
+        item.el.style.willChange = '';
+      }
       if (!this.frame) {
         this.overlay.classList.remove('collapsing');
         this.overlay.hidden = true;
@@ -1870,7 +1886,8 @@ function initializePortfolio() {
     dialog.showModal();document.body.classList.add('dialog-open');
   });
   get('close-source').addEventListener('click',()=>dialog.close());
-  dialog.addEventListener('close',()=>document.body.classList.remove('dialog-open'));
+  // Re-arm the idle singularity once the dialog no longer blocks it.
+  dialog.addEventListener('close',()=>{document.body.classList.remove('dialog-open');singularity.wake();});
   dialog.addEventListener('click',event=>{
     if(event.target!==dialog)return;
     const r=dialog.getBoundingClientRect();

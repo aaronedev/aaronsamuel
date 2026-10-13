@@ -174,7 +174,8 @@ function initializePortfolio() {
     dialog.showModal();document.body.classList.add('dialog-open');
   });
   get('close-source').addEventListener('click',()=>dialog.close());
-  dialog.addEventListener('close',()=>document.body.classList.remove('dialog-open'));
+  // Re-arm the idle singularity once the dialog no longer blocks it.
+  dialog.addEventListener('close',()=>{document.body.classList.remove('dialog-open');singularity.wake();});
   dialog.addEventListener('click',event=>{
     if(event.target!==dialog)return;
     const r=dialog.getBoundingClientRect();
