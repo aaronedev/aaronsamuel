@@ -1,7 +1,7 @@
 import { PROJECTS, PROFILE, SNAPSHOT_DATE, freshStats, asYaml } from './content.mjs';
 import { languagesHtml } from './render.mjs';
 import { readCachedStats, refreshStats, cacheStats } from './github.mjs';
-import { AnchorParticles } from './particles.mjs';
+import { AnchorParticles, AmbientField } from './particles.mjs';
 
 function initializePortfolio() {
   const get = id => document.getElementById(id);
@@ -14,6 +14,8 @@ function initializePortfolio() {
   let motionRequested = true;
   try { motionRequested = storage?.getItem('aaron.yml:motion') !== 'off'; } catch { /* optional */ }
   const anchor = new AnchorParticles(get('anchor-canvas'),motionRequested&&!motionPreference.matches);
+  const ambient = new AmbientField(get('ambient-canvas'),document.querySelector('.anchor-art'),motionRequested&&!motionPreference.matches);
+  anchor.drawRing = false;
   const motionButton = get('motion-toggle');
 
   const dateText = date => {
@@ -29,6 +31,7 @@ function initializePortfolio() {
   function setMotion() {
     const enabled=motionRequested&&!motionPreference.matches;
     anchor.setEnabled(enabled);
+    ambient.setEnabled(enabled);
     motionButton.setAttribute('aria-pressed',String(enabled));
     get('motion-value').textContent=enabled?'true':'false';
     document.documentElement.dataset.motion=enabled?'on':'off';

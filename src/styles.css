@@ -263,6 +263,8 @@ a.anchor-value:hover { color:var(--accent); text-decoration-color:currentColor }
 .hero-github { font-size:var(--fs-sm); display:inline-flex; align-items:center; gap:6px }
 .hero-github svg { width:14px; height:14px }
 
+/* Page-wide dust behind all content; densest around the anchor glyph. */
+.ambient-canvas { position:fixed; inset:0; width:100vw; height:100vh; z-index:-1; pointer-events:none }
 .anchor-art { position:absolute; z-index:1; right:-40px; top:110px; width:475px; height:465px; pointer-events:none }
 .anchor-art canvas { display:block; position:absolute; inset:0; width:100%; height:100%; opacity:.9 }
 .art-glow { position:absolute; inset:6% 0; background:radial-gradient(ellipse at 52% 52%,var(--art-glow) 0,transparent 62%) }
@@ -569,7 +571,7 @@ html[data-motion=off] { scroll-behavior:auto }
 html[data-motion=off] *,html[data-motion=off] *::before,html[data-motion=off] *::after { animation:none!important; transition:none!important }
 
 @media print {
-  .site-header,.anchor-art,.site-footer,.project-controls,.detail-toggle,.refresh-button,.hero-links,dialog,.toast { display:none!important }
+  .site-header,.anchor-art,.ambient-canvas,.site-footer,.project-controls,.detail-toggle,.refresh-button,.hero-links,dialog,.toast { display:none!important }
   body { background:#fff; color:#111 }
   .page-shell { padding:0; max-width:none }
   .document { border:0 }

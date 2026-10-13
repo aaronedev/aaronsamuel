@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { PROFILE, PROJECTS, freshStats, asYaml, yamlQuote } from '../src/content.mjs';
 import { escapeHtml, projectsHtml, languagesHtml } from '../src/render.mjs';
 import { isAllowedRepository, validatePublicProfile, validatePublicRepository, parsePublishedWakatime, readCachedStats, refreshStats } from '../src/github.mjs';
-import { stepParticle } from '../src/particles.mjs';
+import { stepParticle, ambientWeight } from '../src/particles.mjs';
 
 test('snapshots are cloned, not shared',()=>{const a=freshStats(),b=freshStats();a.profile.followers=0;assert.equal(b.profile.followers,140);});
 test('YAML quotes special characters safely',()=>{assert.equal(yamlQuote('a: "b"\n'),JSON.stringify('a: "b"\n'));});
@@ -25,3 +25,5 @@ test('point springs settle after pointer exit without divergence',()=>{const p={
 test('network failure preserves dated observations',async()=>{const original=globalThis.fetch;globalThis.fetch=async()=>{throw new Error('offline');};try{const result=await refreshStats();assert.equal(result.status,'offline');assert.equal(result.stats.profile.followers,140);assert.equal(result.stats.profile.source,'snapshot');assert.equal(result.stats.coding.displayTime,'77h 15m');}finally{globalThis.fetch=original;}});
 test('success refreshes real counters without altering source selection',async()=>{const original=globalThis.fetch;globalThis.fetch=async url=>({ok:true,json:async()=>url.includes('/users/')?{login:'aaronedev',followers:141,public_repos:95}:{private:false,visibility:'public',full_name:url.split('/repos/')[1],stargazers_count:12},text:async()=>''});try{const result=await refreshStats();assert.equal(result.status,'live');assert.equal(result.stats.profile.followers,141);assert.equal(result.stats.profile.publicRepos,95);assert.equal(result.stats.coding.source,'snapshot');}finally{globalThis.fetch=original;}});
 test('click shockwave pushes points outward, then the spring recovers',()=>{const p={ax:100,ay:100,x:100,y:100,vx:0,vy:0,phase:0};const pulse={x:60,y:100,radius:0,strength:1};let peak=0;for(let i=0;i<40;i++){stepParticle(p,{active:false},i*16.667,1,[pulse]);pulse.radius+=7;pulse.strength*=.93;peak=Math.max(peak,p.x-100);}assert.ok(peak>4);assert.ok(p.heat>=0&&p.heat<=1);for(let i=0;i<500;i++)stepParticle(p,{active:false},i*16.667);assert.ok(Math.hypot(p.x-p.ax,p.y-p.ay)<7);});
+test('ambient weight fades with distance from the anchor but never vanishes',()=>{const near=ambientWeight(0,600),mid=ambientWeight(600,600),far=ambientWeight(6000,600);assert.equal(near,1);assert.ok(near>mid&&mid>far);assert.ok(far>=.07&&far<.08);assert.equal(ambientWeight(-5,600),1);});
+test('weaker ambient force means less cursor displacement',()=>{const run=force=>{const p={ax:100,ay:100,x:100,y:100,vx:0,vy:0,phase:0,force};for(let i=0;i<50;i++)stepParticle(p,{x:145,y:120,active:true},i*16.667);return Math.hypot(p.x-100,p.y-100);};assert.ok(run(.3)<run(1));assert.ok(run(.3)>0);});
