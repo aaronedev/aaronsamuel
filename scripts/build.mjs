@@ -6,7 +6,7 @@ import { projectsHtml, languagesHtml, escapeHtml } from '../src/render.mjs';
 
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const stats=freshStats();
-const files=['content.mjs','render.mjs','github.mjs','particles.mjs','app.mjs'];
+const files=['content.mjs','render.mjs','github.mjs','particles.mjs','gravity.mjs','app.mjs'];
 const code=(await Promise.all(files.map(file=>readFile(resolve(root,'src',file),'utf8'))))
   .map(text=>text.replace(/^import .*?;\s*$/gm,'').replace(/^export /gm,''))
   .join('\n\n');

@@ -12,10 +12,20 @@ export function stepParticle(point, pointer, elapsed, delta = 1, pulses = []) {
     const dx = pointer.x - point.x;
     const dy = pointer.y - point.y;
     const distance = Math.hypot(dx, dy);
-    const influence = Math.exp(-(distance * distance) / (145 * 145)) * force;
+    // strength follows the cursor's gravity well (defaults to full when no well is attached).
+    const strength = pointer.strength ?? 1;
+    const influence = Math.exp(-(distance * distance) / (145 * 145)) * force * strength;
     // Cursor gravity with a tangential component: real displacement, not a parallax image.
     ax += (dx * .009 - dy * .021) * influence;
     ay += (dy * .009 + dx * .021) * influence;
+    // A formed well also pulls inward over a wider range, so dust spirals toward it.
+    const pull = pointer.pull ?? 0;
+    if (pull > 0) {
+      const wide = Math.exp(-(distance * distance) / (300 * 300)) * pull * pull * force * 1.1;
+      const d = Math.max(distance, 12);
+      ax += dx / d * wide;
+      ay += dy / d * wide;
+    }
   }
   // Click shockwaves: an expanding ring that pushes points outward as it passes.
   for (const pulse of pulses) {
@@ -191,6 +201,8 @@ export class AnchorParticles {
       for(const pulse of this.pulses){pulse.radius+=7*delta;pulse.strength*=Math.pow(.93,delta);}
       this.pulses=this.pulses.filter(pulse=>pulse.strength>.04);
     }
+    // The cursor's gravity well sets how hard particles are pulled (see gravity.mjs).
+    if(this.well){this.pointer.strength=.25+.75*this.well.mass;this.pointer.pull=this.well.mass;}
     ctx.globalCompositeOperation='lighter';
     const t=this.elapsed*.002;
     for(const point of this.points){
@@ -361,6 +373,8 @@ export class AmbientField {
     const left=window.scrollX, top=window.scrollY, margin=24;
     const t=this.elapsed*.002;
     const coarse=!this.finePointer.matches;
+    // The cursor's gravity well sets how hard particles are pulled (see gravity.mjs).
+    if(this.well){this.pointer.strength=.25+.75*this.well.mass;this.pointer.pull=this.well.mass;}
     ctx.globalCompositeOperation='lighter';
     for(const point of this.points){
       // Off-screen points keep their spring state; only the visible band is simulated and drawn.

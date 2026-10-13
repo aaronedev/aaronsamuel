@@ -2,6 +2,7 @@ import { PROJECTS, PROFILE, SNAPSHOT_DATE, freshStats, asYaml } from './content.
 import { languagesHtml } from './render.mjs';
 import { readCachedStats, refreshStats, cacheStats } from './github.mjs';
 import { AnchorParticles, AmbientField } from './particles.mjs';
+import { GravityWell, Satellites } from './gravity.mjs';
 
 function initializePortfolio() {
   const get = id => document.getElementById(id);
@@ -16,6 +17,11 @@ function initializePortfolio() {
   const anchor = new AnchorParticles(get('anchor-canvas'),motionRequested&&!motionPreference.matches);
   const ambient = new AmbientField(get('ambient-canvas'),document.querySelector('.anchor-art'),motionRequested&&!motionPreference.matches);
   anchor.drawRing = false;
+  // One shared well: particles feel it first, small tokens join in once it has gathered mass.
+  const well = new GravityWell();
+  anchor.well = well;
+  ambient.well = well;
+  const satellites = new Satellites(well, '.project-stars, .tag, .punctuation, .quote, .language-percent, #project-count, .focus-line .string, .stat-note, .art-label', motionRequested&&!motionPreference.matches);
   const motionButton = get('motion-toggle');
 
   const dateText = date => {
@@ -32,6 +38,7 @@ function initializePortfolio() {
     const enabled=motionRequested&&!motionPreference.matches;
     anchor.setEnabled(enabled);
     ambient.setEnabled(enabled);
+    satellites.setEnabled(enabled);
     motionButton.setAttribute('aria-pressed',String(enabled));
     get('motion-value').textContent=enabled?'true':'false';
     document.documentElement.dataset.motion=enabled?'on':'off';

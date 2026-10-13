@@ -263,6 +263,8 @@ a.anchor-value:hover { color:var(--accent); text-decoration-color:currentColor }
 .hero-github { font-size:var(--fs-sm); display:inline-flex; align-items:center; gap:6px }
 .hero-github svg { width:14px; height:14px }
 
+/* Small tokens pulled by the cursor's gravity well; transforms need a box, layout stays put. */
+.satellite { display:inline-block; white-space:pre; transform-origin:50% 60% }
 /* Page-wide dust behind all content; densest around the anchor glyph. */
 .ambient-canvas { position:fixed; inset:0; width:100vw; height:100vh; z-index:-1; pointer-events:none }
 .anchor-art { position:absolute; z-index:1; right:-40px; top:110px; width:475px; height:465px; pointer-events:none }
