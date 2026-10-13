@@ -1,0 +1,3038 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0f0f0f">
+  <meta name="description" content="Aaron / aaronedev. Linux-first tools, thoughtful interfaces, and a little Violet Void. A developer portfolio, written a little differently.">
+  <meta property="og:title" content="aaron.yml — a developer, by definition">
+  <meta property="og:description" content="Linux-first tools. Thoughtful interfaces. A little Violet Void.">
+  <meta property="og:type" content="website">
+  <title>aaron.yml — a developer, by definition</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f0f0f'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Georgia,serif' font-size='50' fill='%23bb7cff'%3E%26amp;%3C/text%3E%3C/svg%3E">
+  <style>:root {
+  --bg:#0f0f0f;
+  --surface:#161617;
+  --fg:#f0f0f5;
+  --soft:#b9b7c2;
+  --muted:#96939f;
+  --dim:#66616f;
+  --border:#28252d;
+  --violet:#bb7cff;
+  --cyan:#9ee9e5;
+  --green:#8adeab;
+  --pink:#fd7cff;
+  --mono:"Cascadia Code","SFMono-Regular",Consolas,"Liberation Mono",monospace;
+  --sans:Inter,"Segoe UI",Arial,sans-serif;
+  color-scheme:dark
+}
+
+*,*::before,*::after {
+  box-sizing:border-box
+}
+
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:116px
+}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--mono);
+  font-size:14px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased
+}
+
+button,a {
+  -webkit-tap-highlight-color:transparent
+}
+
+a {
+  color:inherit;
+  text-decoration:none
+}
+
+button {
+  font-family:inherit;
+  font-size:inherit;
+  line-height:inherit;
+  color:inherit;
+  cursor:pointer;
+  background:none;
+  border:0
+}
+
+button:disabled {
+  cursor:wait;
+  opacity:.6
+}
+
+svg {
+  display:inline-block;
+  vertical-align:middle;
+  flex-shrink:0;
+  width:20px;
+  height:20px
+}
+
+button:focus-visible,a:focus-visible,pre:focus-visible {
+  outline:2px solid var(--violet);
+  outline-offset:5px;
+  border-radius:2px
+}
+
+::selection {
+  background:#503b69;
+  color:#fff
+}
+
+h1,h2,h3,p,dl,dd {
+  margin:0
+}
+
+h1,h2,h3 {
+  font-weight:500
+}
+
+button,[hidden] {
+  box-sizing:border-box
+}
+
+[hidden] {
+  display:none!important
+}
+
+.key {
+  color:var(--violet)
+}
+
+.string,.tag {
+  color:var(--cyan)
+}
+
+.comment {
+  color:var(--muted);
+  font-size:12px;
+  font-weight:400
+}
+
+.punctuation {
+  color:var(--dim)
+}
+
+.anchor-value {
+  color:var(--dim);
+  font-size:15px
+}
+
+.anchor-value:hover {
+  color:var(--violet)
+}
+
+.violet-text {
+  color:var(--violet)
+}
+
+.small {
+  font-size:13px
+}
+
+.skip-link {
+  position:fixed;
+  left:20px;
+  top:-90px;
+  background:var(--violet);
+  color:var(--bg);
+  padding:12px 20px;
+  z-index:20
+}
+
+.skip-link:focus {
+  top:12px
+}
+
+.site-header {
+  position:sticky;
+  top:0;
+  background:rgba(15,15,15,.92);
+  border-bottom:1px solid #242127;
+  z-index:10;
+  backdrop-filter:blur(16px)
+}
+
+.header-inner {
+  height:86px;
+  max-width:1320px;
+  margin:auto;
+  padding:0 42px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:32px
+}
+
+.wordmark {
+  display:flex;
+  align-items:center;
+  gap:0;
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:-.7px;
+  white-space:nowrap
+}
+
+.wordmark>span:last-child {
+  color:var(--muted);
+  font-weight:400
+}
+
+.yaml-mark {
+  display:flex;
+  gap:3px;
+  margin-right:14px;
+  align-items:center;
+  width:22px;
+  height:23px
+}
+
+.yaml-mark i {
+  height:3px;
+  width:5px;
+  background:var(--violet);
+  display:block
+}
+
+.main-nav {
+  display:flex;
+  gap:29px;
+  align-items:center
+}
+
+.main-nav a {
+  font-size:12px;
+  color:var(--muted);
+  display:inline-flex;
+  gap:8px;
+  position:relative;
+  padding:31px 0
+}
+
+.main-nav a>span {
+  font-size:10px;
+  color:var(--dim)
+}
+
+.main-nav a.active,.main-nav a:hover {
+  color:var(--fg)
+}
+
+.main-nav a.active>span {
+  color:var(--violet)
+}
+
+.main-nav a.active::after {
+  content:"";
+  height:2px;
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  background:var(--violet)
+}
+
+.header-actions {
+  display:flex;
+  gap:21px;
+  align-items:center
+}
+
+.raw-button {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  color:var(--muted);
+  padding:10px 0;
+  white-space:nowrap
+}
+
+.raw-button svg {
+  width:17px;
+  height:17px
+}
+
+.raw-button:hover {
+  color:var(--cyan)
+}
+
+.github-icon {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:32px;
+  height:40px;
+  color:var(--soft)
+}
+
+.github-icon svg {
+  width:19px;
+  height:19px
+}
+
+.github-icon:hover {
+  color:var(--fg)
+}
+
+.page-shell {
+  max-width:1188px;
+  margin:0 auto;
+  padding:0 46px 0 74px
+}
+
+.document {
+  border-left:1px solid #28242e;
+  position:relative
+}
+
+.hero {
+  min-height:727px;
+  padding:55px 0 64px 40px;
+  position:relative;
+  display:flex;
+  align-items:flex-start;
+  isolation:isolate
+}
+
+.hero-copy {
+  position:relative;
+  z-index:2;
+  max-width:610px;
+  width:100%;
+  pointer-events:none
+}
+
+.hero-copy a {
+  pointer-events:auto
+}
+
+.line {
+  position:relative
+}
+
+.line::before {
+  content:attr(data-line);
+  position:absolute;
+  left:-86px;
+  top:3px;
+  width:28px;
+  text-align:right;
+  font:11px/1.7 var(--mono);
+  color:#77717d;
+  pointer-events:none;
+  user-select:none
+}
+
+.document-start {
+  display:flex;
+  align-items:center;
+  gap:30px;
+  color:var(--violet);
+  font-size:16px
+}
+
+.document-start .comment {
+  font-size:11px
+}
+
+.declaration {
+  margin-top:46px;
+  font-size:19px;
+  display:flex;
+  align-items:center;
+  gap:14px
+}
+
+.indent {
+  margin-left:28px;
+  padding-left:23px;
+  border-left:1px solid var(--border)
+}
+
+.hero-identity {
+  margin-top:27px
+}
+
+.hero-identity .line::before {
+  left:-138px
+}
+
+.name-line {
+  display:flex;
+  gap:17px;
+  align-items:baseline
+}
+
+.name-line .field-label {
+  font-size:14px;
+  align-self:center
+}
+
+.name-line h1 {
+  font-family:var(--mono);
+  font-size:clamp(60px,6.4vw,88px);
+  font-weight:400;
+  line-height:1.17;
+  letter-spacing:-6px;
+  white-space:nowrap
+}
+
+.name-line .quote {
+  font-weight:300;
+  font-size:.63em;
+  color:var(--dim);
+  vertical-align:8px
+}
+
+.name-line::before {
+  top:37px
+}
+
+.role-line {
+  margin-top:15px;
+  font-size:15px
+}
+
+.role-line .key {
+  margin-right:9px
+}
+
+.about-block {
+  margin-top:28px;
+  font-size:13px
+}
+
+.about-block>p {
+  margin-left:21px;
+  font-family:var(--sans);
+  font-size:32px;
+  letter-spacing:-.75px;
+  line-height:1.35;
+  margin-top:12px;
+  font-weight:400
+}
+
+.about-block>p.hero-description {
+  font-family:var(--mono);
+  font-size:13px;
+  line-height:1.9;
+  letter-spacing:0;
+  color:var(--soft);
+  margin-top:17px
+}
+
+.location-line {
+  margin-top:24px;
+  font-size:12px
+}
+
+.focus-line {
+  margin-top:5px;
+  font-size:12px
+}
+
+.hero-links {
+  display:flex;
+  align-items:center;
+  gap:31px;
+  margin-top:33px;
+  margin-left:28px
+}
+
+.hero-links.line::before {
+  left:-114px
+}
+
+.primary-link {
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  border:1px solid #62417b;
+  background:#bb7cff0c;
+  padding:11px 18px;
+  color:var(--fg);
+  font-size:12px;
+  border-radius:3px;
+  transition:background .2s,border-color .2s
+}
+
+.primary-link svg {
+  width:16px;
+  height:16px;
+  margin-left:16px;
+  color:var(--violet)
+}
+
+.primary-link:hover {
+  background:#bb7cff1c;
+  border-color:var(--violet)
+}
+
+.hero-github {
+  font-size:12px;
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  gap:9px
+}
+
+.hero-github svg {
+  width:14px;
+  height:14px
+}
+
+.hero-github:hover {
+  color:var(--cyan)
+}
+
+.anchor-art {
+  position:absolute;
+  z-index:1;
+  right:-55px;
+  top:127px;
+  width:475px;
+  height:465px;
+  pointer-events:none
+}
+
+.anchor-art canvas {
+  display:block;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:.9
+}
+
+.art-glow {
+  position:absolute;
+  inset:6% 0;
+  background:radial-gradient(ellipse at 52% 52%,#8b37da10 0,transparent 62%);
+  pointer-events:none
+}
+
+.static-anchor {
+  display:block;
+  position:absolute;
+  inset:0;
+  text-align:center;
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-size:400px;
+  line-height:1.1;
+  color:#372543;
+  opacity:.4
+}
+
+.anchor-art.ready .static-anchor {
+  display:none
+}
+
+.art-label {
+  position:absolute;
+  bottom:12px;
+  right:80px;
+  font-size:10px;
+  letter-spacing:.9px;
+  color:#91829e
+}
+
+.art-label .punctuation {
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-size:20px;
+  color:#8863a4;
+  margin-right:6px
+}
+
+.document-section {
+  padding:45px 0 50px 40px;
+  position:relative;
+  scroll-margin-top:15px
+}
+
+.document-section::before {
+  content:"";
+  height:1px;
+  background:var(--border);
+  position:absolute;
+  top:0;
+  left:40px;
+  right:0
+}
+
+.section-head {
+  display:flex;
+  align-items:center;
+  gap:22px;
+  margin-bottom:25px
+}
+
+.section-head.line::before {
+  top:11px
+}
+
+.section-head h2 {
+  font-size:25px;
+  color:var(--violet);
+  letter-spacing:-.8px;
+  line-height:1.5
+}
+
+.section-fold {
+  display:flex;
+  gap:11px;
+  align-items:center;
+  padding:0;
+  position:relative
+}
+
+.section-fold>svg {
+  position:absolute;
+  left:-25px;
+  top:12px;
+  width:13px;
+  height:13px;
+  color:var(--dim);
+  transform:rotate(90deg);
+  transition:transform .2s
+}
+
+.section-fold[aria-expanded=false]>svg {
+  transform:rotate(0)
+}
+
+.section-fold:hover>svg {
+  color:var(--violet)
+}
+
+.section-comment {
+  font-size:11px
+}
+
+.section-content {
+  padding-left:28px
+}
+
+.project-controls {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin:0 0 16px;
+  padding-top:1px
+}
+
+.filters {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  font-size:12px
+}
+
+.filter {
+  padding:7px 4px;
+  color:var(--muted);
+  font-size:12px
+}
+
+.filter.active {
+  color:var(--cyan)
+}
+
+.filter:hover {
+  color:var(--fg)
+}
+
+.project-count {
+  margin-left:auto;
+  color:var(--dim);
+  font-size:11px
+}
+
+.projects-list {
+  border-left:1px solid var(--border)
+}
+
+.project {
+  padding:23px 0 24px 22px;
+  position:relative;
+  transition:background .2s
+}
+
+.project+.project {
+  border-top:1px solid #232026
+}
+
+.project-index {
+  position:absolute;
+  left:-56px;
+  top:26px;
+  color:#7d7686;
+  font-size:10px;
+  display:none
+}
+
+.project-title-row {
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+
+.dash {
+  color:var(--dim);
+  position:absolute;
+  left:-5px;
+  background:var(--bg);
+  width:9px;
+  top:23px;
+  font-size:16px
+}
+
+.project h3 {
+  font-size:19px;
+  font-weight:400;
+  letter-spacing:-.6px
+}
+
+.project-link {
+  display:inline-flex;
+  align-items:center;
+  gap:13px;
+  line-height:1.55;
+  transition:color .2s
+}
+
+.project-link svg {
+  width:15px;
+  height:15px;
+  color:var(--dim);
+  transition:color .2s,transform .2s
+}
+
+.project-link:hover {
+  color:var(--cyan)
+}
+
+.project-link:hover svg {
+  transform:translate(2px,-2px);
+  color:var(--cyan)
+}
+
+.project-stars {
+  display:flex;
+  gap:6px;
+  align-items:center;
+  margin-left:auto;
+  font-size:11px;
+  color:var(--muted);
+  padding:4px 0 4px 16px
+}
+
+.project-stars svg {
+  width:13px;
+  height:13px;
+  color:var(--dim)
+}
+
+.project-inner {
+  margin-left:0;
+  margin-top:13px;
+  padding-left:0
+}
+
+.project-description {
+  display:flex;
+  gap:12px;
+  font-size:12px;
+  line-height:1.85;
+  max-width:750px;
+  color:var(--soft)
+}
+
+.project-description .key {
+  flex-shrink:0
+}
+
+.project-description>span:last-child {
+  max-width:600px
+}
+
+.project-bottom {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-top:12px
+}
+
+.project-stack {
+  font-size:11px
+}
+
+.project-stack>.key {
+  margin-right:7px
+}
+
+.tag {
+  color:#a4c9c7
+}
+
+.detail-toggle {
+  font-size:11px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--muted);
+  padding:5px 0 5px 9px;
+  min-height:32px
+}
+
+.detail-toggle>svg {
+  height:11px;
+  width:11px;
+  transition:transform .2s
+}
+
+.detail-toggle:hover {
+  color:var(--violet)
+}
+
+.detail-toggle[aria-expanded=true]>svg {
+  transform:rotate(90deg)
+}
+
+.project-detail {
+  border-top:1px dashed #38303e;
+  margin-top:17px;
+  padding-top:18px;
+  color:var(--soft);
+  font-size:12px;
+  line-height:1.9
+}
+
+.project-detail>p {
+  max-width:700px
+}
+
+.project-detail>.comment {
+  font-size:11px;
+  margin:15px 0 10px
+}
+
+.text-link {
+  color:var(--cyan);
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  font-size:12px;
+  flex-wrap:wrap
+}
+
+.text-link:hover {
+  text-decoration:underline;
+  text-underline-offset:5px
+}
+
+.text-link svg {
+  width:14px;
+  height:14px
+}
+
+.all-projects {
+  margin:22px 0 0 22px;
+  gap:12px;
+  font-size:11px
+}
+
+.palette {
+  display:flex;
+  gap:11px;
+  margin:20px 0
+}
+
+.palette>span {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px
+}
+
+.palette i {
+  width:44px;
+  height:21px;
+  background:var(--swatch);
+  border-radius:2px
+}
+
+.palette code {
+  font-family:inherit;
+  font-size:9px;
+  color:var(--muted)
+}
+
+.activity-toolbar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:12px;
+  margin-top:6px
+}
+
+.activity-toolbar a:hover {
+  text-decoration:underline;
+  text-underline-offset:4px
+}
+
+.refresh-button {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:11px;
+  color:var(--muted);
+  padding:6px 0 6px 12px;
+  min-height:32px
+}
+
+.refresh-button:hover {
+  color:var(--fg)
+}
+
+.refresh-button svg {
+  height:14px;
+  width:14px
+}
+
+.refresh-button:disabled svg {
+  animation:spin 1.4s linear infinite
+}
+
+@keyframes spin {
+  to {
+    transform:rotate(360deg)
+  }
+}
+
+.stats-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr 1.35fr;
+  padding:29px 0 0
+}
+
+.stat {
+  padding:0 20px 0 0
+}
+
+.stat+.stat {
+  border-left:1px solid var(--border);
+  padding-left:30px
+}
+
+.stat dt {
+  font-size:12px;
+  color:var(--violet);
+  margin-bottom:12px
+}
+
+.stat dd {
+  font-size:51px;
+  letter-spacing:-3px;
+  line-height:1.25;
+  font-weight:400;
+  font-variant-numeric:tabular-nums
+}
+
+.stat .time-stat {
+  font-size:40px;
+  line-height:1.6;
+  letter-spacing:-2px
+}
+
+.time-stat>span {
+  font-size:24px;
+  color:var(--dim);
+  letter-spacing:-1px
+}
+
+.stat>.stat-note {
+  font-size:10px;
+  color:var(--muted);
+  margin-top:4px;
+  line-height:1.7;
+  letter-spacing:0
+}
+
+.stats-freshness {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:10px;
+  color:var(--muted);
+  margin-top:24px
+}
+
+.status-dot {
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--dim);
+  display:block;
+  flex-shrink:0
+}
+
+.stats-freshness[data-status=live] .status-dot {
+  background:var(--green)
+}
+
+.stats-freshness[data-status=partial] .status-dot {
+  background:#d6be8e
+}
+
+.language-section {
+  border-top:1px solid var(--border);
+  margin-top:28px;
+  padding-top:25px
+}
+
+.languages-title {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:21px
+}
+
+.languages-title h3 {
+  font-size:14px
+}
+
+.languages-title .comment {
+  font-size:10px
+}
+
+.language-list {
+  display:grid;
+  gap:15px
+}
+
+.language-row {
+  display:grid;
+  grid-template-columns:142px minmax(0,1fr) 66px;
+  gap:22px;
+  align-items:center;
+  font-size:12px
+}
+
+.language-label {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:var(--soft)
+}
+
+.language-label>.punctuation {
+  margin-left:-6px
+}
+
+.language-label>i {
+  height:5px;
+  width:5px;
+  border-radius:1px;
+  flex-shrink:0
+}
+
+.language-bar {
+  height:3px;
+  border-radius:0;
+  background:#29242f
+}
+
+.language-bar>span {
+  display:block;
+  height:100%;
+  transition:width .5s
+}
+
+.language-percent {
+  text-align:right;
+  color:var(--soft);
+  font-variant-numeric:tabular-nums
+}
+
+.source-note {
+  font-size:10px;
+  line-height:1.8;
+  color:var(--muted);
+  margin-top:24px
+}
+
+.source-note>a {
+  margin-left:8px;
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+  color:var(--cyan)
+}
+
+.source-note>a>svg {
+  width:11px;
+  height:11px
+}
+
+.privacy-note {
+  font-size:10px;
+  margin-top:23px;
+  line-height:1.9
+}
+
+.contact-section {
+  padding-top:47px;
+  padding-bottom:18px
+}
+
+.contact-section .section-head {
+  gap:19px
+}
+
+.contact-body {
+  padding-left:28px;
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:36px;
+  align-items:center;
+  margin-top:22px
+}
+
+.contact-message>.key {
+  font-size:12px
+}
+
+.contact-title {
+  font-family:var(--sans);
+  font-size:32px;
+  line-height:1.35;
+  letter-spacing:-.75px;
+  margin:13px 0 0 21px
+}
+
+.contact-description {
+  margin:15px 0 0 21px;
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.9
+}
+
+.contact-links {
+  padding-top:10px;
+  max-width:270px
+}
+
+.contact-primary,.contact-secondary {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  white-space:nowrap
+}
+
+.contact-primary {
+  border-bottom:1px solid #765094;
+  padding:13px 0;
+  color:var(--fg);
+  font-size:14px
+}
+
+.contact-primary svg {
+  margin-left:auto;
+  color:var(--violet);
+  height:19px;
+  width:19px;
+  transition:transform .2s
+}
+
+.contact-primary:hover svg {
+  transform:translate(3px,-3px)
+}
+
+.contact-secondary {
+  font-size:11px;
+  padding:14px 0;
+  color:var(--cyan)
+}
+
+.contact-secondary>.key {
+  color:var(--muted)
+}
+
+.contact-secondary>svg {
+  height:12px;
+  width:12px;
+  margin-left:auto;
+  color:var(--muted)
+}
+
+.contact-links>.comment {
+  font-size:10px;
+  margin-top:8px
+}
+
+.document-end {
+  color:var(--violet);
+  margin-top:52px;
+  font-size:20px;
+  letter-spacing:3px
+}
+
+.document-end.line::before {
+  top:7px;
+  letter-spacing:0
+}
+
+.site-footer {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  max-width:1188px;
+  margin:42px auto 0;
+  padding:23px 46px 32px 74px;
+  font-size:10px;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  gap:20px
+}
+
+.site-footer>span>.violet-text {
+  font-family:Georgia,serif;
+  font-size:20px;
+  margin-right:6px
+}
+
+.site-footer .punctuation {
+  margin:0 6px
+}
+
+.footer-right {
+  display:flex;
+  align-items:center;
+  gap:32px
+}
+
+.motion-toggle {
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:10px;
+  white-space:nowrap;
+  padding:8px 0
+}
+
+.motion-toggle>span:last-child {
+  color:var(--cyan)
+}
+
+.motion-toggle[aria-pressed=false]>span:last-child {
+  color:var(--muted)
+}
+
+.motion-icon {
+  font-size:20px;
+  line-height:1;
+  color:var(--violet)
+}
+
+.back-top {
+  width:30px;
+  height:35px;
+  display:flex;
+  align-items:center;
+  justify-content:center
+}
+
+.back-top svg {
+  width:16px;
+  height:16px
+}
+
+.back-top:hover {
+  color:var(--violet)
+}
+
+.source-dialog {
+  padding:0;
+  border:1px solid #4f3a61;
+  background:var(--bg);
+  color:var(--fg);
+  border-radius:6px;
+  width:min(850px,calc(100vw - 40px));
+  max-height:85dvh;
+  box-shadow:0 25px 100px #000a;
+  overscroll-behavior:contain
+}
+
+.source-dialog::backdrop {
+  background:#070609c9;
+  backdrop-filter:blur(7px)
+}
+
+.dialog-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 23px;
+  border-bottom:1px solid var(--border)
+}
+
+.dialog-header h2 {
+  font-size:17px
+}
+
+.dialog-header h2>span {
+  color:var(--muted)
+}
+
+.close-source {
+  height:40px;
+  width:40px;
+  display:grid;
+  place-items:center;
+  color:var(--muted)
+}
+
+.close-source:hover {
+  color:var(--fg)
+}
+
+.dialog-note {
+  font-size:11px;
+  padding:16px 23px 0;
+  color:var(--soft)
+}
+
+.dialog-note .comment {
+  font-size:10px;
+  margin-left:12px
+}
+
+.source-dialog pre {
+  margin:17px 0 0;
+  padding:0 23px 24px;
+  max-height:55dvh;
+  overflow:auto;
+  tab-size:2;
+  color:var(--cyan);
+  font:12px/1.9 var(--mono);
+  white-space:pre
+}
+
+.source-dialog code {
+  font:inherit
+}
+
+.dialog-footer {
+  padding:15px 23px;
+  border-top:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:13px;
+  flex-wrap:wrap
+}
+
+.dialog-footer>.comment {
+  margin-right:auto;
+  font-size:10px
+}
+
+.dialog-footer button {
+  padding:7px 10px;
+  font-size:11px;
+  border:1px solid var(--border);
+  border-radius:2px
+}
+
+.dialog-footer button:last-child {
+  border-color:#62417b;
+  color:var(--violet);
+  background:#bb7cff09
+}
+
+.dialog-footer button:hover {
+  border-color:var(--violet)
+}
+
+.toast {
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:12px 20px;
+  max-width:calc(100vw - 30px);
+  background:#211928;
+  border:1px solid #674382;
+  border-radius:3px;
+  color:var(--fg);
+  font-size:12px;
+  box-shadow:0 10px 30px #0006;
+  z-index:100
+}
+
+.no-script {
+  color:var(--soft);
+  padding:20px;
+  text-align:center;
+  font-size:12px
+}
+
+body.dialog-open {
+  overflow:hidden
+}
+
+@media(min-width:1500px) {
+  .hero {
+    min-height:760px
+  }
+  .anchor-art {
+    right:-5px;
+    top:132px;
+    width:510px;
+    height:510px
+  }
+  .page-shell {
+    max-width:1280px
+  }
+  .header-inner {
+    max-width:1380px
+  }
+  .site-footer {
+    max-width:1280px
+  }
+  .hero-copy {
+    max-width:660px
+  }
+  .name-line h1 {
+    font-size:92px
+  }
+}
+
+@media(max-width:1100px) {
+  .header-inner {
+    gap:20px;
+    padding:0 30px
+  }
+  .main-nav {
+    gap:20px
+  }
+  .header-actions {
+    gap:15px
+  }
+  .page-shell {
+    padding-left:62px;
+    padding-right:36px
+  }
+  .hero {
+    padding-left:34px
+  }
+  .line::before {
+    left:-77px
+  }
+  .hero-identity .line::before {
+    left:-129px
+  }
+  .hero-links.line::before {
+    left:-105px
+  }
+  .hero-copy {
+    max-width:560px
+  }
+  .anchor-art {
+    width:375px;
+    height:405px;
+    right:-32px;
+    top:166px;
+    opacity:.7
+  }
+  .static-anchor {
+    font-size:340px
+  }
+  .art-label {
+    right:45px;
+    bottom:5px
+  }
+  .hero-description {
+    max-width:410px
+  }
+  .document-section {
+    padding-left:34px
+  }
+  .document-section::before {
+    left:34px
+  }
+  .site-footer {
+    padding-left:62px;
+    padding-right:36px
+  }
+  .name-line h1 {
+    font-size:76px
+  }
+  .project h3 {
+    font-size:18px
+  }
+  .contact-title {
+    font-size:29px
+  }
+}
+
+@media(max-width:900px) {
+  .main-nav {
+    gap:15px
+  }
+  .main-nav a>span {
+    display:none
+  }
+  .main-nav a {
+    font-size:11px
+  }
+  .raw-button span {
+    display:none
+  }
+  .anchor-art {
+    width:310px;
+    height:350px;
+    right:-32px;
+    top:207px;
+    opacity:.45
+  }
+  .hero-copy {
+    max-width:530px
+  }
+  .hero-identity {
+    position:relative;
+    z-index:2
+  }
+  .hero-description {
+    max-width:370px
+  }
+  .static-anchor {
+    font-size:280px
+  }
+  .art-label {
+    display:none
+  }
+  .name-line h1 {
+    font-size:72px
+  }
+  .hero {
+    min-height:710px
+  }
+  .stats-grid {
+    grid-template-columns:1fr 1fr 1.4fr
+  }
+  .stat+.stat {
+    padding-left:23px
+  }
+  .stat .time-stat {
+    font-size:32px;
+    line-height:2
+  }
+  .time-stat>span {
+    font-size:20px
+  }
+  .contact-body {
+    grid-template-columns:1fr 1fr;
+    gap:25px
+  }
+  .contact-title {
+    font-size:26px
+  }
+  .contact-description .desktop-break {
+    display:none
+  }
+}
+
+@media(max-width:680px) {
+  html {
+    scroll-padding-top:125px
+  }
+  .header-inner {
+    padding:0 23px;
+    height:auto;
+    min-height:103px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:0
+  }
+  .wordmark {
+    height:59px;
+    font-size:17px
+  }
+  .yaml-mark {
+    margin-right:9px
+  }
+  .header-actions {
+    grid-column:2;
+    grid-row:1;
+    gap:17px
+  }
+  .main-nav {
+    grid-column:1/-1;
+    grid-row:2;
+    justify-content:space-between;
+    gap:10px
+  }
+  .main-nav a {
+    padding:9px 2px 12px;
+    font-size:11px
+  }
+  .main-nav a>span {
+    display:inline-block;
+    font-size:9px
+  }
+  .main-nav a {
+    gap:5px
+  }
+  .raw-button span {
+    display:inline-block;
+    font-size:10px
+  }
+  .raw-button svg {
+    width:15px;
+    height:15px
+  }
+  .github-icon svg {
+    width:17px;
+    height:17px
+  }
+  .page-shell {
+    padding:0 22px 0 39px
+  }
+  .hero {
+    padding:33px 0 41px 22px;
+    min-height:683px
+  }
+  .line::before {
+    left:-53px;
+    font-size:9px;
+    top:3px;
+    width:20px
+  }
+  .document-start {
+    gap:16px
+  }
+  .document-start .comment {
+    font-size:9px
+  }
+  .declaration {
+    margin-top:34px;
+    font-size:16px
+  }
+  .declaration .anchor-value {
+    font-size:12px
+  }
+  .indent {
+    margin-left:12px;
+    padding-left:15px
+  }
+  .hero-identity {
+    margin-top:27px
+  }
+  .hero-identity .line::before {
+    left:-81px
+  }
+  .name-line {
+    gap:10px
+  }
+  .name-line .field-label {
+    font-size:12px
+  }
+  .name-line h1 {
+    font-size:64px;
+    letter-spacing:-5px
+  }
+  .name-line::before {
+    top:25px
+  }
+  .name-line .quote {
+    vertical-align:6px
+  }
+  .role-line {
+    font-size:12px;
+    margin-top:14px
+  }
+  .role-line .key {
+    margin-right:5px
+  }
+  .about-block {
+    margin-top:25px;
+    font-size:11px
+  }
+  .about-block>p {
+    font-size:29px;
+    margin-left:15px;
+    margin-top:11px;
+    letter-spacing:-.7px
+  }
+  .about-block>p.hero-description {
+    font-size:11px;
+    line-height:1.9;
+    margin-top:15px;
+    max-width:285px
+  }
+  .location-line {
+    font-size:10px;
+    margin-top:24px
+  }
+  .focus-line {
+    font-size:10px;
+    margin-top:6px
+  }
+  .hero-links {
+    margin-left:12px;
+    margin-top:28px;
+    gap:23px
+  }
+  .hero-links.line::before {
+    left:-65px
+  }
+  .primary-link {
+    gap:7px;
+    padding:10px 11px;
+    font-size:11px
+  }
+  .primary-link svg {
+    margin-left:10px;
+    width:15px
+  }
+  .hero-github {
+    font-size:10px;
+    gap:4px
+  }
+  .hero-github svg {
+    height:12px;
+    width:12px
+  }
+  .anchor-art {
+    width:235px;
+    height:290px;
+    right:-10px;
+    top:210px;
+    opacity:.18;
+    z-index:0
+  }
+  .art-glow {
+    display:none
+  }
+  .static-anchor {
+    font-size:260px
+  }
+  .document-section {
+    padding:31px 0 37px 22px
+  }
+  .document-section::before {
+    left:22px
+  }
+  .section-head {
+    gap:13px;
+    flex-wrap:wrap;
+    row-gap:1px;
+    margin-bottom:17px
+  }
+  .section-head h2 {
+    font-size:23px
+  }
+  .section-head.line::before {
+    top:9px
+  }
+  .section-comment {
+    font-size:9px
+  }
+  .section-fold>svg {
+    left:-16px;
+    width:10px;
+    top:12px
+  }
+  .section-content {
+    padding-left:12px
+  }
+  .project-controls {
+    gap:6px;
+    margin:0 0 6px;
+    flex-wrap:wrap
+  }
+  .project-controls>.comment {
+    font-size:10px
+  }
+  .filters {
+    gap:2px;
+    font-size:11px
+  }
+  .filter {
+    font-size:11px;
+    padding:9px 3px
+  }
+  .project-count {
+    font-size:9px
+  }
+  .project {
+    padding:21px 0 21px 15px
+  }
+  .project-title-row {
+    gap:8px;
+    flex-wrap:wrap;
+    row-gap:4px
+  }
+  .project-title-row .small {
+    font-size:11px
+  }
+  .project h3 {
+    font-size:16px;
+    letter-spacing:-.4px
+  }
+  .project-link {
+    gap:8px
+  }
+  .project-link svg {
+    width:12px;
+    height:12px
+  }
+  .project-stars {
+    padding:4px 0 4px 4px;
+    gap:3px;
+    font-size:10px
+  }
+  .project-stars svg {
+    width:11px;
+    height:11px
+  }
+  .project-inner {
+    margin-top:12px
+  }
+  .project-description {
+    font-size:12px;
+    gap:9px
+  }
+  .project-description>span:last-child {
+    max-width:none
+  }
+  .project-stack {
+    font-size:10px;
+    line-height:1.8
+  }
+  .project-stack>.key {
+    margin-right:1px
+  }
+  .project-bottom {
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:10px
+  }
+  .detail-toggle {
+    font-size:10px;
+    padding-left:0;
+    min-height:36px
+  }
+  .project-detail {
+    font-size:12px
+  }
+  .project-detail>.comment {
+    font-size:10px
+  }
+  .project-detail .text-link {
+    font-size:10px;
+    overflow-wrap:anywhere;
+    display:inline
+  }
+  .project-detail .text-link svg {
+    width:12px;
+    height:12px
+  }
+  .palette {
+    gap:8px;
+    flex-wrap:wrap
+  }
+  .palette i {
+    width:32px;
+    height:19px
+  }
+  .palette code {
+    font-size:8px
+  }
+  .all-projects {
+    font-size:10px;
+    margin-left:15px;
+    margin-top:19px;
+    gap:7px
+  }
+  .activity-toolbar {
+    font-size:10px;
+    gap:7px;
+    margin-top:4px
+  }
+  .refresh-button {
+    font-size:10px;
+    gap:4px;
+    min-height:36px
+  }
+  .refresh-button svg {
+    width:12px;
+    height:12px
+  }
+  .stats-grid {
+    grid-template-columns:1fr 1fr;
+    padding-top:20px;
+    row-gap:25px
+  }
+  .stat {
+    padding-right:10px
+  }
+  .stat+.stat {
+    padding-left:24px
+  }
+  .stat:last-child {
+    grid-column:1/-1;
+    padding:19px 0 0;
+    border-left:0;
+    border-top:1px solid var(--border);
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+    column-gap:15px
+  }
+  .stat:last-child dt {
+    margin:0;
+    font-size:11px
+  }
+  .stat:last-child dd {
+    grid-column:2;
+    grid-row:1/3;
+    font-size:31px;
+    line-height:1.35;
+    letter-spacing:-1.5px
+  }
+  .stat:last-child .stat-note {
+    font-size:9px;
+    margin-top:2px
+  }
+  .stat dd {
+    font-size:43px;
+    letter-spacing:-2px
+  }
+  .stat dt {
+    font-size:11px;
+    margin-bottom:9px
+  }
+  .stat>.stat-note {
+    font-size:9px
+  }
+  .time-stat>span {
+    font-size:19px
+  }
+  .stats-freshness {
+    font-size:9px;
+    line-height:1.75;
+    margin-top:19px;
+    align-items:flex-start
+  }
+  .status-dot {
+    margin-top:5px
+  }
+  .language-section {
+    padding-top:22px;
+    margin-top:23px
+  }
+  .languages-title {
+    gap:10px;
+    align-items:baseline
+  }
+  .languages-title h3 {
+    font-size:12px
+  }
+  .languages-title .comment {
+    font-size:9px
+  }
+  .language-row {
+    grid-template-columns:99px minmax(0,1fr) 45px;
+    gap:11px;
+    font-size:10px
+  }
+  .language-label {
+    gap:6px
+  }
+  .language-percent {
+    font-size:10px
+  }
+  .language-label>.punctuation {
+    margin-left:-4px
+  }
+  .language-list {
+    gap:13px
+  }
+  .source-note {
+    font-size:9px;
+    margin-top:22px
+  }
+  .source-note>a {
+    margin-left:0
+  }
+  .privacy-note {
+    font-size:9px;
+    margin-top:21px;
+    max-width:290px
+  }
+  .contact-body {
+    display:block;
+    padding-left:12px;
+    margin-top:20px
+  }
+  .contact-title {
+    font-size:29px;
+    margin-left:15px
+  }
+  .contact-description {
+    font-size:10px;
+    margin-left:15px;
+    max-width:290px
+  }
+  .contact-links {
+    padding-top:26px;
+    max-width:none;
+    margin-left:15px
+  }
+  .contact-primary {
+    font-size:13px;
+    max-width:290px
+  }
+  .contact-secondary {
+    font-size:11px;
+    max-width:290px
+  }
+  .contact-links>.comment {
+    font-size:9px
+  }
+  .document-end {
+    margin-top:34px
+  }
+  .site-footer {
+    margin-top:20px;
+    padding:18px 22px 24px 39px;
+    align-items:flex-start;
+    flex-direction:column;
+    gap:12px;
+    font-size:9px
+  }
+  .footer-right {
+    justify-content:space-between;
+    width:100%;
+    gap:20px
+  }
+  .motion-toggle {
+    font-size:10px;
+    padding:6px 0;
+    min-height:36px
+  }
+  .source-dialog {
+    width:calc(100vw - 22px);
+    max-height:90dvh
+  }
+  .dialog-header {
+    padding:9px 15px
+  }
+  .dialog-note {
+    padding:12px 15px 0;
+    font-size:10px
+  }
+  .dialog-note>.comment {
+    display:block;
+    margin:3px 0 0
+  }
+  .source-dialog pre {
+    font-size:10px;
+    padding:0 15px 18px;
+    max-height:56dvh
+  }
+  .dialog-footer {
+    padding:12px 15px;
+    gap:9px
+  }
+  .dialog-footer>.comment {
+    width:100%
+  }
+  .dialog-footer button {
+    padding:8px 12px;
+    font-size:10px
+  }
+  .toast {
+    font-size:11px;
+    text-align:center
+  }
+}
+
+@media(max-width:375px) {
+  .header-inner {
+    padding:0 17px
+  }
+  .page-shell {
+    padding-left:32px;
+    padding-right:16px
+  }
+  .hero {
+    padding-left:19px
+  }
+  .line::before {
+    left:-47px
+  }
+  .hero-identity .line::before {
+    left:-75px
+  }
+  .hero-links.line::before {
+    left:-59px
+  }
+  .name-line h1 {
+    font-size:56px
+  }
+  .about-block>p {
+    font-size:26px
+  }
+  .hero-description .desktop-break {
+    display:none
+  }
+  .role-line {
+    font-size:11px
+  }
+  .hero-links {
+    gap:17px
+  }
+  .hero {
+    min-height:662px
+  }
+  .document-section {
+    padding-left:19px
+  }
+  .document-section::before {
+    left:19px
+  }
+  .project-count {
+    display:none
+  }
+  .project h3 {
+    font-size:14px
+  }
+  .project-link {
+    gap:5px
+  }
+  .project-stars {
+    font-size:9px
+  }
+  .project-title-row {
+    gap:6px
+  }
+  .contact-title {
+    font-size:26px
+  }
+  .section-comment {
+    font-size:8px
+  }
+  .language-row {
+    grid-template-columns:92px minmax(0,1fr) 43px;
+    gap:8px
+  }
+  .languages-title .comment {
+    font-size:8px
+  }
+  .site-footer {
+    padding-left:32px;
+    padding-right:16px
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior:auto
+  }
+  *,*::before,*::after {
+    animation:none!important;
+    transition:none!important
+  }
+  .anchor-art canvas {
+    opacity:.55
+  }
+}
+
+html[data-motion=off] {
+  scroll-behavior:auto
+}
+
+html[data-motion=off] *,html[data-motion=off] *::before,html[data-motion=off] *::after {
+  animation:none!important;
+  transition:none!important
+}
+
+@media print {
+  .site-header,.anchor-art,.site-footer,.project-controls,.detail-toggle,.refresh-button,.hero-links,dialog,.toast {
+    display:none!important
+  }
+  body {
+    background:#fff;
+    color:#111
+  }
+  .page-shell {
+    padding:0;
+    max-width:none
+  }
+  .document {
+    border:0
+  }
+  .hero {
+    min-height:auto;
+    padding:20px 0
+  }
+  .hero-copy {
+    max-width:none
+  }
+  .document-section {
+    padding:20px 0;
+    break-inside:avoid
+  }
+  .line::before {
+    display:none
+  }
+  .key,.string,.tag,.comment,.punctuation,.anchor-value,.violet-text,.stat dt,.section-head h2 {
+    color:#333
+  }
+  .project {
+    break-inside:avoid
+  }
+  .section-content {
+    padding-left:0
+  }
+  .projects-list {
+    border:0
+  }
+  .stat dd {
+    color:#111
+  }
+  .project-description,.hero-description,.contact-description,.source-note,.privacy-note {
+    color:#333
+  }
+}
+
+.stat .time-stat[data-unavailable="true"] {
+  font-size:20px;
+  letter-spacing:-.5px
+}
+
+.stat:last-child .stat-note {
+  grid-column:auto;
+  grid-row:auto
+}
+
+.project[data-available="false"] .project-link::after {
+  content:"snapshot";
+  font:9px var(--mono);
+  color:var(--muted)
+}
+
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#about" class="wordmark" aria-label="aaron.yml — back to top"><span class="yaml-mark" aria-hidden="true"><i></i><i></i><i></i></span>aaron<span>.yml</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#about" class="active" data-nav="about"><span>01</span> about</a>
+        <a href="#projects" data-nav="projects"><span>02</span> projects</a>
+        <a href="#activity" data-nav="activity"><span>03</span> activity</a>
+        <a href="#contact" data-nav="contact"><span>04</span> contact</a>
+      </nav>
+      <div class="header-actions"><button type="button" class="raw-button" id="open-source" aria-haspopup="dialog"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="m6 5-4 5 4 5m8-10 4 5-4 5M11.5 3l-3 14"/></svg><span>view raw</span></button><a class="github-icon" href="https://github.com/aaronedev" target="_blank" rel="noopener noreferrer" aria-label="Aaron on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.06c-3.09.67-3.74-1.31-3.74-1.31-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.7 1.15 1.7 1.15.99 1.7 2.59 1.21 3.22.93.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.24-5.07-5.51 0-1.22.44-2.21 1.14-2.99-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.14A10.6 10.6 0 0 1 12 6.75c.94 0 1.88.13 2.77.37 2.12-1.44 3.04-1.14 3.04-1.14.61 1.53.23 2.66.12 2.94.71.78 1.14 1.77 1.14 2.99 0 4.28-2.61 5.22-5.1 5.5.4.35.75 1.02.75 2.06v2.53c0 .3.2.64.77.53A11.1 11.1 0 0 0 12 .9Z"/></svg></a></div>
+    </div>
+  </header>
+
+  <main id="main" class="page-shell">
+    <div class="document">
+      <section id="about" class="hero" aria-labelledby="developer-name">
+        <div class="hero-copy">
+          <p class="document-start line" data-line="01"><span>---</span><span class="comment"># a developer, by definition</span></p>
+          <p class="declaration line" data-line="02"><span class="key">developer:</span> <a href="#contact" class="anchor-value" title="Jump to Aaron's contact information">&amp;aaron</a></p>
+          <div class="indent hero-identity">
+            <div class="name-line line" data-line="03"><span class="field-label key">name:</span><h1 id="developer-name"><span class="quote">"</span>Aaron<span class="quote">"</span></h1></div>
+            <p class="role-line line" data-line="04"><span class="key">role:</span> <span class="string">"Software developer"</span></p>
+            <div class="about-block line" data-line="05"><span class="key">about:</span> <span class="punctuation">|</span><p>I make tools feel<br>like second nature.</p><p class="hero-description">Linux-first tools, thoughtful interfaces,<br class="desktop-break"> and a little <span class="violet-text">Violet Void</span>.</p></div>
+            <p class="location-line line" data-line="09"><span class="key">based_in:</span> <span class="string">"Cologne, Germany"</span></p>
+            <p class="focus-line line" data-line="10"><span class="key">focus:</span> <span class="punctuation">[</span><span class="string">linux</span><span class="punctuation">, </span><span class="string">tools</span><span class="punctuation">, </span><span class="string">good_ui</span><span class="punctuation">]</span></p>
+          </div>
+          <div class="hero-links line" data-line="12"><a href="#projects" class="primary-link"><span class="key">explore:</span><span>*projects</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M10 3v14m-5-5 5 5 5-5"/></svg></a><a href="https://github.com/aaronedev" target="_blank" rel="noopener noreferrer" class="hero-github">GitHub <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M5 15 15 5H5m10 0v10"/></svg></a></div>
+        </div>
+        <div class="anchor-art" aria-hidden="true"><div class="art-glow"></div><span class="static-anchor">&amp;</span><canvas id="anchor-canvas"></canvas><span class="art-label"><span class="punctuation">&amp;</span> a little gravity</span></div>
+      </section>
+
+      <section id="projects" class="document-section" aria-labelledby="projects-heading">
+        <div class="section-head line" data-line="14"><h2 id="projects-heading"><button type="button" class="section-fold" aria-expanded="true" aria-controls="projects-content" aria-label="Collapse projects"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m5 3 5 5-5 5"/></svg><span>projects<span class="punctuation">:</span></span></button></h2><span class="comment section-comment"># a few things I've made</span></div>
+        <div id="projects-content" class="section-content">
+          <div class="project-controls"><span class="comment"># filter:</span><div class="filters" role="group" aria-label="Filter projects by category"><span class="punctuation" aria-hidden="true">[</span><button type="button" class="filter active" data-filter="all" aria-pressed="true">all</button><span class="punctuation" aria-hidden="true">,</span><button type="button" class="filter" data-filter="themes" aria-pressed="false">themes</button><span class="punctuation" aria-hidden="true">,</span><button type="button" class="filter" data-filter="tools" aria-pressed="false">tools</button><span class="punctuation" aria-hidden="true">]</span></div><span class="project-count" id="project-count" aria-live="polite">4 entries</span></div>
+          <div class="projects-list" id="projects-list"><article class="project" data-category="themes" data-project="violet-void">
+    <span class="project-index" aria-hidden="true">01</span>
+    <div class="project-main"><div class="project-title-row"><span class="dash" aria-hidden="true">-</span><span class="key small">name:</span>
+      <h3><a href="https://github.com/aaronedev/violet-void-theme" target="_blank" rel="noopener noreferrer" class="project-link">Violet Void <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></h3>
+      <span class="project-stars" title="Repository stars · observed 2026-09-06"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="m10 2 2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8Z"/></svg><span data-stars-for="aaronedev/violet-void-theme">11</span></span>
+    </div><div class="project-inner"><p class="project-description"><span class="key">about:</span> <span>One palette. Every surface. A dark, violet-first color system for editors, terminals, and the web.</span></p>
+      <div class="project-bottom"><p class="project-stack"><span class="key">stack:</span> <span class="punctuation">[</span><span class="tag">color_system</span><span class="punctuation">, </span><span class="tag">cross_platform</span><span class="punctuation">]</span></p>
+      <button type="button" class="detail-toggle" aria-expanded="false" aria-controls="detail-violet-void" aria-label="Details for Violet Void">details <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m5 3 5 5-5 5"/></svg></button></div>
+      <div class="project-detail" id="detail-violet-void" hidden><p>The common thread through my workspace: considered contrast, quiet backgrounds, and just enough color to make the important things feel important.</p>
+      <div class="palette" aria-label="Violet Void color palette"><span style="--swatch: #bb7cff" title="#bb7cff"><i></i><code>#bb7cff</code></span><span style="--swatch: #00fff9" title="#00fff9"><i></i><code>#00fff9</code></span><span style="--swatch: #42ff97" title="#42ff97"><i></i><code>#42ff97</code></span><span style="--swatch: #fd7cff" title="#fd7cff"><i></i><code>#fd7cff</code></span><span style="--swatch: #29adff" title="#29adff"><i></i><code>#29adff</code></span><span style="--swatch: #f0f0f5" title="#f0f0f5"><i></i><code>#f0f0f5</code></span></div>
+      <p class="comment"># a little less noise, a little more violet</p><a href="https://github.com/aaronedev/violet-void-theme" target="_blank" rel="noopener noreferrer" class="text-link">aaronedev/violet-void-theme <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
+    </div></div></article>
+<article class="project" data-category="tools" data-project="nerdfont-picker">
+    <span class="project-index" aria-hidden="true">02</span>
+    <div class="project-main"><div class="project-title-row"><span class="dash" aria-hidden="true">-</span><span class="key small">name:</span>
+      <h3><a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker" target="_blank" rel="noopener noreferrer" class="project-link">Nerd Font Picker <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></h3>
+      <span class="project-stars" title="Repository stars · observed 2026-09-06"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="m10 2 2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8Z"/></svg><span data-stars-for="aaronedev/nerdfont-icon-rofi-picker">3</span></span>
+    </div><div class="project-inner"><p class="project-description"><span class="key">about:</span> <span>The right icon, without breaking your flow. Fuzzy Rofi search, straight to your clipboard.</span></p>
+      <div class="project-bottom"><p class="project-stack"><span class="key">stack:</span> <span class="punctuation">[</span><span class="tag">Shell</span><span class="punctuation">, </span><span class="tag">Rofi</span><span class="punctuation">]</span></p>
+      <button type="button" class="detail-toggle" aria-expanded="false" aria-controls="detail-nerdfont-picker" aria-label="Details for Nerd Font Picker">details <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m5 3 5 5-5 5"/></svg></button></div>
+      <div class="project-detail" id="detail-nerdfont-picker" hidden><p>A small, focused Linux utility: browse Nerd Font icons, find a match, and copy it for the next status bar, script, or interface.</p>
+      
+      <p class="comment"># small tools should get out of your way</p><a href="https://github.com/aaronedev/nerdfont-icon-rofi-picker" target="_blank" rel="noopener noreferrer" class="text-link">aaronedev/nerdfont-icon-rofi-picker <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
+    </div></div></article>
+<article class="project" data-category="themes" data-project="archwiki-theme">
+    <span class="project-index" aria-hidden="true">03</span>
+    <div class="project-main"><div class="project-title-row"><span class="dash" aria-hidden="true">-</span><span class="key small">name:</span>
+      <h3><a href="https://github.com/aaronedev/violet-void-theme_archwiki" target="_blank" rel="noopener noreferrer" class="project-link">ArchWiki, reimagined <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></h3>
+      <span class="project-stars" title="Repository stars · observed 2026-09-06"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="m10 2 2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8Z"/></svg><span data-stars-for="aaronedev/violet-void-theme_archwiki">3</span></span>
+    </div><div class="project-inner"><p class="project-description"><span class="key">about:</span> <span>A calmer place to learn Linux. The depth of the ArchWiki, in the colors of Violet Void.</span></p>
+      <div class="project-bottom"><p class="project-stack"><span class="key">stack:</span> <span class="punctuation">[</span><span class="tag">Stylus</span><span class="punctuation">, </span><span class="tag">CSS</span><span class="punctuation">]</span></p>
+      <button type="button" class="detail-toggle" aria-expanded="false" aria-controls="detail-archwiki-theme" aria-label="Details for ArchWiki, reimagined">details <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m5 3 5 5-5 5"/></svg></button></div>
+      <div class="project-detail" id="detail-archwiki-theme" hidden><p>A dedicated stylesheet bringing a consistent dark palette to a high-information website, with the documentation itself still taking center stage.</p>
+      
+      <p class="comment"># made for the pages I keep coming back to</p><a href="https://github.com/aaronedev/violet-void-theme_archwiki" target="_blank" rel="noopener noreferrer" class="text-link">aaronedev/violet-void-theme_archwiki <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
+    </div></div></article>
+<article class="project" data-category="tools" data-project="profile-automation">
+    <span class="project-index" aria-hidden="true">04</span>
+    <div class="project-main"><div class="project-title-row"><span class="dash" aria-hidden="true">-</span><span class="key small">name:</span>
+      <h3><a href="https://github.com/aaronedev/aaronedev" target="_blank" rel="noopener noreferrer" class="project-link">Profile, automated <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></h3>
+      <span class="project-stars" title="Repository stars · observed 2026-09-06"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="m10 2 2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8Z"/></svg><span data-stars-for="aaronedev/aaronedev">28</span></span>
+    </div><div class="project-inner"><p class="project-description"><span class="key">about:</span> <span>A profile that keeps up. GitHub activity, coding statistics, and generated visuals, brought together.</span></p>
+      <div class="project-bottom"><p class="project-stack"><span class="key">stack:</span> <span class="punctuation">[</span><span class="tag">Python</span><span class="punctuation">, </span><span class="tag">GitHub_Actions</span><span class="punctuation">]</span></p>
+      <button type="button" class="detail-toggle" aria-expanded="false" aria-controls="detail-profile-automation" aria-label="Details for Profile, automated">details <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m5 3 5 5-5 5"/></svg></button></div>
+      <div class="project-detail" id="detail-profile-automation" hidden><p>Public activity and WakaTime statistics feed my GitHub profile. A little automation keeps the page connected to the work behind it.</p>
+      
+      <p class="comment"># let the work speak for itself</p><a href="https://github.com/aaronedev/aaronedev" target="_blank" rel="noopener noreferrer" class="text-link">aaronedev/aaronedev <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></div>
+    </div></div></article></div>
+          <a class="all-projects text-link" href="https://github.com/aaronedev?tab=repositories" target="_blank" rel="noopener noreferrer"><span class="key">more:</span> github.com/aaronedev <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M5 15 15 5H5m10 0v10"/></svg></a>
+        </div>
+      </section>
+
+      <section id="activity" class="document-section" aria-labelledby="activity-heading">
+        <div class="section-head line" data-line="38"><h2 id="activity-heading"><button type="button" class="section-fold" aria-expanded="true" aria-controls="activity-content" aria-label="Collapse activity"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m5 3 5 5-5 5"/></svg><span>activity<span class="punctuation">:</span></span></button></h2><span class="comment section-comment"># the work behind the work</span></div>
+        <div id="activity-content" class="section-content">
+          <div class="activity-toolbar"><p><span class="key">source:</span> <a class="string" href="https://github.com/aaronedev" target="_blank" rel="noopener noreferrer">GitHub</a> <span class="punctuation">+</span> <a class="string" href="https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe" target="_blank" rel="noopener noreferrer">WakaTime</a></p><button type="button" id="refresh-stats" class="refresh-button"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M16.5 7A7 7 0 1 0 17 12M16.5 3v4h-4"/></svg><span>refresh</span></button></div>
+          <dl class="stats-grid"><div class="stat"><dt>public_repos<span class="punctuation">:</span></dt><dd id="stat-repos">94</dd><dd class="stat-note">personal account</dd></div><div class="stat"><dt>followers<span class="punctuation">:</span></dt><dd id="stat-followers">140</dd><dd class="stat-note">on GitHub</dd></div><div class="stat"><dt>coding_time<span class="punctuation">:</span></dt><dd id="stat-hours" class="time-stat">77<span>h</span> 15<span>m</span></dd><dd class="stat-note">latest published week</dd></div></dl>
+          <p class="stats-freshness" id="github-status" aria-live="polite"><i class="status-dot" aria-hidden="true"></i><span>GitHub snapshot · 06 Sep 2026</span></p>
+          <div class="language-section"><div class="languages-title"><h3><span class="key">languages:</span></h3><span class="comment"># time, not lines of code</span></div><div class="language-list" id="language-list"><div class="language-row"><span class="language-label"><i style="background:var(--violet)" aria-hidden="true"></i>Python<span class="punctuation">:</span></span><span class="language-bar" aria-hidden="true"><span style="width:54.4%;background:var(--violet)"></span></span><span class="language-percent">54.4<span class="punctuation">%</span></span></div>
+<div class="language-row"><span class="language-label"><i style="background:var(--cyan)" aria-hidden="true"></i>Markdown<span class="punctuation">:</span></span><span class="language-bar" aria-hidden="true"><span style="width:17.23%;background:var(--cyan)"></span></span><span class="language-percent">17.2<span class="punctuation">%</span></span></div>
+<div class="language-row"><span class="language-label"><i style="background:var(--green)" aria-hidden="true"></i>Bash<span class="punctuation">:</span></span><span class="language-bar" aria-hidden="true"><span style="width:6.13%;background:var(--green)"></span></span><span class="language-percent">6.1<span class="punctuation">%</span></span></div>
+<div class="language-row"><span class="language-label"><i style="background:var(--pink)" aria-hidden="true"></i>JSON<span class="punctuation">:</span></span><span class="language-bar" aria-hidden="true"><span style="width:4.28%;background:var(--pink)"></span></span><span class="language-percent">4.3<span class="punctuation">%</span></span></div>
+<div class="language-row"><span class="language-label"><i style="background:var(--muted)" aria-hidden="true"></i>Remaining<span class="punctuation">:</span></span><span class="language-bar" aria-hidden="true"><span style="width:17.96%;background:var(--muted)"></span></span><span class="language-percent">18.0<span class="punctuation">%</span></span></div></div><p class="source-note"><span id="coding-date">WakaTime · published profile snapshot observed 06 Sep 2026.</span> <a href="https://github.com/aaronedev/aaronedev/blob/main/README.md" target="_blank" rel="noopener noreferrer">View source <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M5 15 15 5H5m10 0v10"/></svg></a></p></div>
+          <p class="privacy-note comment"># public data only. no private repositories, no inflated counters.</p>
+        </div>
+      </section>
+
+      <section id="contact" class="document-section contact-section" aria-labelledby="contact-heading">
+        <div class="section-head line" data-line="52"><h2 id="contact-heading"><span class="key">contact<span class="punctuation">:</span></span></h2><span class="anchor-value">*aaron</span></div>
+        <div class="contact-body"><div class="contact-message"><p class="key">message: <span class="punctuation">|</span></p><p class="contact-title">Good things start<br>with a conversation<span class="violet-text">.</span></p><p class="contact-description">A tool, an idea, or a shared appreciation<br class="desktop-break"> for a very good color palette.</p></div><div class="contact-links"><a href="https://matrix.to/#/@aaronedev:matrix.org" target="_blank" rel="noopener noreferrer" class="contact-primary"><span class="key">say_hello:</span> <span>Matrix</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 18 18 6H6m12 0v12"/></svg></a><a href="https://github.com/aaronedev" target="_blank" rel="noopener noreferrer" class="contact-secondary"><span class="key">find_me:</span> <span>@aaronedev</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M5 15 15 5H5m10 0v10"/></svg></a><p class="comment"># human on the other end</p></div></div>
+        <p class="document-end line" data-line="60">...</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer"><span><span class="violet-text">&amp;</span> Aaron <span class="punctuation">/</span> a work in progress, always.</span><div class="footer-right"><button type="button" id="motion-toggle" aria-pressed="true" class="motion-toggle"><span class="motion-icon" aria-hidden="true">∿</span> motion: <span id="motion-value">true</span></button><a href="#about" class="back-top" aria-label="Back to top"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M10 17V3m-5 5 5-5 5 5"/></svg></a></div></footer>
+
+  <dialog id="source-dialog" class="source-dialog" aria-labelledby="source-title"><div class="dialog-header"><h2 id="source-title">aaron<span>.yml</span></h2><button type="button" id="close-source" class="close-source" aria-label="Close YAML source"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m5 5 10 10M5 15 15 5"/></svg></button></div><p class="dialog-note">The same person. A different view. <span class="comment"># valid YAML</span></p><pre tabindex="0" aria-label="Portfolio YAML source"><code id="yaml-source">---
+# Aaron — a little about the person behind the code.
+# Source: public GitHub profile and its published WakaTime statistics.
+# GitHub counts cover the personal account, not organization totals.
+developer: &amp;aaron
+  name: &quot;Aaron&quot;
+  handle: &quot;@aaronedev&quot;
+  role: &quot;Software developer&quot;
+  based_in: &quot;Cologne, Germany&quot;
+  about: |
+    I make tools feel like second nature.
+    Linux-first tools, thoughtful interfaces, and a little Violet Void.
+  focus: [linux, developer_tools, thoughtful_ui]
+
+projects:
+  - name: &quot;Violet Void&quot;
+    kind: &quot;themes&quot;
+    description: &quot;One palette. Every surface. A dark, violet-first color system for editors, terminals, and the web.&quot;
+    stack: [&quot;color_system&quot;, &quot;cross_platform&quot;]
+    source: &quot;https://github.com/aaronedev/violet-void-theme&quot;
+    stars: 11
+    observed_at: &quot;2026-09-06&quot;
+    available: true
+  - name: &quot;Nerd Font Picker&quot;
+    kind: &quot;tools&quot;
+    description: &quot;The right icon, without breaking your flow. Fuzzy Rofi search, straight to your clipboard.&quot;
+    stack: [&quot;Shell&quot;, &quot;Rofi&quot;]
+    source: &quot;https://github.com/aaronedev/nerdfont-icon-rofi-picker&quot;
+    stars: 3
+    observed_at: &quot;2026-09-06&quot;
+    available: true
+  - name: &quot;ArchWiki, reimagined&quot;
+    kind: &quot;themes&quot;
+    description: &quot;A calmer place to learn Linux. The depth of the ArchWiki, in the colors of Violet Void.&quot;
+    stack: [&quot;Stylus&quot;, &quot;CSS&quot;]
+    source: &quot;https://github.com/aaronedev/violet-void-theme_archwiki&quot;
+    stars: 3
+    observed_at: &quot;2026-09-06&quot;
+    available: true
+  - name: &quot;Profile, automated&quot;
+    kind: &quot;tools&quot;
+    description: &quot;A profile that keeps up. GitHub activity, coding statistics, and generated visuals, brought together.&quot;
+    stack: [&quot;Python&quot;, &quot;GitHub_Actions&quot;]
+    source: &quot;https://github.com/aaronedev/aaronedev&quot;
+    stars: 28
+    observed_at: &quot;2026-09-06&quot;
+    available: true
+
+statistics:
+  github:
+    public_repositories: 94
+    followers: 140
+    observed_at: &quot;2026-09-06&quot;
+    source: &quot;snapshot&quot;
+  wakatime:
+    coding_time: &quot;77h 15m&quot;
+    period: &quot;latest published week&quot;
+    observed_at: &quot;2026-09-06&quot;
+    source: &quot;https://github.com/aaronedev/aaronedev/blob/main/README.md&quot;
+    languages:
+      &quot;Python&quot;: 54.4
+      &quot;Markdown&quot;: 17.23
+      &quot;Bash&quot;: 6.13
+      &quot;JSON&quot;: 4.28
+      &quot;Remaining&quot;: 17.96
+
+contact:
+  github: &quot;https://github.com/aaronedev&quot;
+  matrix: &quot;https://matrix.to/#/@aaronedev:matrix.org&quot;
+  wakatime: &quot;https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe&quot;
+
+...
+</code></pre><div class="dialog-footer"><span class="comment">Public data. Explicit timestamps.</span><button type="button" id="download-yaml">download .yml</button><button type="button" id="copy-yaml">copy YAML</button></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><p class="no-script">You're viewing the static edition. JavaScript enables project filters, live refresh, and the little bit of gravity.</p></noscript>
+  <script>(()=>{
+'use strict';
+/** Public, curated content only. Never add credentials or private repository metadata here. */
+const PROFILE = Object.freeze({
+  name: 'Aaron',
+  handle: 'aaronedev',
+  role: 'Software developer',
+  location: 'Cologne, Germany',
+  github: 'https://github.com/aaronedev',
+  matrix: 'https://matrix.to/#/@aaronedev:matrix.org',
+  wakatime: 'https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe',
+  description: 'Linux-first tools, thoughtful interfaces, and a little Violet Void.',
+});
+
+const PUBLIC_OWNERS = Object.freeze(['aaronedev', 'Violet-Void', 'bauerstischfinder']);
+const SNAPSHOT_DATE = '2026-09-06';
+const README_URL = 'https://raw.githubusercontent.com/aaronedev/aaronedev/main/README.md';
+const PROFILE_SOURCE = 'https://github.com/aaronedev/aaronedev/blob/main/README.md';
+
+const PROJECTS = Object.freeze([
+  {
+    id: 'violet-void', name: 'Violet Void', category: 'themes',
+    repo: 'aaronedev/violet-void-theme', stars: 11,
+    description: 'One palette. Every surface. A dark, violet-first color system for editors, terminals, and the web.',
+    detail: 'The common thread through my workspace: considered contrast, quiet backgrounds, and just enough color to make the important things feel important.',
+    tags: ['color_system', 'cross_platform'],
+    note: 'a little less noise, a little more violet', palette: true,
+  },
+  {
+    id: 'nerdfont-picker', name: 'Nerd Font Picker', category: 'tools',
+    repo: 'aaronedev/nerdfont-icon-rofi-picker', stars: 3,
+    description: 'The right icon, without breaking your flow. Fuzzy Rofi search, straight to your clipboard.',
+    detail: 'A small, focused Linux utility: browse Nerd Font icons, find a match, and copy it for the next status bar, script, or interface.',
+    tags: ['Shell', 'Rofi'],
+    note: 'small tools should get out of your way', palette: false,
+  },
+  {
+    id: 'archwiki-theme', name: 'ArchWiki, reimagined', category: 'themes',
+    repo: 'aaronedev/violet-void-theme_archwiki', stars: 3,
+    description: 'A calmer place to learn Linux. The depth of the ArchWiki, in the colors of Violet Void.',
+    detail: 'A dedicated stylesheet bringing a consistent dark palette to a high-information website, with the documentation itself still taking center stage.',
+    tags: ['Stylus', 'CSS'],
+    note: 'made for the pages I keep coming back to', palette: false,
+  },
+  {
+    id: 'profile-automation', name: 'Profile, automated', category: 'tools',
+    repo: 'aaronedev/aaronedev', stars: 28,
+    description: 'A profile that keeps up. GitHub activity, coding statistics, and generated visuals, brought together.',
+    detail: 'Public activity and WakaTime statistics feed my GitHub profile. A little automation keeps the page connected to the work behind it.',
+    tags: ['Python', 'GitHub_Actions'],
+    note: 'let the work speak for itself', palette: false,
+  },
+]);
+
+/** Dated observations, not invented real-time counters. */
+const INITIAL_STATS = Object.freeze({
+  profile: { publicRepos: 94, followers: 140, fetchedAt: SNAPSHOT_DATE, source: 'snapshot' },
+  repositories: Object.fromEntries(PROJECTS.map(p => [p.repo, { stars: p.stars, fetchedAt: SNAPSHOT_DATE, source: 'snapshot', available: true }])),
+  coding: {
+    displayTime: '77h 15m', period: 'latest published week', fetchedAt: SNAPSHOT_DATE, source: 'snapshot',
+    languages: [
+      {name: 'Python', percent: 54.4, time: '42h 1m', color: 'var(--violet)'},
+      {name: 'Markdown', percent: 17.23, time: '13h 18m', color: 'var(--cyan)'},
+      {name: 'Bash', percent: 6.13, time: '4h 44m', color: 'var(--green)'},
+      {name: 'JSON', percent: 4.28, time: '3h 18m', color: 'var(--pink)'},
+      {name: 'Remaining', percent: 17.96, time: '', color: 'var(--muted)'},
+    ],
+  },
+});
+
+function freshStats() { return structuredClone(INITIAL_STATS); }
+
+/** JSON string syntax is valid YAML double-quoted scalar syntax. */
+function yamlQuote(value) { return JSON.stringify(String(value)); }
+function asYaml(stats = freshStats()) {
+  const q = yamlQuote;
+  const lines = [
+    '---', '# Aaron — a little about the person behind the code.',
+    '# Source: public GitHub profile and its published WakaTime statistics.',
+    '# GitHub counts cover the personal account, not organization totals.',
+    'developer: &aaron', `  name: ${q(PROFILE.name)}`, `  handle: ${q('@' + PROFILE.handle)}`,
+    `  role: ${q(PROFILE.role)}`, `  based_in: ${q(PROFILE.location)}`,
+    '  about: |', '    I make tools feel like second nature.', `    ${PROFILE.description}`,
+    '  focus: [linux, developer_tools, thoughtful_ui]', '',
+    'projects:',
+  ];
+  for (const project of PROJECTS) {
+    const repo = stats.repositories[project.repo];
+    lines.push(`  - name: ${q(project.name)}`, `    kind: ${q(project.category)}`,
+      `    description: ${q(project.description)}`, `    stack: [${project.tags.map(q).join(', ')}]`,
+      `    source: ${q('https://github.com/' + project.repo)}`,
+      `    stars: ${repo?.available === false ? 'null' : repo?.stars ?? project.stars}`,
+      `    observed_at: ${q(repo?.fetchedAt ?? SNAPSHOT_DATE)}`,
+      `    available: ${repo?.available !== false}`,
+    );
+  }
+  lines.push('', 'statistics:', '  github:', `    public_repositories: ${stats.profile.publicRepos}`,
+    `    followers: ${stats.profile.followers}`, `    observed_at: ${q(stats.profile.fetchedAt)}`,
+    `    source: ${q(stats.profile.source)}`, '  wakatime:', `    coding_time: ${q(stats.coding.displayTime)}`,
+    `    period: ${q(stats.coding.period)}`, `    observed_at: ${q(stats.coding.fetchedAt)}`,
+    `    source: ${q(PROFILE_SOURCE)}`, '    languages:');
+  for (const lang of stats.coding.languages) lines.push(`      ${q(lang.name)}: ${lang.percent}`);
+  lines.push('', 'contact:', `  github: ${q(PROFILE.github)}`, `  matrix: ${q(PROFILE.matrix)}`,
+    `  wakatime: ${q(PROFILE.wakatime)}`, '', '...');
+  return lines.join('\n') + '\n';
+}
+
+
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[ch]));
+}
+const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg>';
+const CHEVRON = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m5 3 5 5-5 5"/></svg>';
+const STAR = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="m10 2 2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8Z"/></svg>';
+
+function projectHtml(project, index, stats) {
+  const esc = escapeHtml;
+  const metric = stats.repositories[project.repo];
+  const available = metric?.available !== false;
+  const stars = available ? metric?.stars ?? project.stars : '—';
+  const link = 'https://github.com/' + project.repo;
+  const palette = ['#bb7cff', '#00fff9', '#42ff97', '#fd7cff', '#29adff', '#f0f0f5'];
+  return `<article class="project" data-category="${esc(project.category)}" data-project="${esc(project.id)}">
+    <span class="project-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>
+    <div class="project-main"><div class="project-title-row"><span class="dash" aria-hidden="true">-</span><span class="key small">name:</span>
+      <h3><a href="${link}" target="_blank" rel="noopener noreferrer" class="project-link">${esc(project.name)} ${ARROW}</a></h3>
+      <span class="project-stars" title="Repository stars · observed ${esc(metric?.fetchedAt ?? SNAPSHOT_DATE)}">${STAR}<span data-stars-for="${esc(project.repo)}">${stars}</span></span>
+    </div><div class="project-inner"><p class="project-description"><span class="key">about:</span> <span>${esc(project.description)}</span></p>
+      <div class="project-bottom"><p class="project-stack"><span class="key">stack:</span> <span class="punctuation">[</span>${project.tags.map(tag => `<span class="tag">${esc(tag)}</span>`).join('<span class="punctuation">, </span>')}<span class="punctuation">]</span></p>
+      <button type="button" class="detail-toggle" aria-expanded="false" aria-controls="detail-${esc(project.id)}" aria-label="Details for ${esc(project.name)}">details ${CHEVRON}</button></div>
+      <div class="project-detail" id="detail-${esc(project.id)}" hidden><p>${esc(project.detail)}</p>
+      ${project.palette ? `<div class="palette" aria-label="Violet Void color palette">${palette.map(color => `<span style="--swatch: ${color}" title="${color}"><i></i><code>${color}</code></span>`).join('')}</div>` : ''}
+      <p class="comment"># ${esc(project.note)}</p><a href="${link}" target="_blank" rel="noopener noreferrer" class="text-link">${esc(project.repo)} ${ARROW}</a></div>
+    </div></div></article>`;
+}
+
+function projectsHtml(stats) { return PROJECTS.map((p, i) => projectHtml(p, i, stats)).join('\n'); }
+
+function languagesHtml(coding) {
+  const esc = escapeHtml;
+  return coding.languages.map(lang => `<div class="language-row"><span class="language-label"><i style="background:${esc(lang.color)}" aria-hidden="true"></i>${esc(lang.name)}<span class="punctuation">:</span></span><span class="language-bar" aria-hidden="true"><span style="width:${lang.percent}%;background:${esc(lang.color)}"></span></span><span class="language-percent">${lang.percent.toFixed(1)}<span class="punctuation">%</span></span></div>`).join('\n');
+}
+
+
+
+const CACHE_KEY = 'aaron.yml:public-stats:v1';
+const TTL = 15 * 60 * 1000;
+const isCount = n => Number.isSafeInteger(n) && n >= 0;
+
+function isAllowedRepository(fullName) {
+  if (typeof fullName !== 'string' || !/^[\w.-]+\/[\w.-]+$/.test(fullName)) return false;
+  const owner = fullName.split('/')[0].toLowerCase();
+  return PUBLIC_OWNERS.some(allowed => allowed.toLowerCase() === owner) && PROJECTS.some(p => p.repo.toLowerCase() === fullName.toLowerCase());
+}
+
+function validatePublicProfile(data) {
+  if (!data || data.login?.toLowerCase() !== PROFILE.handle || !isCount(data.public_repos) || !isCount(data.followers)) throw new Error('Unexpected public profile response.');
+  // Explicit field selection: never copy arbitrary API data into the public site.
+  return {publicRepos: data.public_repos, followers: data.followers};
+}
+
+function validatePublicRepository(data, expectedName) {
+  if (!isAllowedRepository(expectedName) || !data || data.private !== false || data.visibility !== 'public' || data.full_name?.toLowerCase() !== expectedName.toLowerCase() || !isCount(data.stargazers_count)) throw new Error('Unexpected or non-public repository response.');
+  return {stars: data.stargazers_count, available: true};
+}
+
+function compactTime(text) {
+  const hours = text.match(/(\d+)\s*hrs?\b/i);
+  const minutes = text.match(/(\d+)\s*mins?\b/i);
+  if (!hours && !minutes) return null;
+  return [hours ? `${hours[1]}h` : '', minutes ? `${minutes[1]}m` : ''].filter(Boolean).join(' ');
+}
+
+/** Parse only published language/time aggregates. Ignore all repo names and activity details. */
+function parsePublishedWakatime(markdown) {
+  if (typeof markdown !== 'string' || markdown.length > 1_000_000) throw new Error('Invalid profile document.');
+  const region = markdown.split(/Programming Languages:/i)[1]?.split(/(?:🔥\s*)?Editors:/i)[0];
+  if (!region) return null;
+  const colors = {'Python':'var(--violet)', 'Markdown':'var(--cyan)', 'Bash':'var(--green)', 'JSON':'var(--pink)'};
+  const all = [];
+  for (const line of region.split('\n')) {
+    const match = line.match(/^\s*([A-Za-z][\w+#. -]{0,40}?)\s{2,}(.+?)\s+([\d.]+)%\s*$/);
+    if (!match) continue;
+    const percent = Number(match[3]);
+    if (!Number.isFinite(percent) || percent < 0 || percent > 100) continue;
+    const name = match[1].trim();
+    if (all.some(item => item.name === name)) return null;
+    all.push({name, percent, time: compactTime(match[2]) ?? '', color: colors[name] ?? 'var(--muted)'});
+  }
+  if (!all.length || all.reduce((sum, item) => sum + item.percent, 0) > 100.1) return null;
+  const selected = all.filter(item => item.name !== 'Other').sort((a,b) => b.percent-a.percent).slice(0,4);
+  const sum = selected.reduce((total,item) => total + item.percent, 0);
+  if (sum < 99.95) selected.push({name:'Remaining', percent:Math.round((100-sum)*100)/100, time:'', color:'var(--muted)'});
+  const os = markdown.split(/Operating System:/i)[1]?.split('```')[0] ?? '';
+  const osLines = [...os.matchAll(/^[ \t]*[A-Za-z][\w -]+?[ \t]{2,}(.+?)[ \t]+([\d.]+)%[ \t]*$/gm)];
+  // A single 100% OS row is the published total; otherwise no invented total.
+  const totalRow = osLines.find(match => Number(match[2]) === 100);
+  return {languages:selected, displayTime:totalRow ? compactTime(totalRow[1]) : null, period:'latest published week'};
+}
+
+async function fetchPublic(url, parse = 'json') {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 7000);
+  try {
+    const response = await fetch(url, {signal:controller.signal, credentials:'omit', referrerPolicy:'no-referrer', headers: url.startsWith('https://api.github.com/') ? {Accept:'application/vnd.github+json'} : {}});
+    if (!response.ok) {
+      const error = new Error(`Public source returned HTTP ${response.status}.`);
+      error.status = response.status;
+      throw error;
+    }
+    return parse === 'text' ? await response.text() : await response.json();
+  } finally { clearTimeout(timeout); }
+}
+
+function readCachedStats(storage, now = Date.now()) {
+  try {
+    const cache = JSON.parse(storage?.getItem(CACHE_KEY) ?? 'null');
+    if (!cache || !Number.isFinite(cache.savedAt) || cache.savedAt > now || now - cache.savedAt >= TTL) return null;
+    const profile = cache.profile;
+    if (!profile || !isCount(profile.publicRepos) || !isCount(profile.followers) || !Number.isFinite(Date.parse(profile.fetchedAt))) return null;
+    const result = freshStats();
+    result.profile = {publicRepos:profile.publicRepos, followers:profile.followers, fetchedAt:profile.fetchedAt, source:'cached'};
+    for (const project of PROJECTS) {
+      const entry = cache.repositories?.[project.repo];
+      if (entry && isCount(entry.stars) && Number.isFinite(Date.parse(entry.fetchedAt)) && typeof entry.available === 'boolean') {
+        result.repositories[project.repo] = {stars:entry.stars, fetchedAt:entry.fetchedAt, available:entry.available, source:'cached'};
+      }
+    }
+    // No free-text remote values restored from storage. WakaTime remains the dated published snapshot.
+    return result;
+  } catch { return null; }
+}
+
+async function refreshStats(previous = freshStats()) {
+  const next = structuredClone(previous);
+  const timestamp = new Date().toISOString();
+  const jobs = [
+    fetchPublic(`https://api.github.com/users/${PROFILE.handle}`).then(validatePublicProfile),
+    ...PROJECTS.map(project => fetchPublic(`https://api.github.com/repos/${project.repo}`).then(data => validatePublicRepository(data, project.repo))),
+    fetchPublic(README_URL, 'text').then(parsePublishedWakatime),
+  ];
+  const results = await Promise.allSettled(jobs);
+  const profileResult = results[0];
+  let githubUpdates = 0;
+  if (profileResult.status === 'fulfilled') {
+    next.profile = {...profileResult.value, fetchedAt:timestamp, source:'live'};
+    githubUpdates++;
+  }
+  PROJECTS.forEach((project, index) => {
+    const result = results[index+1];
+    if (result.status === 'fulfilled') {
+      next.repositories[project.repo] = {...result.value, fetchedAt:timestamp, source:'live'};
+      githubUpdates++;
+    } else if (result.reason?.status === 404) {
+      // A disappeared/public-to-private repository is not represented as a current public success.
+      next.repositories[project.repo] = {stars:0, available:false, fetchedAt:timestamp, source:'live'};
+    }
+  });
+  const codingResult = results.at(-1);
+  if (codingResult.status === 'fulfilled' && codingResult.value) {
+    next.coding = {...codingResult.value, displayTime:codingResult.value.displayTime ?? 'Not published', fetchedAt:timestamp, source:'published'};
+  }
+  const full = githubUpdates === PROJECTS.length + 1;
+  return {stats:next, status:full ? 'live' : githubUpdates ? 'partial' : 'offline', profileUpdated:profileResult.status === 'fulfilled'};
+}
+
+function cacheStats(storage, stats) {
+  try {
+    if (stats.profile.source !== 'live') return;
+    storage?.setItem(CACHE_KEY, JSON.stringify({savedAt:Date.now(), profile:stats.profile, repositories:stats.repositories}));
+  } catch { /* Storage is optional. Private browsing must not break the page. */ }
+}
+
+
+/** A small spring-based point field. No dependencies, trails, or full-page particle overlay. */
+function stepParticle(point, pointer, elapsed, delta = 1) {
+  const dt = Math.max(.25, Math.min(2, delta));
+  const driftX = Math.sin(point.ay * .011 + elapsed * .00019 + point.phase) * 3.3;
+  const driftY = Math.cos(point.ax * .013 - elapsed * .00016 + point.phase) * 2.3;
+  let ax = (point.ax + driftX - point.x) * .036;
+  let ay = (point.ay + driftY - point.y) * .036;
+  if (pointer.active) {
+    const dx = pointer.x - point.x;
+    const dy = pointer.y - point.y;
+    const distance = Math.hypot(dx, dy);
+    const influence = Math.exp(-(distance * distance) / (145 * 145));
+    // Cursor gravity with a tangential component: real displacement, not a parallax image.
+    ax += (dx * .009 - dy * .021) * influence;
+    ay += (dy * .009 + dx * .021) * influence;
+  }
+  const damping = Math.pow(.84, dt);
+  point.vx = (point.vx + ax * dt) * damping;
+  point.vy = (point.vy + ay * dt) * damping;
+  point.x += point.vx * dt;
+  point.y += point.vy * dt;
+  return point;
+}
+
+class AnchorParticles {
+  constructor(canvas, enabled = true) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d', {alpha:true});
+    this.enabled = enabled;
+    this.visible = true;
+    this.pageVisible = !document.hidden;
+    this.frame = 0;
+    this.lastTime = 0;
+    this.elapsed = 0;
+    this.points = [];
+    this.pointer = {x:0,y:0,active:false};
+    this.finePointer = matchMedia('(pointer:fine)');
+    this.reducedMotion = matchMedia('(prefers-reduced-motion:reduce)');
+    this.width = 0;
+    this.height = 0;
+    this.resizeTimer = 0;
+    this.abort = new AbortController();
+    if (!this.ctx) return;
+    const options = {passive:true, signal:this.abort.signal};
+    this.onPointer = event => {
+      if (!this.finePointer.matches || event.pointerType === 'touch') return;
+      const rect = this.canvas.getBoundingClientRect();
+      this.pointer.x = event.clientX-rect.left;
+      this.pointer.y = event.clientY-rect.top;
+      this.pointer.active = this.pointer.x > -110 && this.pointer.x < rect.width+110 && this.pointer.y > -100 && this.pointer.y < rect.height+100;
+    };
+    window.addEventListener('pointermove', this.onPointer, options);
+    document.documentElement.addEventListener('pointerleave', () => {this.pointer.active=false;}, options);
+    window.addEventListener('blur', () => {this.pointer.active=false;}, options);
+    document.addEventListener('visibilitychange', () => {this.pageVisible=!document.hidden; this.sync();}, options);
+    window.addEventListener('resize', () => {
+      clearTimeout(this.resizeTimer);
+      this.resizeTimer=setTimeout(() => {this.resize();this.sync();}, 100);
+    }, options);
+    this.observer = new IntersectionObserver(entries => {this.visible=entries[0].isIntersecting;this.sync();},{rootMargin:'80px'});
+    this.observer.observe(canvas);
+    this.resize();
+    canvas.parentElement.classList.add('ready');
+    this.sync();
+  }
+  resize() {
+    if (!this.ctx) return;
+    const rect = this.canvas.getBoundingClientRect();
+    this.width = rect.width;
+    this.height = rect.height;
+    if (!this.width || !this.height) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    this.canvas.width = Math.round(this.width*dpr);
+    this.canvas.height = Math.round(this.height*dpr);
+    this.ctx.setTransform(dpr,0,0,dpr,0,0);
+    const shape = document.createElement('canvas');
+    shape.width = Math.ceil(this.width);
+    shape.height = Math.ceil(this.height);
+    const s = shape.getContext('2d', {willReadFrequently:true});
+    if (!s) return;
+    const size = Math.min(this.width * .95, this.height * .97);
+    s.font = `italic ${size}px Georgia, serif`;
+    s.textAlign = 'center';
+    s.textBaseline = 'middle';
+    s.fillStyle = '#fff';
+    s.fillText('&', this.width*.48, this.height*.48);
+    const pixels = s.getImageData(0,0,shape.width,shape.height).data;
+    const candidates = [];
+    let seed = 42;
+    const random = () => {seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+    const stride = this.width < 300 ? 3 : 3.3;
+    for (let y=9;y<shape.height-9;y+=stride) for (let x=9;x<shape.width-9;x+=stride) {
+      const ix=Math.floor(x),iy=Math.floor(y);
+      if (pixels[(iy*shape.width+ix)*4+3] < 120 || random()>.91) continue;
+      const ax=x+(random()-.5)*2.4,ay=y+(random()-.5)*2.4;
+      const brightness=random();
+      candidates.push({ax,ay,x:ax,y:ay,vx:0,vy:0,phase:random()*6.28,size:.45+brightness*.65,alpha:.17+brightness*.53,color:random()<.075?'cyan':random()<.18?'pink':'violet'});
+    }
+    // Deterministic downsampling puts a hard ceiling on work per frame.
+    const cap=this.finePointer.matches?2100:750;
+    const step=Math.max(1,candidates.length/cap);
+    this.points=[];
+    for(let i=0;i<Math.min(cap,candidates.length);i++)this.points.push(candidates[Math.floor(i*step)]);
+    this.canvas.dataset.particles=String(this.points.length);
+    this.draw(0,false);
+  }
+  draw(delta=1, animate=true) {
+    const ctx=this.ctx;
+    if(!ctx)return;
+    ctx.clearRect(0,0,this.width,this.height);
+    for(const point of this.points){
+      if(animate)stepParticle(point,this.pointer,this.elapsed,delta);
+      ctx.globalAlpha=point.alpha;
+      ctx.fillStyle=point.color==='cyan'?'#9ee9e5':point.color==='pink'?'#d39ce9':'#bb7cff';
+      ctx.beginPath();
+      ctx.arc(point.x,point.y,point.size,0,Math.PI*2);
+      ctx.fill();
+    }
+    ctx.globalAlpha=1;
+  }
+  tick = timestamp => {
+    if(!this.enabled||!this.visible||!this.pageVisible||this.reducedMotion.matches){this.frame=0;this.lastTime=0;return;}
+    const delta=this.lastTime?Math.min((timestamp-this.lastTime)/16.667,2):1;
+    this.elapsed+=this.lastTime?Math.min(timestamp-this.lastTime,33.334):16.667;
+    this.lastTime=timestamp;
+    this.draw(delta,true);
+    this.frame=requestAnimationFrame(this.tick);
+  };
+  sync() {
+    if(!this.ctx)return;
+    if(this.frame)cancelAnimationFrame(this.frame);
+    this.frame=0;this.lastTime=0;
+    const running=this.enabled&&this.visible&&this.pageVisible&&!this.reducedMotion.matches;
+    this.canvas.dataset.running=String(running);
+    if(running)this.frame=requestAnimationFrame(this.tick);
+    else if(!this.enabled||this.reducedMotion.matches){
+      for(const p of this.points){p.x=p.ax;p.y=p.ay;p.vx=p.vy=0;}
+      this.draw(0,false);
+    }
+  }
+  setEnabled(value) {this.enabled=Boolean(value);this.sync();}
+  destroy(){this.abort.abort();this.observer?.disconnect();cancelAnimationFrame(this.frame);clearTimeout(this.resizeTimer);}
+}
+
+
+
+
+
+
+function initializePortfolio() {
+  const get = id => document.getElementById(id);
+  const storage = (()=>{try{return window.localStorage;}catch{return null;}})();
+  const cached = readCachedStats(storage);
+  let stats = cached ?? freshStats();
+  let refreshing = false;
+  let toastTimer;
+  const motionPreference = matchMedia('(prefers-reduced-motion:reduce)');
+  let motionRequested = true;
+  try { motionRequested = storage?.getItem('aaron.yml:motion') !== 'off'; } catch { /* optional */ }
+  const anchor = new AnchorParticles(get('anchor-canvas'),motionRequested&&!motionPreference.matches);
+  const motionButton = get('motion-toggle');
+
+  const dateText = date => {
+    const parsed = new Date(date);
+    return Number.isNaN(parsed.getTime()) ? 'date unavailable' : new Intl.DateTimeFormat('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:'Europe/Berlin'}).format(parsed);
+  };
+  const notice = text => {
+    const toast = get('toast');
+    clearTimeout(toastTimer);
+    toast.textContent=text;toast.hidden=false;
+    toastTimer=setTimeout(()=>{toast.hidden=true;},3600);
+  };
+  function setMotion() {
+    const enabled=motionRequested&&!motionPreference.matches;
+    anchor.setEnabled(enabled);
+    motionButton.setAttribute('aria-pressed',String(enabled));
+    get('motion-value').textContent=enabled?'true':'false';
+    document.documentElement.dataset.motion=enabled?'on':'off';
+    motionButton.title=motionPreference.matches?'Reduced motion is enabled in your system settings.':'Toggle the cursor-reactive particle field.';
+  }
+  setMotion();
+  motionButton.addEventListener('click',()=>{
+    if(motionPreference.matches){notice('Motion is off to respect your system preference.');return;}
+    motionRequested=!motionRequested;
+    try{storage?.setItem('aaron.yml:motion',motionRequested?'on':'off');}catch{/* optional */}
+    setMotion();
+  });
+  motionPreference.addEventListener('change',setMotion);
+
+  document.querySelectorAll('.section-fold').forEach(button=>{
+    button.addEventListener('click',()=>{
+      const expanded=button.getAttribute('aria-expanded')==='true';
+      const panel=get(button.getAttribute('aria-controls'));
+      panel.hidden=expanded;
+      button.setAttribute('aria-expanded',String(!expanded));
+      button.setAttribute('aria-label',`${expanded?'Expand':'Collapse'} ${panel.id.startsWith('projects')?'projects':'activity'}`);
+    });
+  });
+  // Anchored navigation opens a folded section before scrolling.
+  document.querySelectorAll('a[href^="#"]').forEach(link=>{
+    link.addEventListener('click',()=>{
+      const target=get(link.hash.slice(1));
+      const fold=target?.querySelector('.section-fold');
+      if(fold?.getAttribute('aria-expanded')==='false')fold.click();
+    });
+  });
+  document.querySelectorAll('.detail-toggle').forEach(button=>{
+    button.addEventListener('click',()=>{
+      const expanded=button.getAttribute('aria-expanded')==='true';
+      get(button.getAttribute('aria-controls')).hidden=expanded;
+      button.setAttribute('aria-expanded',String(!expanded));
+    });
+  });
+  document.querySelectorAll('.filter').forEach(button=>{
+    button.addEventListener('click',()=>{
+      const category=button.dataset.filter;
+      document.querySelectorAll('.filter').forEach(filter=>{
+        const active=filter===button;
+        filter.classList.toggle('active',active);
+        filter.setAttribute('aria-pressed',String(active));
+      });
+      let count=0;
+      document.querySelectorAll('.project').forEach(project=>{
+        project.hidden=category!=='all'&&project.dataset.category!==category;
+        if(!project.hidden)count++;
+      });
+      get('project-count').textContent=`${count} ${count===1?'entry':'entries'}`;
+    });
+  });
+  // Scroll position, rather than click state, drives the document navigation.
+  const sections=[...document.querySelectorAll('main section[id]')];
+  let scrollPending=false;
+  function updateNav(){
+    scrollPending=false;
+    let active=sections[0].id;
+    for(const section of sections)if(section.getBoundingClientRect().top<innerHeight*.4)active=section.id;
+    if(innerHeight+scrollY>=document.documentElement.scrollHeight-5)active='contact';
+    document.querySelectorAll('[data-nav]').forEach(link=>{
+      const selected=link.dataset.nav===active;
+      link.classList.toggle('active',selected);
+      if(selected)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');
+    });
+  }
+  addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(updateNav);}},{passive:true});
+  updateNav();
+
+  function renderStats(status='snapshot') {
+    get('stat-repos').textContent=String(stats.profile.publicRepos);
+    get('stat-followers').textContent=String(stats.profile.followers);
+    const hours=get('stat-hours');
+    hours.replaceChildren();
+    const timeParts=stats.coding.displayTime.match(/^(\d+)h(?: (\d+)m)?$/);
+    hours.dataset.unavailable=String(!timeParts);
+    if(timeParts){
+      hours.append(document.createTextNode(timeParts[1]));
+      const h=document.createElement('span');h.textContent='h';hours.append(h);
+      if(timeParts[2]){hours.append(document.createTextNode(' '+timeParts[2]));const m=document.createElement('span');m.textContent='m';hours.append(m);}
+    }else hours.textContent=stats.coding.displayTime;
+    const source=get('github-status');
+    source.dataset.status=status;
+    const stamp=dateText(stats.profile.fetchedAt);
+    let label=stats.profile.source==='live'?`GitHub profile refreshed · ${stamp}`:stats.profile.source==='cached'?`Cached GitHub profile · ${stamp}`:`GitHub snapshot · ${stamp}`;
+    if(status==='offline')label+= ' · live refresh unavailable';
+    if(status==='partial')label+= ' · some sources unavailable';
+    if(status==='loading')label+=' · checking public sources';
+    if(status==='live')label=`GitHub refreshed · ${stamp}`;
+    source.querySelector('span').textContent=label;
+    for(const project of PROJECTS){
+      const entry=stats.repositories[project.repo];
+      const metric=document.querySelector(`[data-stars-for="${project.repo}"]`);
+      metric.textContent=entry.available?String(entry.stars):'—';
+      metric.parentElement.title=entry.available?`Repository stars · ${entry.source} · observed ${dateText(entry.fetchedAt)}`:'This repository is no longer publicly available.';
+      const article=document.querySelector(`[data-project="${project.id}"]`);
+      article.dataset.available=String(entry.available);
+      if(!entry.available){
+        article.querySelector('.project-link').title='Previously public; currently unavailable.';
+        metric.setAttribute('aria-label','Repository no longer publicly available');
+      }else metric.removeAttribute('aria-label');
+    }
+    get('language-list').innerHTML=languagesHtml(stats.coding);
+    get('coding-date').textContent=`WakaTime · published profile snapshot observed ${dateText(stats.coding.fetchedAt)}.`;
+    get('yaml-source').textContent=asYaml(stats);
+  }
+  async function refresh() {
+    if(refreshing)return;
+    refreshing=true;
+    const button=get('refresh-stats');button.disabled=true;button.setAttribute('aria-busy','true');
+    renderStats('loading');
+    try{
+      const result=await refreshStats(stats);
+      stats=result.stats;
+      cacheStats(storage,stats);
+      renderStats(result.status);
+    }catch{renderStats('offline');}
+    finally{button.disabled=false;button.removeAttribute('aria-busy');refreshing=false;}
+  }
+  get('refresh-stats').addEventListener('click',refresh);
+  renderStats(cached?'cached':'snapshot');
+  // One initial public refresh, then on demand. No polling; cached profile data lasts 15 minutes.
+  if(!cached)void refresh();
+
+  const dialog=get('source-dialog');
+  get('open-source').addEventListener('click',()=>{
+    get('yaml-source').textContent=asYaml(stats);
+    dialog.showModal();document.body.classList.add('dialog-open');
+  });
+  get('close-source').addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('close',()=>document.body.classList.remove('dialog-open'));
+  dialog.addEventListener('click',event=>{
+    if(event.target!==dialog)return;
+    const r=dialog.getBoundingClientRect();
+    if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();
+  });
+  get('copy-yaml').addEventListener('click',async()=>{
+    try{await navigator.clipboard.writeText(asYaml(stats));notice('YAML copied. Indentation included.');}
+    catch{notice('Clipboard unavailable here. Use download .yml instead.');}
+  });
+  get('download-yaml').addEventListener('click',()=>{
+    const url=URL.createObjectURL(new Blob([asYaml(stats)],{type:'application/yaml;charset=utf-8'}));
+    const link=document.createElement('a');link.href=url;link.download='aaron.yml';
+    document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+  addEventListener('pagehide',event=>{if(!event.persisted)anchor.destroy();});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initializePortfolio,{once:true});
+else initializePortfolio();
+
+})();</script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+[
+  {
+    "check": "No JavaScript runtime errors on initialization",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "Four public projects visible",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Theme filter selects exactly two entries",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Filter state announced",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Tool filter selects exactly two entries",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Project details and real palette expand",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Project detail collapses",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "YAML section folds",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Navigation reopens folded section",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Raw source dialog opens",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Exported YAML parses with a real YAML parser",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Copy button transfers actual YAML",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "YAML download has correct filename",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Escape closes dialog and restores focus",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Motion toggle stops rendering",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Motion resumes when enabled and visible",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Offscreen particles stop",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Offline stats retain verified snapshot",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "External links are safe new-tab links",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "No runtime errors after primary interactions",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "No horizontal overflow at 320px",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "No runtime errors at 320px",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "No horizontal overflow at 360px",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "No runtime errors at 360px",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "No horizontal overflow at 390px",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "No runtime errors at 390px",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "No horizontal overflow at 768px",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "No runtime errors at 768px",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "No horizontal overflow at 1024px",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "No runtime errors at 1024px",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "No horizontal overflow at 1440px",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "No runtime errors at 1440px",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "No horizontal overflow at 1920px",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "No runtime errors at 1920px",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "Touch devices receive bounded particle count",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Mobile project filtering works",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Mobile raw dialog fits screen",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "No runtime errors on touch device",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "OS reduced-motion preference stops particle rendering",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Reduced-motion disables smooth scroll",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "UI never overrides OS reduced-motion preference",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Successful API responses update actual counters",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Live status only follows validated success",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Missing weekly report preserves old timestamp",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "No runtime errors on successful refresh",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "Projects exist without JavaScript",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "Static stats are visible without JavaScript",
+    "passed": true,
+    "detail": null
+  }
+]

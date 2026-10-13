@@ -1,0 +1,72 @@
+---
+# Aaron — a little about the person behind the code.
+# Source: public GitHub profile and its published WakaTime statistics.
+# GitHub counts cover the personal account, not organization totals.
+developer: &aaron
+  name: "Aaron"
+  handle: "@aaronedev"
+  role: "Software developer"
+  based_in: "Cologne, Germany"
+  about: |
+    I make tools feel like second nature.
+    Linux-first tools, thoughtful interfaces, and a little Violet Void.
+  focus: [linux, developer_tools, thoughtful_ui]
+
+projects:
+  - name: "Violet Void"
+    kind: "themes"
+    description: "One palette. Every surface. A dark, violet-first color system for editors, terminals, and the web."
+    stack: ["color_system", "cross_platform"]
+    source: "https://github.com/aaronedev/violet-void-theme"
+    stars: 11
+    observed_at: "2026-09-06"
+    available: true
+  - name: "Nerd Font Picker"
+    kind: "tools"
+    description: "The right icon, without breaking your flow. Fuzzy Rofi search, straight to your clipboard."
+    stack: ["Shell", "Rofi"]
+    source: "https://github.com/aaronedev/nerdfont-icon-rofi-picker"
+    stars: 3
+    observed_at: "2026-09-06"
+    available: true
+  - name: "ArchWiki, reimagined"
+    kind: "themes"
+    description: "A calmer place to learn Linux. The depth of the ArchWiki, in the colors of Violet Void."
+    stack: ["Stylus", "CSS"]
+    source: "https://github.com/aaronedev/violet-void-theme_archwiki"
+    stars: 3
+    observed_at: "2026-09-06"
+    available: true
+  - name: "Profile, automated"
+    kind: "tools"
+    description: "A profile that keeps up. GitHub activity, coding statistics, and generated visuals, brought together."
+    stack: ["Python", "GitHub_Actions"]
+    source: "https://github.com/aaronedev/aaronedev"
+    stars: 28
+    observed_at: "2026-09-06"
+    available: true
+
+statistics:
+  github:
+    public_repositories: 94
+    followers: 140
+    observed_at: "2026-09-06"
+    source: "snapshot"
+  wakatime:
+    coding_time: "77h 15m"
+    period: "latest published week"
+    observed_at: "2026-09-06"
+    source: "https://github.com/aaronedev/aaronedev/blob/main/README.md"
+    languages:
+      "Python": 54.4
+      "Markdown": 17.23
+      "Bash": 6.13
+      "JSON": 4.28
+      "Remaining": 17.96
+
+contact:
+  github: "https://github.com/aaronedev"
+  matrix: "https://matrix.to/#/@aaronedev:matrix.org"
+  wakatime: "https://wakatime.com/@018cc02c-e893-42e6-b1c7-48cb3ef3ccfe"
+
+...
