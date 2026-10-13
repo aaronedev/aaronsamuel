@@ -66,7 +66,8 @@ export class AnchorParticles {
       this.pointer.active = this.pointer.x > -110 && this.pointer.x < rect.width+110 && this.pointer.y > -100 && this.pointer.y < rect.height+100;
     };
     this.onPress = event => {
-      if (!this.frame) return;
+      // Touch pointerdown also starts scrolls over the hero copy, so only mouse and pen pulse.
+      if (!this.frame || event.pointerType === 'touch') return;
       const rect = this.canvas.getBoundingClientRect();
       const x = event.clientX-rect.left, y = event.clientY-rect.top;
       if (x < -40 || x > rect.width+40 || y < -40 || y > rect.height+40) return;
@@ -91,7 +92,9 @@ export class AnchorParticles {
   /** One pre-rendered glow per color: drawImage is far cheaper than arc + fill per point. */
   sprite(color, core) {
     const size = 32;
-    const sprite = document.createElement('canvas');
+    // ImageBitmap sources avoid a per-drawImage canvas snapshot, which dominated frame cost.
+    const offscreen = typeof OffscreenCanvas === 'function';
+    const sprite = offscreen ? new OffscreenCanvas(size, size) : document.createElement('canvas');
     sprite.width = sprite.height = size;
     const s = sprite.getContext('2d');
     if (!s) return sprite;
@@ -106,7 +109,7 @@ export class AnchorParticles {
     g.addColorStop(1, `rgba(${r},${gr},${b},0)`);
     s.fillStyle = g;
     s.fillRect(0,0,size,size);
-    return sprite;
+    return offscreen ? sprite.transferToImageBitmap() : sprite;
   }
   resize() {
     if (!this.ctx) return;
@@ -150,7 +153,8 @@ export class AnchorParticles {
       const ax=x+(random()-.5)*2.4,ay=y+(random()-.5)*2.4;
       const brightness=random();
       const spark=random()<.04;
-      candidates.push({ax,ay,x:ax,y:ay,vx:0,vy:0,heat:0,phase:random()*6.28,twinkle:spark?2.6:.6+random()*.8,
+      // Only a deterministic subset carries a glow sprite; the rest draw a cheap square core.
+      candidates.push({ax,ay,x:ax,y:ay,vx:0,vy:0,heat:0,glow:spark||random()<.2,phase:random()*6.28,twinkle:spark?2.6:.6+random()*.8,
         size:spark?1.5:.55+brightness*.6,alpha:spark?.95:.26+brightness*.5,color:random()<.075?'cyan':random()<.18?'pink':'violet'});
     }
     // Deterministic downsampling puts a hard ceiling on work per frame.
@@ -186,9 +190,16 @@ export class AnchorParticles {
       if(animate)stepParticle(point,this.pointer,this.elapsed,delta,this.pulses);
       const heat=animate?point.heat:0;
       const shimmer=.72+.28*Math.sin(t*point.twinkle+point.phase);
-      const radius=point.size*(3.4+heat*2.2);
       ctx.globalAlpha=Math.min(1,point.alpha*shimmer+heat*.45);
-      ctx.drawImage(heat>.4?this.sprites.hot:this.sprites[point.color],point.x-radius,point.y-radius,radius*2,radius*2);
+      // drawImage is the per-point cost; bound it to the glow subset and points heated by motion.
+      if(point.glow||heat>.25){
+        const radius=point.size*(3.4+heat*2.2);
+        ctx.drawImage(heat>.4?this.sprites.hot:this.sprites[point.color],point.x-radius,point.y-radius,radius*2,radius*2);
+      }else{
+        const side=point.size*2.2;
+        ctx.fillStyle=this.colors[point.color];
+        ctx.fillRect(point.x-side/2,point.y-side/2,side,side);
+      }
     }
     // A faint ring makes the shockwave legible without leaving trails.
     for(const pulse of this.pulses){

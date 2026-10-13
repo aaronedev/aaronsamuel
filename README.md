@@ -22,7 +22,7 @@ Open `http://127.0.0.1:4173`. Requires Node.js 22 or newer. There is **no npm in
 
 ## What works
 
-- Cursor gravity: the ampersand is a real point field, not an image or CSS parallax. Particles move toward and around the pointer and spring back afterward. On first view they swirl in from a loose ring; a click or tap near the glyph sends out a shockwave. Points glow through pre-rendered sprites with additive blending, twinkle gently, and heat toward a white-pink spark when moving fast. Every frame is cleared, so no muddy trails accumulate.
+- Cursor gravity: the ampersand is a real point field, not an image or CSS parallax. Particles move toward and around the pointer and spring back afterward. On first view they swirl in from a loose ring; a mouse or pen click near the glyph sends out a shockwave. Points glow through pre-rendered sprites with additive blending, twinkle gently, and heat toward a white-pink spark when moving fast. Every frame is cleared, so no muddy trails accumulate.
 - Motion follows the operating-system reduced-motion preference. The footer toggle can disable motion; it cannot override an OS request for reduced motion. Animation pauses when the canvas leaves the viewport or the tab is hidden. Work is bounded to 2,100 desktop or 750 coarse-pointer particles, at a maximum device-pixel ratio of 1.5.
 - Projects filter by category, expand details, and link to actual public repositories. Sections fold and reopen when navigated to.
 - Public GitHub counters attempt a refresh at first load and on demand. The last verified snapshot remains visible when a request fails.
