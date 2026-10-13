@@ -132,8 +132,9 @@ h1,h2,h3 { font-weight:500 }
 .punctuation { color:var(--punct) }
 .violet-text { color:var(--accent) }
 .small { font-size:var(--fs-sm) }
-.anchor-value { color:var(--punct); font-size:var(--fs-md) }
-a.anchor-value:hover { color:var(--accent) }
+.anchor-value { color:var(--muted); font-size:var(--fs-md) }
+a.anchor-value { text-decoration:underline dotted; text-decoration-color:var(--border-strong); text-underline-offset:4px }
+a.anchor-value:hover { color:var(--accent); text-decoration-color:currentColor }
 
 /* ---------- links: one consistent treatment ----------
    Every inline link is --link colored and underlined at rest. */
