@@ -4,8 +4,11 @@ export function stepParticle(point, pointer, elapsed, delta = 1, pulses = []) {
   const phase = point.phase ?? 0;
   const driftX = Math.sin(point.ay * .011 + elapsed * .00019 + phase) * 3.3;
   const driftY = Math.cos(point.ax * .013 - elapsed * .00016 + phase) * 2.3;
-  let ax = (point.ax + driftX - point.x) * .036;
-  let ay = (point.ay + driftY - point.y) * .036;
+  // A charged singularity (pointer.pull 0..1) loosens every point's spring home.
+  const pull = pointer.active ? Math.max(0, Math.min(1, pointer.pull ?? 0)) : 0;
+  const spring = .036 * (1 - .95 * pull);
+  let ax = (point.ax + driftX - point.x) * spring;
+  let ay = (point.ay + driftY - point.y) * spring;
   // Ambient points far from the anchor respond more weakly to the cursor and shockwaves.
   const force = point.force ?? 1;
   if (pointer.active) {
@@ -16,6 +19,18 @@ export function stepParticle(point, pointer, elapsed, delta = 1, pulses = []) {
     // Cursor gravity with a tangential component: real displacement, not a parallax image.
     ax += (dx * .009 - dy * .021) * influence;
     ay += (dy * .009 + dx * .021) * influence;
+    if (pull > 0) {
+      // Accretion: pulled toward a ring around the hole and swept around it, with a reach
+      // that grows with charge.
+      const reach = 160 + 900 * pull;
+      const grip = Math.exp(-(distance * distance) / (reach * reach)) * pull * force;
+      const ring = 10 + 62 * pull;
+      const unit = distance || 1;
+      const radial = Math.max(-40, Math.min(220, distance - ring)) * .018 * grip;
+      const swirl = Math.min(distance, 240) * .004 * grip;
+      ax += (dx / unit) * radial - (dy / unit) * swirl;
+      ay += (dy / unit) * radial + (dx / unit) * swirl;
+    }
   }
   // Click shockwaves: an expanding ring that pushes points outward as it passes.
   for (const pulse of pulses) {
@@ -339,6 +354,12 @@ export class AmbientField {
     }
     this.canvas.dataset.particles = String(this.points.length);
     this.draw(0,false);
+  }
+  /** A release shockwave whose strength can exceed a click's (singularity spit-out). */
+  burst(clientX, clientY, strength) {
+    if (!this.frame) return;
+    this.pulses.push({x:clientX+window.scrollX,y:clientY+window.scrollY,radius:0,strength:Math.max(.4,strength)});
+    if (this.pulses.length > 4) this.pulses.shift();
   }
   pulse(clientX, clientY) {
     if (!this.frame) return;

@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import './build.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'../dist');
-const port=Number(process.argv[2]??4173);
+const port=Number(process.argv[2]??process.env.PORT??4173);
 if(!Number.isInteger(port)||port<1024||port>65535)throw new Error('Provide a valid local port between 1024 and 65535.');
 const server=createServer(async(req,res)=>{
   try{
