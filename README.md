@@ -36,7 +36,7 @@ Open `http://127.0.0.1:4173`. Requires Node.js 22 or newer. There is **no npm in
 | --- | --- |
 | `src/content.mjs` | Curated projects, public source identities, dated data snapshot, YAML export |
 | `src/layout.html` | Page structure, hero/contact copy, metadata, initial static counter labels |
-| `src/styles.css` | Palette tokens, type, spacing, responsive layout, reduced-motion and print rules |
+| `src/styles.css` | Theme tokens (top `:root` blocks), type scale, layout, responsive and print rules |
 | `src/particles.mjs` | Glyph sampling, cursor influence, spring dynamics, animation lifecycle |
 | `src/github.mjs` | Public-source validation, refresh, optional cache, WakaTime aggregate parsing |
 | `src/render.mjs` | Escaped project and language markup |
@@ -45,7 +45,25 @@ Open `http://127.0.0.1:4173`. Requires Node.js 22 or newer. There is **no npm in
 | `scripts/serve.mjs` | Local preview server |
 | `tests/site.test.mjs` | Node unit tests |
 
-The visual page is YAML-inspired HTML, not a YAML editor or a YAML-driven CMS. Project content and exported YAML are generated from `content.mjs`; hero/contact markup and initial non-JavaScript counters also live in `layout.html`. Update both where appropriate. Rebuild after editing; the local server does not watch files automatically.
+The visual page is YAML-inspired HTML, not a YAML editor or a YAML-driven CMS. Project content and exported YAML are generated from `content.mjs`; hero/contact markup and initial non-JavaScript counters also live in `layout.html`. Update both where appropriate. `npm run dev` rebuilds on save; reload the page to see changes.
+
+### Tweak colors
+
+All colors live in the first `:root` block of `src/styles.css`:
+
+- **Palette**: the only raw hex values (`--bg`, `--fg`, `--violet`, `--cyan`, ...).
+- **Semantic roles**: what each color is used for (`--accent`, `--key`, `--string`,
+  `--link`, `--comment`, ...). Repoint these to restyle one role without touching others.
+- **Derived**: borders, tints, and surfaces mixed from the palette with `color-mix()`, so
+  changing `--violet` also updates buttons, outlines, and highlights.
+
+The second `:root` block holds the type scale (`--fs-*`) and gutter geometry. Breakpoints
+mostly reassign those tokens.
+
+For quick iteration, run `npm run dev`. It rebuilds on every change under `src/`; reload the
+page to see it. You can also edit the variables live in DevTools on the `<html>` element and
+copy the values back. The particle field, `<meta name="theme-color">`, and the favicon follow
+`--bg`/`--violet` (and `--orchid` for particles) automatically.
 
 The palette uses the public Violet Void background and violet/pink accents with softened cyan/green for the web surface. Typography uses installed system fonts; no font files are included or downloaded.
 
